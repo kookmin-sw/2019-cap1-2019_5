@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+# 국민대학교 소프트웨어학부 5조 Maday
 
-You can use the [editor on GitHub](https://github.com/kookmin-sw/cap-template/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## 1. 프로젝트 소개
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### ㅁㄷㅁㅇ
 
-### Markdown
+ 대다수의 사람들은 모임의 성격과는 별개로 다수의 모임장소를 정할 때 어려움을 겪는다. 이는 모임의 위치, 목적 등 다양한 요인이 복합적으로 작용했을 것이라고 판단된다. 실제로 특정 장소(카페, 술집 등)에 관련된 정보는 점점 더 많아지고 쉽게 찾을 수 있지만, 만남 지역을 선택할 때 도움을 주는 정보는 그에 비하여 현저하게 부족하다. 우리는 이러한 만남 지역 선택에 관한 문제를 프로그래밍으로 해결할 수 있는 방안을 고안했다.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 2. Abstraction
 
-```markdown
-Syntax highlighted code block
+### ㅁㄷㅁㅇ
 
-# Header 1
-## Header 2
-### Header 3
+eng
 
-- Bulleted
-- List
+## 3. 소개 영상
 
-1. Numbered
-2. List
+<a href="https://youtu.be/qf8jD1wuh0U">
+<img scr="https://user-images.githubusercontent.com/37939855/54473194-d5355280-4817-11e9-9cdf-0de351be92b5.jpg">
+</a>
 
-**Bold** and _Italic_ and `Code` text
+## 4. 팀 소개
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## 5. 사용법
 
-### Jekyll Themes
+추후 업로드 예정.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kookmin-sw/cap-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
