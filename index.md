@@ -22,15 +22,15 @@ eng
 ## 4. 팀 소개
 #### 지도교수 : 황 선 태 교수님
 #### 팀 장 : 최 성 훈
-<img src="./doc/수행계획서 및 발표자료/aboutTeam/최성훈.jpg" />
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/최성훈.jpg" height="300" />
 #### 팀 원 : 강 인 호
-<img src="./doc/수행계획서 및 발표자료/aboutTeam/강인호.jpg" />
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/강인호.jpg" height="300" />
 #### 팀 원 : 곽 태 영
-<img src="./doc/수행계획서 및 발표자료/aboutTeam/곽태영.jpg" />
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/곽태영.jpg"  height="300" />
 #### 팀 원 : 신 영 환
-<img src="./doc/수행계획서 및 발표자료/aboutTeam/신영환.jpg" />
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/신영환.jpg" height="300" />
 #### 팀 원 : 장 진 형
-<img src="./doc/수행계획서 및 발표자료/aboutTeam/장진형.jpg" />
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/장진형.jpg" height="300"/>
 
 
 ## 5. 사용법
