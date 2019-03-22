@@ -26,7 +26,7 @@ eng
 #### 팀 원 : 강 인 호
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/강인호.jpg" height="300" />
 #### 팀 원 : 곽 태 영
-<img src="./doc/수행계획서 및 발표자료/aboutTeam/곽태영2.jpg" height="300" />
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/곽태영.jpg" height="300" />
 #### 팀 원 : 신 영 환
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/신영환.jpg" height="300" />
 #### 팀 원 : 장 진 형
