@@ -1,68 +1,45 @@
-# Welcome to GitHub
+# 국민대학교 소프트웨어학부 5조 Mayday
 
-캡스톤 팀 생성을 축하합니다.
+## 1. 프로젝트 소개
 
-## 팀소개 및 페이지를 꾸며주세요.
+### ㅁㄷㅁㅇ
 
-- readme.md 수정.
+```
+ 대다수의 사람들은 모임의 성격과는 별개로 다수의 모임장소를 정할 때 어려움을 겪는다. 이는 모임의 위치, 목적 등 다양한 요인이 복합적으로 작용했을 것이라고 판단된다. 실제로 특정 장소(카페, 술집 등)에 관련된 정보는 점점 더 많아지고 쉽게 찾을 수 있지만, 만남 지역을 선택할 때 도움을 주는 정보는 그에 비하여 현저하게 부족하다. 우리는 이러한 만남 지역 선택에 관한 문제를 프로그래밍으로 해결할 수 있는 방안을 고안했다.
+```
 
-- index.md 예시보고 수정.
+###Abstraction
 
-- 수정후 팀페이지 확인하여 점검.
+### ㅁㄷㅁㅇ
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ `{{자신의 리파지토리 아이디}}`
+eng
 
-**예시)** 1조  https://kookmin-sw.github.io/2018-cap-1
+## 2. 소개 영상
 
-## readme파일에 아래와 같은 내용들을 추가하세요.
+<a href="https://youtu.be/qf8jD1wuh0U">
+<img src="./doc/수행계획서 및 발표자료/Youtube_Link.jpg">
+</a>
+###### 이미지를 클릭하시면 영상을 보실 수 있습니다.
 
-### 1. 프로잭트 소개
+## 3. 팀 소개
+#### 지도교수 : 황 선 태 교수님
+#### 팀 장 : 최 성 훈
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/최성훈.jpg" height="300" />
+#### 팀 원 : 강 인 호
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/강인호.jpg" height="300" />
+#### 팀 원 : 곽 태 영
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/곽태영.jpg" height="300" />
+#### 팀 원 : 신 영 환
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/신영환.jpg" height="300" />
+#### 팀 원 : 장 진 형
+<img src="./doc/수행계획서 및 발표자료/aboutTeam/장진형.jpg" height="300" />
 
-프로젝트
 
-### 2. 소개 영상
-
-프로젝트 소개하는 영상을 추가하세요
-
-### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
+## 4. 사용법
+#### (1) 각자의 위치 입력
+#### (2) 검색!
+#### 추후 업로드 예정.
 
 ### 5. 기타
 
-추가적인 내용은 자유롭게 작성하세요.
-
-
-## Markdown을 사용하여 내용꾸미기
-
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Support or Contact
-
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+추가적인 내용
