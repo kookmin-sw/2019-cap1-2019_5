@@ -1,3 +1,4 @@
 {
-  "transport" : ""
+  "publictran" : "YOUR_API_KEYS",
+  "driving" : "YOUR_API_KEYS"
 }
