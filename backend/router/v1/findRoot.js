@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
 const subway = require('../../lib/findRoot/bySubway.js');
+const direction = require('../../exam.json');
 
 module.exports = (passport) => {
   router.use((req, res, next) => {
@@ -12,12 +12,20 @@ module.exports = (passport) => {
     res.send("Hello World");
   });
 
-  router.all('/test', (req, res) => {
-    subway.shortestPath();
+  router.get('/transport', async (req, res) => {
+    let startX, startY, endX, endY;
+    let output = {};
 
-    res.json({
-      msg: 'Hello World!'
-    });
+    startX = req.query.startX;
+    startY = req.query.startY;
+
+    for (var i =0;i < direction.data.length; i++) {
+      endX = direction.data[i].loc.longitude;
+      endY = direction.data[i].loc.latitude;
+      output[i] = '해당위치에서 ' + direction.data[i].name + ' 까지의 소요시간은 ' + await subway.shortestPath(startX, startY, endX, endY) + '분 입니다.';
+    }
+
+    res.json(output);
   });
 
   return router;

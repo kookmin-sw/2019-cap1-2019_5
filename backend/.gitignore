@@ -86,3 +86,4 @@ typings/
 
 #config
 /config/server_config.json
+/config/API_KEY.json
