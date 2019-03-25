@@ -1,0 +1,15 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: calc(100% - 25px);
+}
+#search {
+  height: 25px;
+}
+#search-latlng {
+  position: absolute;
+  left: 300px;
+}
