@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MDMY v1</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="main.css" />
+    <script src="geocoding.js"></script>
+  </head>
+  <body>
+    <div id ="search">
+      Search: <input type="text" id="address"/>
+              <input type="button" value="Go" onclick="geocode()">
+      <a id = "search-latlng">Lat/Lng: <label id="latlng">(37.570204, 126.976956) </a>
+    </div>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxc5fsP8ndBuJKqdHVc39eorbnfJlSuY&callback=initializeMap"
+    async defer></script>
+  </body>
+</html>
