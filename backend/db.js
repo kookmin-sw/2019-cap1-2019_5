@@ -8,7 +8,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("we're connected!");
 });
-
+``
 //define schema
 let areaSchema = new mongoose.Schema({
     data : {},
@@ -24,8 +24,8 @@ areaSchema.methods.speaklocation = function () {
 let areaModel = mongoose.model('area', areaSchema);
 
 //read JSONfile
-let datas = JSON.parse(fs.readFileSync('exam.json', 'utf8'));
-data = datas.data;
+let locationCandidates = JSON.parse(fs.readFileSync('exam.json', 'utf8'));
+let data = locationCandidates.data;
 
 // insert data in db
 areaModel.collection.insertMany(data,function(err,r)
