@@ -3,13 +3,13 @@ const router = express.Router();
 
 module.exports = (passport) => {
   const version = 'v1';
-  const findRootRouter = require('./' + version + '/findRoot')();
+  const findRouteRouter = require('./' + version + '/findRoute')();
 
   router.use((req, res, next) => {
     next();
   });
 
-  router.use('/' + version + '/findRoot', findRootRouter);
+  router.use('/' + version + '/findRoute', findRouteRouter);
 
   return router;
 };

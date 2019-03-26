@@ -1,3 +1,7 @@
 {
-  "transport" : ""
+  "publicTransURL": "http://ws.bus.go.kr/api/rest/pathinfo/getPathInfoByBusNSub?",
+  "naverDrivingURL": "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?",
+  "publicTrans": "YOUR_API_KEY",
+  "naverClientID": "YOUR_API_KEY",
+  "naverAPI": "YOUR_API_KEY"
 }
