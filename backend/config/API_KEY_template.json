@@ -1,18 +1,7 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 187a597... Issue#5 Connect drivingAPI with server
   "publicTransURL": "http://ws.bus.go.kr/api/rest/pathinfo/getPathInfoByBusNSub?",
   "naverDrivingURL": "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?",
   "publicTrans": "YOUR_API_KEY",
-  "naverClientID": "YOUR_APIT_KEY",
+  "naverClientID": "YOUR_API_KEY",
   "naverAPI": "YOUR_API_KEY"
-<<<<<<< HEAD
-=======
-  "publictran" : "YOUR_API_KEYS",
-  "driving" : "YOUR_API_KEYS"
->>>>>>> 7880915... Issue#5-add skeleton&key setting
-=======
->>>>>>> 187a597... Issue#5 Connect drivingAPI with server
 }
