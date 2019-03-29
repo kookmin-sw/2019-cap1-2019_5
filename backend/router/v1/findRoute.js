@@ -23,8 +23,9 @@ module.exports = (passport) => {
     for (var i = 0; i < direction.data.length; i++) {
       endX = direction.data[i].loc.longitude;
       endY = direction.data[i].loc.latitude;
-      output[i] = '해당위치에서 ' + direction.data[i].name + ' 까지의 소요시간은 ' + await subway.shortestPath(startX, startY, endX, endY) + '분 입니다.';
+      output[direction.data[i].name] = await subway.shortestPath(startX, startY, endX, endY);
     }
+
     res.json(output);
   });
 

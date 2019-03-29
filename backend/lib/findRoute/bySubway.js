@@ -13,19 +13,41 @@ const shortestPath = async (startlng, startlet, endlng, endlat) => {
     + '&endY=' + endlat;
 
   let time;
+  let output = {};
 
   await axios.get(transportAPI)
     .then((res) => {
       parseString(res.data, (err, result) => {
-        console.log(result.ServiceResult.msgBody[0].itemList[0].time[0]);
-        time = result.ServiceResult.msgBody[0].itemList[0].time[0];
+        shortestRoute = result.ServiceResult.msgBody[0].itemList[0];
+
+        output['duration'] = shortestRoute.time[0];
+        output['distance'] = shortestRoute.distance[0];
+        output['route'] = [];
+
+        for (var i=0; i < shortestRoute.pathList.length ; i++) {
+          let route = {};
+          let transportation = shortestRoute.pathList[i].routeNm[0];
+
+          if (transportation.endsWith("선")) {
+            route["transportation"] = "subway";
+          } else {
+            route["transportation"] = "bus";
+          }
+
+          route["lineNum"] = transportation;
+          route["startName"] = shortestRoute.pathList[i].fname[0];
+          route["endName"] = shortestRoute.pathList[i].tname[0];
+
+          output.route.push(route);
+        }
+
       });
     })
     .catch((err) => {
       console.log(err);
     })
 
-  return time;
+  return output;
 };
 
 module.exports = {
