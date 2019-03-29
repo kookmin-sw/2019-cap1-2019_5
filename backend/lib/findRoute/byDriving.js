@@ -19,20 +19,14 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
   })
     .then((res) => {
       if (optionCode == 'traoptimal') {
-        // console.log(JSON.stringify("distance using optimal: " + res.data.route.traoptimal[0].summary.distance));
-        // console.log(JSON.stringify("duration using optimal: " + res.data.route.traoptimal[0].summary.duration));
         distance = res.data.route.traoptimal[0].summary.distance;
         duration = res.data.route.traoptimal[0].summary.duration;
         sectionLength = res.data.route.traoptimal[0].section.length;
       } else if (optionCode == 'trafast') {
-        // console.log(JSON.stringify("distance using fastest: " + res.data.route.trafast[0].summary.distance));
-        // console.log(JSON.stringify("duration using fastest: " + res.data.route.trafast[0].summary.duration));
         distance = res.data.route.trafast[0].summary.distance;
         duration = res.data.route.trafast[0].summary.duration;
         sectionLength = res.data.route.trafast[0].section.length;
       } else if (optionCode == 'tracomfort') {
-        // console.log(JSON.stringify("distance using comfort: " + res.data.route.tracomfort[0].summary.distance));
-        // console.log(JSON.stringify("duration using comfort: " + res.data.route.tracomfort[0].summary.duration));
         distance = res.data.route.tracomfort[0].summary.distance;
         duration = res.data.route.tracomfort[0].summary.duration;
         sectionLength = res.data.route.tracomfort[0].section.length;
@@ -53,12 +47,11 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
           path.name = res.data.route.tracomfort[0].section[i].name;
         output.route.push(path);
       }
-      //console.log(output);
     })
     .catch((err) => {
       console.log(err);
     });
-  return parseInt(duration / 60000);
+  return output;
 };
 module.exports = {
   shortestPath
