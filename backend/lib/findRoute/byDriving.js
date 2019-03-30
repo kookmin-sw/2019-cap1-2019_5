@@ -10,6 +10,7 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
   let distance;
   let duration;
   let sectionLength;
+  let travelInfo = {};
 
   await axios.get(reqURL, {
     headers: {
@@ -18,6 +19,7 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
     }
   })
     .then((res) => {
+      //TODO(Taeyoung): Refactor below codes properly.
       if (optionCode == 'traoptimal') {
         distance = res.data.route.traoptimal[0].summary.distance;
         duration = res.data.route.traoptimal[0].summary.duration;
@@ -31,11 +33,9 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
         duration = res.data.route.tracomfort[0].summary.duration;
         sectionLength = res.data.route.tracomfort[0].section.length;
       }
-
-      let output = {};
-      output.duration = duration;
-      output.distance = distance;
-      output.route = [];
+      travelInfo.duration = parseInt(duration / 60000);
+      travelInfo.distance = distance;
+      travelInfo.route = [];
       for (let i = 0; i < sectionLength; i++) {
         let path = {};
         path.transportation = "driving";
@@ -45,13 +45,13 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
           path.name = res.data.route.trafast[0].section[i].name;
         else if (optionCode == 'tracomfort')
           path.name = res.data.route.tracomfort[0].section[i].name;
-        output.route.push(path);
+        travelInfo.route.push(path);
       }
     })
     .catch((err) => {
       console.log(err);
     });
-  return output;
+  return travelInfo;
 };
 module.exports = {
   shortestPath
