@@ -9,6 +9,7 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
   let reqURL = URL + 'start=' + startLng + ',' + startLat + '&goal=' + endLng + ',' + endLat + '&option=' + optionCode;
   let distance;
   let duration;
+  let sectionLength;
 
   await axios.get(reqURL, {
     headers: {
@@ -18,26 +19,39 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
   })
     .then((res) => {
       if (optionCode == 'traoptimal') {
-        console.log(JSON.stringify("distance using optimal: " + res.data.route.traoptimal[0].summary.distance));
-        console.log(JSON.stringify("duration using optimal: " + res.data.route.traoptimal[0].summary.duration));
         distance = res.data.route.traoptimal[0].summary.distance;
         duration = res.data.route.traoptimal[0].summary.duration;
+        sectionLength = res.data.route.traoptimal[0].section.length;
       } else if (optionCode == 'trafast') {
-        console.log(JSON.stringify("distance using fastest: " + res.data.route.trafast[0].summary.distance));
-        console.log(JSON.stringify("duration using fastest: " + res.data.route.trafast[0].summary.duration));
         distance = res.data.route.trafast[0].summary.distance;
         duration = res.data.route.trafast[0].summary.duration;
+        sectionLength = res.data.route.trafast[0].section.length;
       } else if (optionCode == 'tracomfort') {
-        console.log(JSON.stringify("distance using comfort: " + res.data.route.tracomfort[0].summary.distance));
-        console.log(JSON.stringify("duration using comfort: " + res.data.route.tracomfort[0].summary.duration));
         distance = res.data.route.tracomfort[0].summary.distance;
         duration = res.data.route.tracomfort[0].summary.duration;
+        sectionLength = res.data.route.tracomfort[0].section.length;
+      }
+
+      let output = {};
+      output.duration = duration;
+      output.distance = distance;
+      output.route = [];
+      for (let i = 0; i < sectionLength; i++) {
+        let path = {};
+        path.transportation = "driving";
+        if (optionCode == 'traoptimal')
+          path.name = res.data.route.traoptimal[0].section[i].name;
+        else if (optionCode == 'trafast')
+          path.name = res.data.route.trafast[0].section[i].name;
+        else if (optionCode == 'tracomfort')
+          path.name = res.data.route.tracomfort[0].section[i].name;
+        output.route.push(path);
       }
     })
     .catch((err) => {
       console.log(err);
     });
-  return parseInt(duration / 60000);
+  return output;
 };
 module.exports = {
   shortestPath
