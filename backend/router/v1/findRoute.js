@@ -29,18 +29,17 @@ module.exports = (passport) => {
     res.json(output);
   });
 
-  //TODO(Taeyoung): modify startX,Y
   router.get('/driving', async (req, res) => {
     let startLng = req.query.startLng;
     let startLat = req.query.startLat;
-    let estimatedTime = {};
+    let travelInfo = {};
 
     for (let i = 0; i < direction.data.length; i++) {
       let endLng = direction.data[i].loc.longitude;
       let endLat = direction.data[i].loc.latitude;
-      estimatedTime[i] = '해당위치에서 ' + direction.data[i].name + ' 까지의 소요시간은 ' + await driving.shortestPath(startLng, startLat, endLng, endLat) + '분 입니다.';
+      travelInfo[direction.data[i].name] = await driving.shortestPath(startLng, startLat, endLng, endLat);
     }
-    res.json(estimatedTime);
+    res.json(travelInfo);
   });
   return router;
 };
