@@ -36,6 +36,7 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
       travelInfo.duration = parseInt(duration / 60000);
       travelInfo.distance = distance;
       travelInfo.route = [];
+
       for (let i = 0; i < sectionLength; i++) {
         let path = {};
         path.transportation = "driving";
@@ -53,6 +54,7 @@ const shortestPath = async (startLng, startLat, endLng, endLat, optionCode = 'tr
     });
   return travelInfo;
 };
+
 module.exports = {
   shortestPath
 };
