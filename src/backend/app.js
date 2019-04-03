@@ -10,7 +10,6 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
-
 app.use('/api', rootRouter);
 app.set('views', path.join(__dirname, "../frontend"));
 app.get('/api/v1/map', (req, res) => {
