@@ -44,50 +44,44 @@ module.exports = (passport) => {
 
   router.post('/findLoc', async (req, res) => {
     let output = {
-      'areas' : []
+      'areas': []
     };
     let middle = {
-      'lat' : 0,
-      'lng' : 0
+      'lat': 0,
+      'lng': 0
     };
 
     // 중간위치 계산
-    for (let i = 0; i < req.body.startLocs.length ; i++) {
+    for (let i = 0; i < req.body.startLocs.length; i++) {
       middle.lat += req.body.startLocs[i].location.lat;
       middle.lng += req.body.startLocs[i].location.lng;
     }
     middle.lat /= req.body.startLocs.length;
     middle.lng /= req.body.startLocs.length;
 
-    // TODO : database와 연결해서 중간위치로 hotplace 불러옴
-    let hotplace = direction.data;
+    // TODO(Choi, Taeyoung): database와 연결해서 중간위치와 가까운 추천장소 후보군 불러오기
+    let placeCandidates = direction.data;
 
-    for (let j = 0; j < hotplace.length; j++) {
+    for (let j = 0; j < placeCandidates.length; j++) {
       let area = {};
-      area['name'] = hotplace[j].name;
-      area['location'] = hotplace[j].loc;
+      area['name'] = placeCandidates[j].name;
+      area['location'] = placeCandidates[j].loc;
 
       // user들 각각 계산
       let users = [];
-      for (let k = 0; k < req.body.startLocs.length ; k++) {
-        let user;
-        if ( req.body.startLocs[k].transportation == 'public') {
-          user = await subway.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, hotplace[j].loc.longitude, hotplace[j].loc.latitude);
+      for (let k = 0; k < req.body.startLocs.length; k++) {
+        let userTravelInfo;
+        if (req.body.startLocs[k].transportation == 'public') {
+          userTravelInfo = await subway.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, placeCandidates[j].loc.longitude, placeCandidates[j].loc.latitude);
         } else {
-          user = await driving.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, hotplace[j].loc.longitude, hotplace[j].loc.latitude);
+          userTravelInfo = await driving.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, placeCandidates[j].loc.longitude, placeCandidates[j].loc.latitude);
         }
-
-        users.push(user);
+        users.push(userTravelInfo);
       }
-
       area['users'] = users;
       output.areas.push(area);
-
     }
-
     res.json(output);
-
   });
-
   return router;
 };
