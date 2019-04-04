@@ -84,6 +84,9 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-#config
+# config
 /config/server_config.json
 /config/API_KEY.json
+
+# Location candidates file
+location_candidates.json

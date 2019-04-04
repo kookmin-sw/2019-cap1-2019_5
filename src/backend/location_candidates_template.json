@@ -1,0 +1,22 @@
+[
+    {
+        "location": {
+            "coordinates": [
+                127.069234,
+                37.54039
+            ],
+            "type": "Point"
+        },
+        "name": "건대"
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.922972,
+                37.556033
+            ],
+            "type": "Point"
+        },
+        "name": "홍대"
+    }
+]
