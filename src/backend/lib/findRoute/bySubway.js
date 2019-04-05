@@ -12,14 +12,19 @@ const shortestPath = async (startlng, startLat, endlng, endlat) => {
     + '&endX=' + endlng
     + '&endY=' + endlat;
 
-  let time;
   let travelInfo = {};
 
   await axios.get(transportAPI)
     .then((res) => {
       parseString(res.data, (err, result) => {
-        shortestRoute = result.ServiceResult.msgBody[0].itemList[0];
+        if (result.ServiceResult.msgBody[0] === '') {
+          travelInfo['duration'] = 0;
+          travelInfo['distance'] = 0;
+          travelInfo['route'] = [];
+          return travelInfo;
+        }
 
+        shortestRoute = result.ServiceResult.msgBody[0].itemList[0];
         travelInfo['duration'] = shortestRoute.time[0];
         travelInfo['distance'] = shortestRoute.distance[0];
         travelInfo['route'] = [];

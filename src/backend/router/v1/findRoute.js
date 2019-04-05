@@ -3,6 +3,7 @@ const router = express.Router();
 const subway = require('../../lib/findRoute/bySubway.js');
 const driving = require('../../lib/findRoute/byDriving.js');
 const direction = require('../../exam.json');
+const locationCandidates = require('../../lib/findRoute/find_loc_candidates.js')
 
 module.exports = (passport) => {
   router.use((req, res, next) => {
@@ -59,29 +60,28 @@ module.exports = (passport) => {
     middle.lat /= req.body.startLocs.length;
     middle.lng /= req.body.startLocs.length;
 
-    // TODO(Choi, Taeyoung): database와 연결해서 중간위치와 가까운 추천장소 후보군 불러오기
-    let placeCandidates = direction.data;
-
-    for (let j = 0; j < placeCandidates.length; j++) {
+    let locCandidates = await locationCandidates.findLocationCandidates(middle.lng, middle.lat);
+    for (let j = 0; j < locCandidates.length; j++) {
       let area = {};
-      area['name'] = placeCandidates[j].name;
-      area['location'] = placeCandidates[j].loc;
+      area['name'] = locCandidates[j].name;
+      area['location'] = locCandidates[j].location;
 
       // user들 각각 계산
-      let users = [];
+      let groupTravelInfo = [];
       for (let k = 0; k < req.body.startLocs.length; k++) {
         let userTravelInfo;
         if (req.body.startLocs[k].transportation == 'public') {
-          userTravelInfo = await subway.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, placeCandidates[j].loc.longitude, placeCandidates[j].loc.latitude);
+          userTravelInfo = await subway.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, locCandidates[j].location.coordinates[0], locCandidates[j].location.coordinates[1]);
         } else {
-          userTravelInfo = await driving.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, placeCandidates[j].loc.longitude, placeCandidates[j].loc.latitude);
+          userTravelInfo = await driving.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, locCandidates[j].location.coordinates[0], locCandidates[j].location.coordinates[1]);
         }
-        users.push(userTravelInfo);
+        groupTravelInfo.push(userTravelInfo);
       }
-      area['users'] = users;
+      area['users'] = groupTravelInfo;
       output.areas.push(area);
     }
     res.json(output);
   });
+
   return router;
 };
