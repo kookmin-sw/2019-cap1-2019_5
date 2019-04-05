@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <title>MDMY v1</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" href="main.css" />
-    <script src="geocoding.js"></script>
   </head>
   <body>
-    <div id ="search">
-      Search: <input type="text" id="address"/>
-              <input type="button" value="Go" onclick="geocode()">
-      <a id = "search-latlng">Lat/Lng: <label id="latlng">(37.570204, 126.976956) </a>
+<script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=xc336znmjb&amp;submodules=panorama,geocoder,drawing,visualization&callback=initGeocoder">
+</script>
+<div id="map">
+      <script src="jquery-1.9.1.js"></script>
+      <script src="geocoding.js"></script>
+    <div class="search" style="">
+        <input id="address" type="text" placeholder="검색할 주소" value="정릉로 77" />
+        <input id="submit" type="button" value="주소 검색" />
+        <input id="transfer" type="button" value="좌표 전송" />
     </div>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxc5fsP8ndBuJKqdHVc39eorbnfJlSuY&callback=initializeMap"
-    async defer></script>
+</div>
   </body>
 </html>

@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-naver-maps": "0.0.13",
     "react-scripts": "2.1.8"
   },
   "scripts": {
