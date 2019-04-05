@@ -15,14 +15,26 @@ let locSchema = new mongoose.Schema({
 
 let locModel = mongoose.model('hotplaces', locSchema);
 
-function findLocationCandidates() {
-    locModel.find({ location: { $nearSphere: { $geometry: { type: "Point", coordinates: [126.9923903, 37.534533] }, $maxDistance: 1000 } } }, function (err, arr) {
-        if (err)
-            console.log(err)
-        return arr
-    })
-}
+const findLocationCandidates = async (midLongitude, midLatitude) => {
+    let candidates;
+    await locModel.find({
+        location: {
+            $nearSphere: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: [midLongitude, midLatitude]
+                },
+                $maxDistance: 3000
+            }
+        }
+    }).then((res) => {
+        candidates = res;
+    }).catch((err) => {
+        console.log(err);
+    });
+    return candidates;
+};
 
 module.exports = {
     findLocationCandidates
-  };
+};
