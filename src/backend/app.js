@@ -16,10 +16,10 @@ app.set('views', path.join(__dirname, "../frontend"));
 app.get('/api/' + version + '/map', (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/main.html"));
 });
-app.get('/api/v1/main.css', (req, res) => {
+app.get('/api/' + version + '/main.css', (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/main.css"));
 });
-app.get('/api/v1/geocoding.js', (req, res) => {
+app.get('/api/' + version + '/geocoding.js', (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/geocoding.js"));
 });
 
