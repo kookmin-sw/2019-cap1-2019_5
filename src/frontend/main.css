@@ -28,12 +28,3 @@ html, body {
    border-radius:3px;
    cursor:pointer;
    box-sizing:content-box; }
-.search #transfer {
-      height:30px;
-      line-height:30px;
-      padding:0 10px;
-      font-size:12px;
-      border:solid 1px #555;
-      border-radius:3px;
-      cursor:pointer;
-      box-sizing:content-box; }
