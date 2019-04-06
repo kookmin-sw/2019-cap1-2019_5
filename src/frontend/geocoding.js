@@ -1,44 +1,97 @@
-let map;
-let geocoder;
-let latlng;
-let initLocation = {lat:37.570204, lng: 126.976956}; // 서울 중심 좌표: 37.570204 , 126.976956
-function initializeMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: initLocation,
-    zoom: 16, // zoom level 은 0~20. 16=default 0=earth, 20=buildings
-    //,disableDefaultUI: true,zoomControl: false,
-    scaleControl: true
-  });
-  geocoder = new google.maps.Geocoder();
-  setupEvents();
-  centerChanged();
+let map = new naver.maps.Map("map", {
+    center: new naver.maps.LatLng(37.610949, 126.996208),
+    zoom: 10,
+    mapTypeControl: true
+});
+
+let infoWindow = new naver.maps.InfoWindow({
+    anchorSkew: true
+});
+
+map.setCursor('pointer');
+
+// search by tm128 coordinate
+function searchCoordinateToAddress(latlng) {
+    let tm128 = naver.maps.TransCoord.fromLatLngToTM128(latlng);
+
+    infoWindow.close();
+
+    naver.maps.Service.reverseGeocode({
+        location: tm128,
+        coordType: naver.maps.Service.CoordType.TM128
+    }, function(status, response) {
+        if (status === naver.maps.Service.Status.ERROR) {
+            return alert('Something Wrong!');
+        }
+
+        let items = response.result.items,
+            htmlAddresses = [];
+
+        for (let i=0, ii=items.length, item, addrType; i<ii; i++) {
+            item = items[i];
+            addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]';
+
+            htmlAddresses.push((i+1) +'. '+ addrType +' '+ item.address);
+        }
+
+        infoWindow.setContent([
+                '<div style="padding:10px;min-width:200px;line-height:150%;">',
+                '<h4 style="margin-top:5px;">검색 좌표</h4><br />',
+                htmlAddresses.join('<br />'),
+                '</div>'
+            ].join('\n'));
+
+        infoWindow.open(map, latlng);
+    });
 }
-function setupEvents() {
-  centerChangedLast = new Date();
-  google.maps.event.addListener(map, 'center_changed', centerChanged);
-  google.maps.event.addDomListener(document.getElementById('crosshair'),'dblclick', function() {
-     map.setZoom(map.getZoom() + 1);
-  });
+
+// result by latlng coordinate
+function searchAddressToCoordinate(address) {
+
+    naver.maps.Service.geocode({
+        address: address
+    }, function(status, response) {
+        if (status === naver.maps.Service.Status.ERROR) {
+            return alert('Something Wrong!');
+        }
+
+        let item = response.result.items[0],
+            addrType = item.isRoadAddress ? '[도로명 주소]' : '[지번 주소]',
+            point = new naver.maps.Point(item.point.x, item.point.y);
+
+        infoWindow.setContent([
+                '<div style="padding:10px;min-width:200px;line-height:150%;">',
+                '<h4 style="margin-top:5px;">검색 주소 : '+ response.result.userquery +'</h4><br />',
+                addrType +' '+ item.address +'<br />',
+                '</div>'
+            ].join('\n'));
+
+
+        map.setCenter(point);
+        infoWindow.open(map, point);
+    });
 }
-function getCenterLatLngText() {
-  return '(' + map.getCenter().lat() +', '+ map.getCenter().lng() +')';
+
+function initGeocoder() {
+    map.addListener('click', function(e) {
+        searchCoordinateToAddress(e.coord);
+    });
+
+    $('#address').on('keydown', function(e) {
+        let keyCode = e.which;
+
+        if (keyCode === 13) { // Enter Key
+            searchAddressToCoordinate($('#address').val());
+        }
+    });
+
+    $('#submit').on('click', function(e) {
+        e.preventDefault();
+
+        searchAddressToCoordinate($('#address').val());
+    });
+
+    searchAddressToCoordinate('정릉로 77');
 }
-function centerChanged() {
-  centerChangedLast = new Date();
-  let latlng = getCenterLatLngText();
-  document.getElementById('latlng').innerHTML = latlng;
-  currentReverseGeocodeResponse = null;
-}
-function geocode() {
-  let address = document.getElementById("address").value;
-  geocoder.geocode({
-    'address': address,
-    'partialmatch': true}, geocodeResult);
-}
-function geocodeResult(results, status) {
-  if (status == 'OK' && results.length > 0) {
-    map.fitBounds(results[0].geometry.viewport);
-  } else {
-    alert("Geocode was not successful for the following reason: " + status);
-  }
-}
+
+naver.maps.onJSContentLoaded = initGeocoder;
