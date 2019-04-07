@@ -61,27 +61,59 @@ module.exports = (passport) => {
     middle.lng /= req.body.startLocs.length;
 
     let locCandidates = await locationCandidates.findLocationCandidates(middle.lng, middle.lat);
-    for (let j = 0; j < locCandidates.length; j++) {
+    for (let i = 0; i < locCandidates.length; i++) {
       let area = {};
-      area['name'] = locCandidates[j].name;
-      area['location'] = locCandidates[j].location;
+      area['name'] = locCandidates[i].name;
+      area['location'] = locCandidates[i].location;
+      area['average'] = {};
 
       // user들 각각 계산
       let groupTravelInfo = [];
-      for (let k = 0; k < req.body.startLocs.length; k++) {
+      for (let j = 0; j < req.body.startLocs.length; j++) {
         let userTravelInfo;
-        if (req.body.startLocs[k].transportation == 'public') {
-          userTravelInfo = await subway.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, locCandidates[j].location.coordinates[0], locCandidates[j].location.coordinates[1]);
+        if (req.body.startLocs[j].transportation == 'public') {
+          userTravelInfo = await subway.shortestPath(req.body.startLocs[j].location.lng, req.body.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
         } else {
-          userTravelInfo = await driving.shortestPath(req.body.startLocs[k].location.lng, req.body.startLocs[k].location.lat, locCandidates[j].location.coordinates[0], locCandidates[j].location.coordinates[1]);
+          userTravelInfo = await driving.shortestPath(req.body.startLocs[j].location.lng, req.body.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
         }
         groupTravelInfo.push(userTravelInfo);
       }
       area['users'] = groupTravelInfo;
+
+      let midAverageDuration = 0;
+      let midAverageDistance = 0;
+      for (let k = 0; k < groupTravelInfo.length; ++k) {
+        midAverageDuration += parseInt(groupTravelInfo[k].duration);
+        midAverageDistance += parseInt(groupTravelInfo[k].distance);
+      }
+      area.average.averageDuration = parseInt(midAverageDuration / groupTravelInfo.length);
+      area.average.averageDistance = parseInt(midAverageDistance / groupTravelInfo.length);
       output.areas.push(area);
     }
+
+    //TODO (Taeyoung): Get sortOption from Request Body
+    //TODO (Taeyoung): Separate this sorting algorithm as a module.
+    //sortOption : 0 (average distance, DEFAULT), 1 (average duration)
+    let sortOption = 0;
+    if (sortOption == 0) {
+      output.areas.sort(function sortByDistance(candidate1, candidate2) {
+        if (candidate1.average.averageDistance == candidate2.average.averageDistance) {
+          return 0;
+        } else {
+          return candidate1.average.averageDistance > candidate2.average.averageDistance ? 1 : -1;
+        }
+      });
+    } else {
+      output.areas.sort(function sortByDuration(candidate1, candidate2) {
+        if (candidate1.average.averageDuration == candidate2.average.averageDuration) {
+          return 0;
+        } else {
+          return candidate1.average.averageDuration > candidate2.average.averageDuration ? 1 : -1;
+        }
+      });
+    };
+
     res.json(output);
   });
-
   return router;
 };

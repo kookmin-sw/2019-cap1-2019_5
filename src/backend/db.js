@@ -17,7 +17,7 @@ let areaSchema = new mongoose.Schema({
 // add method
 areaSchema.methods.speaklocation = function () {
   console.log("name :" + this.data.name);
-}
+};
 
 // compile schema to model
 let areaModel = mongoose.model('area', areaSchema);
@@ -30,5 +30,4 @@ let data = locationCandidates.data;
 areaModel.collection.insertMany(data, function (err, r) {
   if (err) console.log(err)
   else db.close
-})
-
+});
