@@ -25,8 +25,8 @@ const shortestPath = async (startlng, startLat, endlng, endlat) => {
         }
 
         shortestRoute = result.ServiceResult.msgBody[0].itemList[0];
-        travelInfo['duration'] = shortestRoute.time[0];
-        travelInfo['distance'] = shortestRoute.distance[0];
+        travelInfo['duration'] = parseInt(shortestRoute.time[0]);
+        travelInfo['distance'] = parseInt(shortestRoute.distance[0]);
         travelInfo['route'] = [];
 
         for (var i = 0; i < shortestRoute.pathList.length; i++) {
