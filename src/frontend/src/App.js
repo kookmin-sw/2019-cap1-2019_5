@@ -1,6 +1,36 @@
 import React, { Component } from 'react';
 import './App.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+
 const axios = require('axios');
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    height: '100%',
+    overflowX: 'auto',
+    backgroundColor: '#FAFAFA',
+  },
+  table: {
+    height: '100%',
+  },
+  info: {
+    width: 300,
+    verticalAlign: 'top',
+  },
+  map: {
+    minWidth: 300,
+    backgroundColor: '#CEF6D8',
+  },
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -152,17 +182,39 @@ class App extends React.Component {
           {this.makeInput()}
         </div>
         <div>
-          <button onClick={this.makeuser}>
-            More users
-          </button>
-          <button onClick={this.senddata}>
-            Find loc
-          </button>
+          <IconButton color = 'primary' onClick={this.makeuser} aria-label="Make users">
+            <AddBoxIcon />
+          </IconButton> 
+          <IconButton color = "secondary" onClick={this.senddata} aria-label="Send data">
+            <SearchIcon />
+          </IconButton>
         </div>
       </div>
-
     );
   }
 }
 
-export default App;
+function MainTable(props) {
+  const { classes } = props;
+
+  return (
+    <div className={classes.root}>
+      <Table className={classes.table}>
+        <TableBody height = '100%'>
+            <TableRow >
+              <TableCell component="th" scope="row" className= {classes.info}>
+              <App></App>
+              </TableCell>
+              <TableCell  className = {classes.map}>Map</TableCell>
+            </TableRow>
+        </TableBody>
+      </Table>
+    </div>
+  );
+}
+
+MainTable.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(MainTable);
