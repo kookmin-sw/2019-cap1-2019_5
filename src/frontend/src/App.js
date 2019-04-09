@@ -127,7 +127,7 @@ class App extends React.Component {
       output.push(
         <div>
           <h1>{(i+1) + '번째 추천지역 : ' + this.state.areas[i].name}</h1>
-          <div>latitude : {this.state.areas[i].location.latitude} longitude : {this.state.areas[i].location.latitude}</div>
+          <div>latitude : {this.state.areas[i].location.coordinates[0]} longitude : {this.state.areas[i].location.coordinates[1]}</div>
           <div>
             {this.showUsersResult(i)}
           </div>
