@@ -54,8 +54,8 @@ module.exports = (passport) => {
 
     // 중간위치 계산
     for (let i = 0; i < req.body.startLocs.length; i++) {
-      middle.lat += req.body.startLocs[i].location.lat;
-      middle.lng += req.body.startLocs[i].location.lng;
+      middle.lat += parseFloat(req.body.startLocs[i].location.lat);
+      middle.lng += parseFloat(req.body.startLocs[i].location.lng);
     }
     middle.lat /= req.body.startLocs.length;
     middle.lng /= req.body.startLocs.length;
