@@ -7,8 +7,14 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const axios = require('axios');
 
@@ -29,6 +35,9 @@ const styles = theme => ({
   map: {
     minWidth: 300,
     backgroundColor: '#CEF6D8',
+  },
+  displayInput: {
+    display: 'block',
   },
 });
 
@@ -103,6 +112,9 @@ class App extends React.Component {
     for (var i =0; i < this.state.usernum; i++) {
       output.push(
         <div>
+          <Paper>
+            <TableCell>
+              <Typography paragraph='true' >
           <p> {'user' + (i+1)} </p>
           <div>
             <div> latitude : <input type="text" name="lat" id={i} value={this.state.users[i].location.lat} onChange={this.handleChange} /></div>
@@ -112,6 +124,10 @@ class App extends React.Component {
               <option name="transportation" id={i} value="driving">driving</option>
             </select>
           </div>
+              </Typography>
+            </TableCell>
+          </Paper>
+          <br></br>
         </div>
       )
     }
@@ -126,12 +142,20 @@ class App extends React.Component {
     for (var i=0; i < this.state.areas.length; i++) {
       output.push(
         <div>
+          <ExpansionPanel>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <h1>{(i+1) + '번째 추천지역 : ' + this.state.areas[i].name}</h1>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+          <div>
           <div>latitude : {this.state.areas[i].location.coordinates[0]} longitude : {this.state.areas[i].location.coordinates[1]}</div>
           <div>
             {this.showUsersResult(i)}
           </div>
-
+          </div>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <br></br>
         </div>
       )
     };
