@@ -15,9 +15,9 @@ class App extends React.PureComponent {
     isMarkerShown: true,
     markers: []
   }
+
   componentDidMount() {
   }
-
 
   handleMarkerClick = () => {
     this.setState({ isMarkerShown: false })
