@@ -29,7 +29,6 @@ const styles = theme => ({
   map: {
     minWidth: 300,
     backgroundColor: '#CEF6D8',
-    
   },
 });
 
@@ -191,7 +190,6 @@ class App extends React.Component {
           </IconButton>
         </div>
       </div>
-
     );
   }
 }
@@ -202,17 +200,13 @@ function MainTable(props) {
   return (
     <div className={classes.root}>
       <Table className={classes.table}>
-        
         <TableBody height = '100%'>
-       
             <TableRow >
               <TableCell component="th" scope="row" className= {classes.info}>
               <App></App>
               </TableCell>
               <TableCell  className = {classes.map}>Map</TableCell>
-            
             </TableRow>
-       
         </TableBody>
       </Table>
     </div>
