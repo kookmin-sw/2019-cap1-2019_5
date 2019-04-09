@@ -23,10 +23,8 @@ class Map extends React.PureComponent {
 
   showMarkers() {
     let output = [];
-    console.log("start");
 
     for (let i = 0; i< this.state.markers.length; i++) {
-      console.log(this.state.markers[i].lat, this.state.markers[i].lng);
       output.push(
         <Marker position={{ lat: this.state.markers[i].lat, lng: this.state.markers[i].lng }} draggable={true} onClick={this.onMarkerClick} />
       )
