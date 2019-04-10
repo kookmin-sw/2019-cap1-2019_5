@@ -112,6 +112,7 @@ class MainTable extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+
       <div className={classes.root}>
         <Table className={classes.table}>
           <TableBody height = '100%'>
