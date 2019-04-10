@@ -5,6 +5,10 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "@types/googlemaps": "^3.30.19",
+    "@types/markerclustererplus": "^2.1.29",
+    "@types/react": "^16.8.13",
+    "ajv": "^6.10.0",
     "axios": "^0.18.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -25,5 +29,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "ts-pnp": "^1.0.1"
+  }
 }
