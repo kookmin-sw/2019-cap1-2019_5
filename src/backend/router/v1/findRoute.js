@@ -82,19 +82,32 @@ module.exports = (passport) => {
 
       let midAverageDuration = 0;
       let midAverageDistance = 0;
-      for (let k = 0; k < groupTravelInfo.length; ++k) {
-        midAverageDuration += parseInt(groupTravelInfo[k].duration);
-        midAverageDistance += parseInt(groupTravelInfo[k].distance);
+      for (let j = 0; j < groupTravelInfo.length; ++j) {
+        midAverageDuration += parseInt(groupTravelInfo[j].duration);
+        midAverageDistance += parseInt(groupTravelInfo[j].distance);
       }
-      area.average.averageDuration = parseInt(midAverageDuration / groupTravelInfo.length);
-      area.average.averageDistance = parseInt(midAverageDistance / groupTravelInfo.length);
+      midAverageDuration = parseInt(midAverageDuration / groupTravelInfo.length);
+      midAverageDistance = parseInt(midAverageDistance / groupTravelInfo.length);
+      area.average.averageDuration = midAverageDuration;
+      area.average.averageDistance = midAverageDistance;
+
+      let sumDurationDeviation = 0;
+      let sumDistanceDeviation = 0;
+      for (let j = 0; j < groupTravelInfo.length; ++j) {
+        sumDurationDeviation += Math.abs(midAverageDuration - groupTravelInfo[j].duration);
+        sumDistanceDeviation += Math.abs(midAverageDistance - groupTravelInfo[j].distance);
+      }
+      let durationAverageAbsDeviation = parseInt(sumDurationDeviation / groupTravelInfo.length);
+      let distanceAverageAbsDeviation = parseInt(sumDistanceDeviation / groupTravelInfo.length);
+      area.average.durationAverageAbsDeviation = durationAverageAbsDeviation;
+      area.average.distanceAverageAbsDeviation = distanceAverageAbsDeviation;
+
       output.areas.push(area);
     }
-
     //TODO (Taeyoung): Get sortOption from Request Body
     //TODO (Taeyoung): Separate this sorting algorithm as a module.
-    //sortOption : 0 (average distance, DEFAULT), 1 (average duration)
-    let sortOption = 0;
+    //sortOption : 0 (average distance, DEFAULT), 1 (average duration), 2 (duration Ave Abs Deviation), 3 (distance Ave Abs Deviation)
+    let sortOption = 3;
     if (sortOption == 0) {
       output.areas.sort(function sortByDistance(candidate1, candidate2) {
         if (candidate1.average.averageDistance == candidate2.average.averageDistance) {
@@ -103,7 +116,7 @@ module.exports = (passport) => {
           return candidate1.average.averageDistance > candidate2.average.averageDistance ? 1 : -1;
         }
       });
-    } else {
+    } else if (sortOption == 1) {
       output.areas.sort(function sortByDuration(candidate1, candidate2) {
         if (candidate1.average.averageDuration == candidate2.average.averageDuration) {
           return 0;
@@ -111,8 +124,23 @@ module.exports = (passport) => {
           return candidate1.average.averageDuration > candidate2.average.averageDuration ? 1 : -1;
         }
       });
+    } else if (sortOption == 2) {
+      output.areas.sort(function sortByDurationAveAbsDev(candidate1, candidate2) {
+        if (candidate1.average.durationAverageAbsDeviation == candidate2.average.durationAverageAbsDeviation) {
+          return 0;
+        } else {
+          return candidate1.average.durationAverageAbsDeviation > candidate2.average.durationAverageAbsDeviation ? 1 : -1;
+        }
+      });
+    } else {
+      output.areas.sort(function sortByDistanceAveAbsDev(candidate1, candidate2) {
+        if (candidate1.average.distanceAverageAbsDeviation == candidate2.average.distanceAverageAbsDeviation) {
+          return 0;
+        } else {
+          return candidate1.average.distanceAverageAbsDeviation > candidate2.average.distanceAverageAbsDeviation ? 1 : -1;
+        }
+      });
     };
-
     res.json(output);
   });
   return router;
