@@ -89,4 +89,4 @@ typings/
 /config/API_KEY.json
 
 # Location candidates file
-location_candidates.json
+location.json
