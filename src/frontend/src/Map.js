@@ -5,28 +5,33 @@ class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      isMarkerShown: true,
-      markers: []
+      isMarkerShown: true
     }
   }
 
   onMapClick = (event) => {
-    let newMarkers = this.state.markers.concat({
+    this.props.setMarker({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng()
+    });
+  }
+
+  onMarkerChange = (event) => {
+    console.log(event);
+    this.props.setMarker({
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
     });
 
-    this.setState({
-      markers: newMarkers
-    });
   }
 
   showMarkers() {
     let output = [];
 
-    for (let i = 0; i< this.state.markers.length; i++) {
+    for (let i = 0; i< this.props.users.length; i++) {
+      // console.log(this.props.users);
       output.push(
-        <Marker position={{ lat: this.state.markers[i].lat, lng: this.state.markers[i].lng }} draggable={true} onClick={this.onMarkerClick} />
+        <Marker position={{ lat: this.props.users[i].location.lat, lng: this.props.users[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} />
       )
     }
 
@@ -34,7 +39,7 @@ class Map extends React.PureComponent {
   }
 
   CustomMap = withScriptjs(withGoogleMap((props) => {
-    return (<GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }} onClick={this.onMapClick}>
+    return (<GoogleMap defaultZoom={10} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick}>
       {this.showMarkers()}
     </GoogleMap>)
   }));
@@ -47,7 +52,7 @@ class Map extends React.PureComponent {
       <div>
         <CustomMap
           isMarkerShown={this.state.isMarkerShown}
-          onMarkerClick={this.handleMarkerClick}
+          onMarkerClick={() => {console.log("Click!")}}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-wh2GZ92W7jsNjtHD1JUDoMl1nNLRJgo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
