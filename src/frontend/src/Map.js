@@ -17,7 +17,6 @@ class Map extends React.PureComponent {
   }
 
   onMarkerChange = (event) => {
-    console.log(event);
     this.props.setMarker({
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
@@ -29,7 +28,6 @@ class Map extends React.PureComponent {
     let output = [];
 
     for (let i = 0; i< this.props.users.length; i++) {
-      // console.log(this.props.users);
       output.push(
         <Marker position={{ lat: this.props.users[i].location.lat, lng: this.props.users[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} />
       )
@@ -52,7 +50,7 @@ class Map extends React.PureComponent {
       <div>
         <CustomMap
           isMarkerShown={this.state.isMarkerShown}
-          onMarkerClick={() => {console.log("Click!")}}
+          onMarkerClick={() => {alert("Click!")}}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-wh2GZ92W7jsNjtHD1JUDoMl1nNLRJgo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}

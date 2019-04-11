@@ -57,7 +57,6 @@ class MainTable extends React.Component {
       this.setState({
         resultAreas : res.data.areas,
       });
-      console.log(this.state.resultAreas);
     }).catch((err) => {
       console.log(err);
     });
