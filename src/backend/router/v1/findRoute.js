@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const subway = require('../../lib/findRoute/bySubway.js');
 const driving = require('../../lib/findRoute/byDriving.js');
-const direction = require('../../exam.json');
+const direction = require('../../location_candidates.json');
 const locationCandidates = require('../../lib/findRoute/find_loc_candidates.js')
 
 module.exports = (passport) => {
