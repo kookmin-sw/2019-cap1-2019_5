@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/db', { useNewUrlParser: true });
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -13,7 +13,7 @@ let locSchema = new mongoose.Schema({
     name: String
 });
 
-let locModel = mongoose.model('hotplaces', locSchema);
+let locModel = mongoose.model('locations', locSchema);
 
 const findLocationCandidates = async (midLongitude, midLatitude) => {
     let candidates;
