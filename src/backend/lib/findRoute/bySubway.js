@@ -1,4 +1,4 @@
-const direction = require('../../exam.json');
+const direction = require('../../location_candidates.json');
 const axios = require('axios');
 const parseString = require('xml2js').parseString;
 const API_KEY = require('../../config/API_KEY.json');
