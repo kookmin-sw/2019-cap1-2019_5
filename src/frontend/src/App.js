@@ -7,7 +7,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-
 import Map from './Map';
 import FindBox from './FindBox';
 
@@ -113,8 +112,6 @@ class MainTable extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-
-
       <div className={classes.root}>
         <Table className={classes.table}>
           <TableBody height = '100%'>
