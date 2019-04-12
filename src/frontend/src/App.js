@@ -16,7 +16,125 @@ import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import Map from './Map';
+import FindBox from './FindBox';
+
 const axios = require('axios');
+
+function clone(a) {
+   return JSON.parse(JSON.stringify(a));
+}
+
+class MainTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMarkerShown: true,
+      markers: [{
+        location : {
+          lat: 0,
+          lng: 0
+        },
+        transportation: "public"
+      }],
+      selectedMarker: 0,
+      userNum: 1,
+      resultAreas: []
+    }
+  };
+
+
+  findLoc = () => {
+    let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
+
+    axios({
+      method: 'post',
+      url: 'http://13.209.137.246/api/v1/findRoute/findLoc/',
+      data: {
+        startLocs: this.state.markers,
+      }
+    }).then((res) => {
+      this.setState({
+        resultAreas : res.data.areas,
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    return ;
+  };
+
+  setMarker = (direction) => {
+    if(this.state.selectedMarker == -1) return;
+
+    let newMarkers = clone(this.state.markers);
+
+    newMarkers[this.state.selectedMarker].location={
+          lat: direction.lat,
+          lng: direction.lng
+    };
+
+    this.setState({
+      markers: newMarkers
+    });
+  };
+
+  newUser = () => {
+    let markers = this.state.markers.concat({
+      location : {
+        lat: 0,
+        lng: 0
+      },
+      transportation: "public"
+    });
+
+    this.setState({
+      userNum: this.state.userNum+1,
+      markers: markers,
+      selectedMarker: this.state.userNum
+    });
+  }
+
+  selectMarker = (index) => {
+    this.setState({
+      selectedMarker: index
+    });
+  };
+
+  changeLoc = (direction) => {
+    if(this.state.selectedMarker == -1) return;
+
+    let newMarkers = clone(this.state.markers);
+
+    if (direction.name == "transportation") {
+      newMarkers[direction.index].transportation = direction.value;
+    } else if (direction.name != "transportation") {
+      newMarkers[direction.index].location[direction.name] = direction.value;
+    }
+
+    this.setState({
+      markers: newMarkers
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <Table className={classes.table}>
+          <TableBody height = '100%'>
+              <TableRow >
+                <TableCell component="th" scope="row" className={classes.info}>
+                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc}/>
+                </TableCell>
+                <Map users={this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} />
+              </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+    )
+  }
+};
 
 const styles = theme => ({
   root: {
@@ -40,202 +158,6 @@ const styles = theme => ({
     display: 'block',
   },
 });
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      usernum : 0,
-      users : [],
-      areas : []
-    };
-  };
-
-  senddata = () => {
-    let transportAPI = 'http://localhost/api/v1/findRoute/findLoc/';
-
-    axios({
-      method: 'post',
-      url: 'http://localhost/api/v1/findRoute/findLoc/',
-      data: {
-        startLocs: this.state.users,
-        exam: 1,
-      }
-    }).then((res) => {
-      this.setState({
-        areas : res.data.areas,
-      });
-      console.log(this.state.areas);
-    }).catch((err) => {
-      console.log(err);
-    });
-
-    return ;
-  };
-
-  makeuser = () => {
-    let users = this.state.users;
-    users.push({
-      location : {
-        lat: "",
-        lng: ""
-      },
-      transportation: "public"
-    });
-    this.setState({
-      usernum: this.state.usernum+1,
-      users: users
-    });
-
-    console.log(this.state.users);
-
-    return ;
-  }
-
-  handleChange = (e) => {
-    let users = this.state.users;
-
-    if (e.target.name == "transportation") {
-      users[e.target.id].transportation = e.target.value;
-    } else if (e.target.name != "transportation") {
-      users[e.target.id].location[e.target.name] = e.target.value;
-    }
-
-    this.setState({
-      users: users
-    });
-  }
-
-  makeInput() {
-    let output = [];
-
-    for (var i =0; i < this.state.usernum; i++) {
-      output.push(
-        <div>
-          <Paper>
-            <TableCell>
-              <Typography paragraph='true' >
-          <p> {'user' + (i+1)} </p>
-          <div>
-            <div> latitude : <input type="text" name="lat" id={i} value={this.state.users[i].location.lat} onChange={this.handleChange} /></div>
-            <div> longitude : <input type="text" name="lng" id={i} value={this.state.users[i].location.lng} onChange={this.handleChange} /></div>
-            <select onChange={this.handleChange}>
-              <option name="transportation" id={i} value="public">public</option>
-              <option name="transportation" id={i} value="driving">driving</option>
-            </select>
-          </div>
-              </Typography>
-            </TableCell>
-          </Paper>
-          <br></br>
-        </div>
-      )
-    }
-
-    return output;
-  };
-
-  showResult() {
-    let result = this.state.areas;
-    let output = [];
-
-    for (var i=0; i < this.state.areas.length; i++) {
-      output.push(
-        <div>
-          <ExpansionPanel>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <h1>{(i+1) + '번째 추천지역 : ' + this.state.areas[i].name}</h1>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-          <div>
-          <div>latitude : {this.state.areas[i].location.coordinates[0]} longitude : {this.state.areas[i].location.coordinates[1]}</div>
-          <div>
-            {this.showUsersResult(i)}
-          </div>
-          </div>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-          <br></br>
-        </div>
-      )
-    };
-
-    return output;
-
-  };
-
-  showUsersResult(areaNum) {
-    let output = [];
-
-    for (var i=0; i<this.state.areas[areaNum].users.length; i++) {
-      output.push(
-        <div>
-          <h2>{(i+1) + "번째 유저"}</h2>
-          <div>{"소요시간" + this.state.areas[areaNum].users[i].duration}</div>
-          <div>{"거리" + this.state.areas[areaNum].users[i].distance}</div>
-        </div>
-      )
-
-      for (var j =0; j<this.state.areas[areaNum].users[i].route.length; j++) {
-        output.push(
-          <div>{(j+1) + ". " + (this.state.areas[areaNum].users[i].route[j].transportation == "driving" ? this.state.areas[areaNum].users[i].route[j].name : this.state.areas[areaNum].users[i].route[j].startName)}</div>
-        )
-
-        console.log(this.state.areas[areaNum].users[i].route[j]);
-      }
-
-    }
-
-    return output;
-
-  };
-
-  render() {
-    return (
-      <div>
-        <div>
-          {this.showResult()}
-        </div>
-        <div>
-        <h5> 테스트용으로 사용해보세요 </h5>
-        <h5>37.610693 127.003983</h5>
-        <h5>37.510775 126.936916</h5>
-        <h5>37.479523 126.984711</h5>
-        </div>
-        <div>
-          {this.makeInput()}
-        </div>
-        <div>
-          <IconButton color = 'primary' onClick={this.makeuser} aria-label="Make users">
-            <AddBoxIcon />
-          </IconButton> 
-          <IconButton color = "secondary" onClick={this.senddata} aria-label="Send data">
-            <SearchIcon />
-          </IconButton>
-        </div>
-      </div>
-    );
-  }
-}
-
-function MainTable(props) {
-  const { classes } = props;
-
-  return (
-    <div className={classes.root}>
-      <Table className={classes.table}>
-        <TableBody height = '100%'>
-            <TableRow >
-              <TableCell component="th" scope="row" className= {classes.info}>
-              <App></App>
-              </TableCell>
-              <TableCell  className = {classes.map}>Map</TableCell>
-            </TableRow>
-        </TableBody>
-      </Table>
-    </div>
-  );
-}
 
 MainTable.propTypes = {
   classes: PropTypes.object.isRequired,
