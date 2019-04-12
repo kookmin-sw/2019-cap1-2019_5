@@ -21,19 +21,18 @@ class Map extends React.PureComponent {
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
     });
-
-  }
+  };
 
   showMarkers() {
-    let output = [];
+    let visibleMarkers = [];
 
     for (let i = 0; i< this.props.users.length; i++) {
-      output.push(
+      visibleMarkers.push(
         <Marker position={{ lat: this.props.users[i].location.lat, lng: this.props.users[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} />
       )
     }
 
-    return output;
+    return visibleMarkers;
   }
 
   CustomMap = withScriptjs(withGoogleMap((props) => {

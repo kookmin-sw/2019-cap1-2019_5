@@ -37,11 +37,11 @@ class FindBox extends React.Component {
     });
   }
 
-  makeInput() {
-    let output = [];
+  userLocBox() {
+    let userLocBox = [];
 
     for (let i =0; i < this.props.userNum; i++) {
-      output.push(
+      userLocBox.push(
         <div>
           <Paper>
             <TableCell>
@@ -64,35 +64,35 @@ class FindBox extends React.Component {
       )
     }
 
-    return output;
+    return userLocBox;
   };
 
-  showResult() {
+  showCandidateResult() {
     let result = this.props.areas;
-    let output = [];
+    let candidatesBox = [];
 
     for (let i=0; i < this.props.areas.length; i++) {
-      output.push(
+      candidatesBox.push(
         <div>
           <h1>{(i+1) + '번째 추천지역 : ' + this.props.areas[i].name}</h1>
           <div>latitude : {this.props.areas[i].location.coordinates[0]}</div>
           <div>longitude : {this.props.areas[i].location.coordinates[1]}</div>
           <div>
-            {this.showUsersResult(i)}
+            {this.showUserRouteResult(i)}
           </div>
 
         </div>
       )
     };
 
-    return output;
+    return candidatesBox;
   };
 
-  showUsersResult(areaNum) {
-    let output = [];
+  showUserRouteResult(areaNum) {
+    let userRouteBox = [];
 
     for (let i=0; i<this.props.areas[areaNum].users.length; i++) {
-      output.push(
+      userRouteBox.push(
         <div>
           <h2>{(i+1) + "번째 유저"}</h2>
           <div>{"소요시간 : " + this.props.areas[areaNum].users[i].duration}</div>
@@ -101,7 +101,7 @@ class FindBox extends React.Component {
       )
 
       for (let j =0; j<this.props.areas[areaNum].users[i].route.length; j++) {
-        output.push(
+        userRouteBox.push(
           <div>
             {(j+1) + ". " + (this.props.areas[areaNum].users[i].route[j].transportation == "driving" ?
               this.props.areas[areaNum].users[i].route[j].name
@@ -112,17 +112,17 @@ class FindBox extends React.Component {
 
     }
 
-    return output;
+    return userRouteBox;
   };
 
   render() {
     return (
       <div>
         <div>
-          {this.showResult()}
+          {this.showCandidateResult()}
         </div>
         <div>
-          {this.makeInput()}
+          {this.userLocBox()}
         </div>
         <div>
           <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
