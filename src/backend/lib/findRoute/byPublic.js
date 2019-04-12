@@ -1,7 +1,7 @@
-const direction = require('../../location_candidates.json');
 const axios = require('axios');
 const parseString = require('xml2js').parseString;
 const API_KEY = require('../../config/API_KEY.json');
+const geoLib = require('geolib');
 
 const shortestPath = async (startlng, startLat, endlng, endlat) => {
 
@@ -18,8 +18,10 @@ const shortestPath = async (startlng, startLat, endlng, endlat) => {
     .then((res) => {
       parseString(res.data, (err, result) => {
         if (result.ServiceResult.msgBody[0] === '') {
-          travelInfo['duration'] = 0;
-          travelInfo['distance'] = 0;
+          let distance = geoLib.getDistance({ latitude: startLat, longitude: startlng }, { latitude: endlat, longitude: endlng });
+          const WALKING_SPEED = 83;
+          travelInfo['duration'] = Math.round(distance / WALKING_SPEED);
+          travelInfo['distance'] = distance;
           travelInfo['route'] = [];
           return travelInfo;
         }
