@@ -1,6 +1,6 @@
 import React from "react"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-var icon = {
+const resultMarkerIcon = {
   url: require('./images/result-marker.png'),
   scaledSize: {width: 30, height:30}
 };
@@ -40,7 +40,7 @@ class Map extends React.PureComponent {
     } else {
       for (let i = 0; i< this.props.markers.length; i++) {
         visibleMarkers.push(
-          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name)} icon={icon}>
+          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name)} icon={resultMarkerIcon}>
             <InfoWindow>
               <div>
                 {this.props.markers[i].name}
