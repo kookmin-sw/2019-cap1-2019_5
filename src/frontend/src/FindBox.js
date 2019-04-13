@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import PinDropIcon from '@material-ui/icons/PinDrop';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -12,12 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
-import Map from './Map';
-import Find from './FindBox';
+import PinDropIcon from '@material-ui/icons/PinDrop';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 const axios = require('axios');
-
 
 class FindBox extends React.Component {
   constructor(props) {
@@ -66,10 +63,8 @@ class FindBox extends React.Component {
                 <option value="driving">driving</option>
               </select>
               <IconButton color = "secondary" onClick={() => this.props.selectMarker(i)} aria-label="Select location">
-
                 <PinDropIcon />
               </IconButton>
-            </div>
               </Typography>
               </div>
           </Paper>
@@ -146,16 +141,16 @@ class FindBox extends React.Component {
   showButton() {
     return (
       <div>
-        <table width="100%">
-        <td>
-          <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
-            <AddBoxIcon />
-          </IconButton>
+      <table width="100%">
+      <td>
+        <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
+          <AddBoxIcon />
+        </IconButton>
         </td>
         <td align="right">
-          <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
-            <SearchIcon />
-          </IconButton>
+        <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
+          <SearchIcon />
+        </IconButton>
         </td>
         </table>
       </div>
@@ -165,11 +160,11 @@ class FindBox extends React.Component {
   render() {
     return (
       <div>
-      <Scrollbars style={{ width: "100%", height: 550 }}>
+      <Scrollbars style={{ width: "110%", height: 550 }}>
         <div>
           {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
         </div>
-      </Scrollbars>
+        </Scrollbars>
         {this.props.showResult ? (<div></div>) : (this.showButton())}
       </div>
     );

@@ -5,20 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
-    "@types/googlemaps": "^3.30.19",
-    "@types/markerclustererplus": "^2.1.29",
-    "@types/react": "^16.8.13",
-    "ajv": "^6.10.0",
     "axios": "^0.18.0",
-    "material-icons-react": "^1.0.4",
     "react": "^16.8.6",
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.8.6",
     "react-google-maps": "^9.4.5",
     "react-scripts": "2.1.8",
-    "react-scrollbar": "^0.5.4",
-    "rmdi": "^1.0.1"
+    "react-custom-scrollbars": "^4.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,8 +26,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "ts-pnp": "^1.0.1"
-  }
+  ]
 }
