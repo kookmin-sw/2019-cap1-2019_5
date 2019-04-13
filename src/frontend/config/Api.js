@@ -1,1 +1,0 @@
-document.body.appendChild(document.createElement('script')).src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLxc5fsP8ndBuJKqdHVc39eorbnfJlSuY&callback=initializeMap";
