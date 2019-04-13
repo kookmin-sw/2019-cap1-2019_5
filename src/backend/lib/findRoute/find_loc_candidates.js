@@ -15,7 +15,8 @@ let locSchema = new mongoose.Schema({
 
 let locModel = mongoose.model('locations', locSchema);
 
-const findLocationCandidates = async (midLongitude, midLatitude) => {
+const findLocationCandidates = async (midLongitude, midLatitude, maxDistance = 500) => {
+    const MIN_CANDIDATES = 3;
     let candidates;
     await locModel.find({
         location: {
@@ -24,11 +25,16 @@ const findLocationCandidates = async (midLongitude, midLatitude) => {
                     type: "Point",
                     coordinates: [midLongitude, midLatitude]
                 },
-                $maxDistance: 3000
+                $maxDistance: maxDistance
             }
         }
     }).then((res) => {
-        candidates = res;
+        if (res.length < MIN_CANDIDATES) {
+            candidates = findLocationCandidates(midLongitude, midLatitude, maxDistance + 1000);
+        }
+        else {
+            candidates = res;
+        }
     }).catch((err) => {
         console.log(err);
     });
