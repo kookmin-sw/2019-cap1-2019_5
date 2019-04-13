@@ -6,15 +6,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import IconButton from '@material-ui/core/IconButton';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import SearchIcon from '@material-ui/icons/Search';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Map from './Map';
 import FindBox from './FindBox';
@@ -137,7 +128,7 @@ class MainTable extends React.Component {
   }
 };
 
-const styles = theme => ({
+const AppStyles = theme => ({
   root: {
     width: '100%',
     height: '100%',
@@ -164,4 +155,4 @@ MainTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MainTable);
+export default withStyles(AppStyles)(MainTable);
