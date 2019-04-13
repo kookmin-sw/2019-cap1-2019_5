@@ -50,7 +50,7 @@ class FindBox extends React.Component {
               longitude : <input type="text" size = '14' name="lng" id={i} value={this.props.users[i].location.lng} onChange={this.handleChange} />
               </td>
               <td className={classes.inputBoxDeleteIcon}>
-              <IconButton color = "secondary" onClick={() => ''} aria-label="Remove user">
+              <IconButton color = "secondary" onClick={() => this.props.deleteUser(i)} aria-label="Remove user" >
                 <RemoveIcon />
               </IconButton>
               </td>
@@ -170,7 +170,7 @@ const FindBoxStyles = theme => ({
   inputBoxDeleteIcon: {
     textAlign: 'right',
     verticalAlign: 'middle',
-    position: 'relative', 
+    position: 'relative',
     top: -3,
   },
   resultBoxVerticalAlign: {

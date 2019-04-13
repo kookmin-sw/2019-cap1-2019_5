@@ -109,15 +109,27 @@ class MainTable extends React.Component {
     });
   };
 
+  deleteUser = (index) => {
+    let newMarkers = clone(this.state.markers);
+    newMarkers.splice(index, 1);
+
+    this.setState({
+      markers: newMarkers,
+      selectedMarker: this.state.userNum-2,
+      userNum: this.state.userNum-1
+    });
+
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Table className={classes.table}>
           <TableBody height = '100%'>
-              <TableRow >
+              <TableRow>
                 <TableCell component="th" scope="row" className={classes.info}>
-                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc} showResult={this.state.showResultMarkers}/>
+                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser}/>
                 </TableCell>
                 <Map markers={this.state.showResultMarkers ? this.state.resultAreas : this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} />
               </TableRow>
