@@ -26,17 +26,25 @@ class Map extends React.PureComponent {
   showMarkers() {
     let visibleMarkers = [];
 
-    for (let i = 0; i< this.props.users.length; i++) {
-      visibleMarkers.push(
-        <Marker position={{ lat: this.props.users[i].location.lat, lng: this.props.users[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} />
-      )
+    if (this.props.showResult != true){
+      for (let i = 0; i< this.props.markers.length; i++) {
+        visibleMarkers.push(
+          <Marker position={{ lat: this.props.markers[i].location.lat, lng: this.props.markers[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} label={(i+1).toString()} />
+        )
+      }
+    } else {
+      for (let i = 0; i< this.props.markers.length; i++) {
+        visibleMarkers.push(
+          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name) } label={this.props.markers[i].name} />
+        )
+      }
     }
 
     return visibleMarkers;
   }
 
   CustomMap = withScriptjs(withGoogleMap((props) => {
-    return (<GoogleMap defaultZoom={10} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick}>
+    return (<GoogleMap defaultZoom={12} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick}>
       {this.showMarkers()}
     </GoogleMap>)
   }));
@@ -49,7 +57,6 @@ class Map extends React.PureComponent {
       <div>
         <CustomMap
           isMarkerShown={this.state.isMarkerShown}
-          onMarkerClick={() => {alert("Click!")}}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-wh2GZ92W7jsNjtHD1JUDoMl1nNLRJgo&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
