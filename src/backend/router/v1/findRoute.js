@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const subway = require('../../lib/findRoute/bySubway.js');
+const public = require('../../lib/findRoute/byPublic.js');
 const driving = require('../../lib/findRoute/byDriving.js');
 const direction = require('../../location_candidates.json');
 const locationCandidates = require('../../lib/findRoute/find_loc_candidates.js')
@@ -24,7 +24,7 @@ module.exports = (passport) => {
     for (let i = 0; i < direction.data.length; i++) {
       endX = direction.data[i].loc.longitude;
       endY = direction.data[i].loc.latitude;
-      output[direction.data[i].name] = await subway.shortestPath(startX, startY, endX, endY);
+      output[direction.data[i].name] = await public.shortestPath(startX, startY, endX, endY);
     }
 
     res.json(output);
@@ -72,7 +72,7 @@ module.exports = (passport) => {
       for (let j = 0; j < req.body.startLocs.length; j++) {
         let userTravelInfo;
         if (req.body.startLocs[j].transportation == 'public') {
-          userTravelInfo = await subway.shortestPath(req.body.startLocs[j].location.lng, req.body.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
+          userTravelInfo = await public.shortestPath(req.body.startLocs[j].location.lng, req.body.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
         } else {
           userTravelInfo = await driving.shortestPath(req.body.startLocs[j].location.lng, req.body.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
         }
@@ -80,27 +80,27 @@ module.exports = (passport) => {
       }
       area['users'] = groupTravelInfo;
 
-      let midAverageDuration = 0;
-      let midAverageDistance = 0;
+      let midAvgDuration = 0;
+      let midAvgDistance = 0;
       for (let j = 0; j < groupTravelInfo.length; ++j) {
-        midAverageDuration += parseInt(groupTravelInfo[j].duration);
-        midAverageDistance += parseInt(groupTravelInfo[j].distance);
+        midAvgDuration += parseInt(groupTravelInfo[j].duration);
+        midAvgDistance += parseInt(groupTravelInfo[j].distance);
       }
-      midAverageDuration = parseInt(midAverageDuration / groupTravelInfo.length);
-      midAverageDistance = parseInt(midAverageDistance / groupTravelInfo.length);
-      area.average.averageDuration = midAverageDuration;
-      area.average.averageDistance = midAverageDistance;
+      midAvgDuration = parseInt(midAvgDuration / groupTravelInfo.length);
+      midAvgDistance = parseInt(midAvgDistance / groupTravelInfo.length);
+      area.average.avgDuration = midAvgDuration;
+      area.average.avgDistance = midAvgDistance;
 
-      let durationStandardDeviation = 0;
-      let distanceStandardDeviation = 0;
+      let durationStdDeviation = 0;
+      let distanceStdDeviation = 0;
       for (let j = 0; j < groupTravelInfo.length; ++j) {
-        durationStandardDeviation += Math.pow(groupTravelInfo[j].duration - midAverageDuration, 2);
-        distanceStandardDeviation += Math.pow(groupTravelInfo[j].distance - midAverageDistance, 2);
+        durationStdDeviation += Math.pow(groupTravelInfo[j].duration - midAvgDuration, 2);
+        distanceStdDeviation += Math.pow(groupTravelInfo[j].distance - midAvgDistance, 2);
       }
-      distanceStandardDeviation = Math.sqrt(distanceStandardDeviation / groupTravelInfo.length);
-      durationStandardDeviation = Math.sqrt(durationStandardDeviation / groupTravelInfo.length);
-      area.average.distanceStandardDeviation = distanceStandardDeviation;
-      area.average.durationStandardDeviation = durationStandardDeviation;
+      distanceStdDeviation = Math.sqrt(distanceStdDeviation / groupTravelInfo.length);
+      durationStdDeviation = Math.sqrt(durationStdDeviation / groupTravelInfo.length);
+      area.average.distanceStdDeviation = distanceStdDeviation;
+      area.average.durationStdDeviation = durationStdDeviation;
 
       output.areas.push(area);
     }
@@ -110,35 +110,35 @@ module.exports = (passport) => {
     //sortOption : 0 (average distance, DEFAULT), 1 (average duration), 2 (distance standard deviation), 3 (duration standard deviation)
     let sortOption = 2;
     if (sortOption == 0) {
-      output.areas.sort(function sortByDistance(candidate1, candidate2) {
-        if (candidate1.average.averageDistance == candidate2.average.averageDistance) {
+      output.areas.sort(function sortByAvgDistance(candidate1, candidate2) {
+        if (candidate1.average.avgDistance == candidate2.average.avgDistance) {
           return 0;
         } else {
-          return candidate1.average.averageDistance > candidate2.average.averageDistance ? 1 : -1;
+          return candidate1.average.avgDistance > candidate2.average.avgDistance ? 1 : -1;
         }
       });
     } else if (sortOption == 1) {
-      output.areas.sort(function sortByDuration(candidate1, candidate2) {
-        if (candidate1.average.averageDuration == candidate2.average.averageDuration) {
+      output.areas.sort(function sortByAvgDuration(candidate1, candidate2) {
+        if (candidate1.average.avgDuration == candidate2.average.avgDuration) {
           return 0;
         } else {
-          return candidate1.average.averageDuration > candidate2.average.averageDuration ? 1 : -1;
+          return candidate1.average.avgDuration > candidate2.average.avgDuration ? 1 : -1;
         }
       });
     } else if (sortOption == 2) {
-      output.areas.sort(function sortBydistanceStandardDeviation(candidate1, candidate2) {
-        if (candidate1.average.distanceStandardDeviation == candidate2.average.distanceStandardDeviation) {
+      output.areas.sort(function sortBydistanceStdDeviation(candidate1, candidate2) {
+        if (candidate1.average.distanceStdDeviation == candidate2.average.distanceStdDeviation) {
           return 0;
         } else {
-          return candidate1.average.distanceStandardDeviation > candidate2.average.distanceStandardDeviation ? 1 : -1;
+          return candidate1.average.distanceStdDeviation > candidate2.average.distanceStdDeviation ? 1 : -1;
         }
       });
     } else if (sortOption == 3) {
-      output.areas.sort(function sortBydurationStandardDeviation(candidate1, candidate2) {
-        if (candidate1.average.durationStandardDeviation == candidate2.average.durationStandardDeviation) {
+      output.areas.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
+        if (candidate1.average.durationStdDeviation == candidate2.average.durationStdDeviation) {
           return 0;
         } else {
-          return candidate1.average.durationStandardDeviation > candidate2.average.durationStandardDeviation ? 1 : -1;
+          return candidate1.average.durationStdDeviation > candidate2.average.durationStdDeviation ? 1 : -1;
         }
       });
     };
