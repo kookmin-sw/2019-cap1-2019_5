@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
+import PinDropIcon from '@material-ui/icons/PinDrop';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const axios = require('axios');
 
@@ -60,7 +62,9 @@ class FindBox extends React.Component {
                 <option value="public">public</option>
                 <option value="driving">driving</option>
               </select>
-              <button onClick={() => this.props.selectMarker(i)}>Select location</button>
+              <IconButton color = "secondary" onClick={() => this.props.selectMarker(i)} aria-label="Select location">
+                <PinDropIcon />
+              </IconButton>
               </Typography>
               </div>
           </Paper>
@@ -137,12 +141,18 @@ class FindBox extends React.Component {
   showButton() {
     return (
       <div>
+      <table width="100%">
+      <td>
         <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
           <AddBoxIcon />
         </IconButton>
+        </td>
+        <td align="right">
         <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
           <SearchIcon />
         </IconButton>
+        </td>
+        </table>
       </div>
     )
   }
@@ -150,9 +160,11 @@ class FindBox extends React.Component {
   render() {
     return (
       <div>
+      <Scrollbars style={{ width: "110%", height: 550 }}>
         <div>
           {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
         </div>
+        </Scrollbars>
         {this.props.showResult ? (<div></div>) : (this.showButton())}
       </div>
     );
