@@ -135,7 +135,6 @@ class MainTable extends React.Component {
               </TableRow>
           </TableBody>
         </Table>
-
       </div>
     )
   }
