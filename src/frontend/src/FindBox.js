@@ -18,6 +18,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 const axios = require('axios');
 
+
 class FindBox extends React.Component {
   constructor(props) {
     super(props);
@@ -64,8 +65,8 @@ class FindBox extends React.Component {
                 <option value="public">public</option>
                 <option value="driving">driving</option>
               </select>
-
               <IconButton color = "secondary" onClick={() => this.props.selectMarker(i)} aria-label="Select location">
+
                 <PinDropIcon />
               </IconButton>
             </div>
