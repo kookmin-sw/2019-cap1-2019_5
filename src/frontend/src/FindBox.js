@@ -115,23 +115,26 @@ class FindBox extends React.Component {
     return userRouteBox;
   };
 
+  showButton() {
+    return (
+      <div>
+        <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
+          <AddBoxIcon />
+        </IconButton>
+        <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
+          <SearchIcon />
+        </IconButton>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
         <div>
-          {this.showCandidateResult()}
+          {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
         </div>
-        <div>
-          {this.userLocBox()}
-        </div>
-        <div>
-          <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
-            <AddBoxIcon />
-          </IconButton>
-          <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
-            <SearchIcon />
-          </IconButton>
-        </div>
+        {this.props.showResult ? (<div></div>) : (this.showButton())}
       </div>
     );
   }

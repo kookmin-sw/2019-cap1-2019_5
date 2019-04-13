@@ -29,7 +29,7 @@ class MainTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMarkerShown: true,
+      showResultMarkers: false,
       markers: [{
         location : {
           lat: 0,
@@ -56,6 +56,7 @@ class MainTable extends React.Component {
     }).then((res) => {
       this.setState({
         resultAreas : res.data.areas,
+        showResultMarkers: true,
       });
     }).catch((err) => {
       console.log(err);
@@ -125,9 +126,9 @@ class MainTable extends React.Component {
           <TableBody height = '100%'>
               <TableRow >
                 <TableCell component="th" scope="row" className={classes.info}>
-                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc}/>
+                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc} showResult={this.state.showResultMarkers}/>
                 </TableCell>
-                <Map users={this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} />
+                <Map markers={this.state.showResultMarkers ? this.state.resultAreas : this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} />
               </TableRow>
           </TableBody>
         </Table>
