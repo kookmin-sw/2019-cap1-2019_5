@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const router = express.Router();
 const public = require('../../lib/findRoute/byPublic.js');
 const driving = require('../../lib/findRoute/byDriving.js');

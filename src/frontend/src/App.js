@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
 import './App.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,6 +6,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+
 import Map from './Map';
 import FindBox from './FindBox';
 
@@ -109,15 +109,27 @@ class MainTable extends React.Component {
     });
   };
 
+  deleteUser = (index) => {
+    let newMarkers = clone(this.state.markers);
+    newMarkers.splice(index, 1);
+
+    this.setState({
+      markers: newMarkers,
+      selectedMarker: this.state.userNum-2,
+      userNum: this.state.userNum-1
+    });
+
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Table className={classes.table}>
           <TableBody height = '100%'>
-              <TableRow >
+              <TableRow>
                 <TableCell component="th" scope="row" className={classes.info}>
-                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc} showResult={this.state.showResultMarkers}/>
+                <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser}/>
                 </TableCell>
                 <Map markers={this.state.showResultMarkers ? this.state.resultAreas : this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} />
               </TableRow>
