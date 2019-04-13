@@ -1,5 +1,9 @@
 import React from "react"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+const resultMarkerIcon = {
+  url: require('./images/result-marker.png'),
+  scaledSize: {width: 30, height:30}
+};
 
 class Map extends React.PureComponent {
   constructor(props) {
@@ -29,13 +33,20 @@ class Map extends React.PureComponent {
     if (this.props.showResult != true){
       for (let i = 0; i< this.props.markers.length; i++) {
         visibleMarkers.push(
-          <Marker position={{ lat: this.props.markers[i].location.lat, lng: this.props.markers[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} label={(i+1).toString()} />
+          <Marker position={{ lat: this.props.markers[i].location.lat, lng: this.props.markers[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} label={(i+1).toString()} >
+          </Marker>
         )
       }
     } else {
       for (let i = 0; i< this.props.markers.length; i++) {
         visibleMarkers.push(
-          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name) } label={this.props.markers[i].name} />
+          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name)} icon={resultMarkerIcon}>
+            <InfoWindow>
+              <div>
+                {this.props.markers[i].name}
+              </div>
+            </InfoWindow>
+          </Marker>
         )
       }
     }
