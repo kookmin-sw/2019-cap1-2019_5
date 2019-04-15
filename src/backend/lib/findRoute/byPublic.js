@@ -20,9 +20,11 @@ const shortestPath = async (startlng, startLat, endlng, endlat) => {
         if (result.ServiceResult.msgBody[0] === '') {
           let distance = geoLib.getDistance({ latitude: startLat, longitude: startlng }, { latitude: endlat, longitude: endlng });
           const WALKING_SPEED = 83;
+          let transportation = "walk";
           travelInfo['duration'] = Math.round(distance / WALKING_SPEED);
           travelInfo['distance'] = distance;
-          travelInfo['route'] = [];
+          travelInfo.route = [];
+          travelInfo.route.push({ transportation });
           return travelInfo;
         }
 
