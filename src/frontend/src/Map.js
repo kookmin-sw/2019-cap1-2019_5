@@ -1,5 +1,6 @@
 import React from "react"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const resultMarkerIcon = {
   url: require('./images/result-marker.png'),
   scaledSize: {width: 30, height:30}
@@ -11,6 +12,60 @@ class Map extends React.PureComponent {
     this.state = {
       isMarkerShown: true
     }
+  }
+
+  componentWillMount() {
+    const refs = {}
+
+    this.setState({
+      bounds: null,
+      center: {
+        lat: 37.5665,
+        lng: 126.9780
+      },
+      markers: [],
+      onMapMounted: ref => {
+        refs.map = ref;
+      },
+      onBoundsChanged: () => {
+        this.setState({
+          bounds: refs.map.getBounds(),
+          center: refs.map.getCenter(),
+        })
+      },
+      onSearchBoxMounted: ref => {
+        refs.searchBox = ref;
+      },
+      onPlacesChanged: () => {
+        const places = refs.searchBox.getPlaces();
+        const bounds = new window.google.maps.LatLngBounds();
+        places.forEach(place => {
+          if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport)
+          } else {
+            bounds.extend(place.geometry.location)
+          }
+        });
+        console.log("bound2", bounds)
+        const nextMarkers = places.map(place => ({
+          position: place.geometry.location,
+        }));
+        console.log("place2", places);
+
+        let nextCenter = places[0].geometry.location;
+
+        this.setState({
+          center: nextCenter,
+          markers: nextMarkers,
+        });
+
+        this.props.setMarker({
+          lat: places[0].geometry.location.lat(),
+          lng: places[0].geometry.location.lng(),
+          index: this.props.selectedMarker
+        });
+      },
+    })
   }
 
   onMapClick = (event) => {
@@ -58,8 +113,33 @@ class Map extends React.PureComponent {
   }
 
   CustomMap = withScriptjs(withGoogleMap((props) => {
-    return (<GoogleMap defaultZoom={12} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick}>
+    return (
+      <GoogleMap defaultZoom={13} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick} ref={this.state.onMapMounted} onBoundsChanged={props.onBoundsChanged} center={this.state.center}>
       {this.showMarkers()}
+        <SearchBox
+          ref={this.state.onSearchBoxMounted}
+          bounds={this.state.bounds}
+          controlPosition={window.google.maps.ControlPosition.TOP}
+          onPlacesChanged={this.state.onPlacesChanged}
+        >
+        <input
+          type="text"
+          placeholder="위치를 입력하세요"
+          style={{
+            boxSizing: `border-box`,
+            border: `1px solid transparent`,
+            width: `60%`,
+            height: `32px`,
+            marginTop: `27px`,
+            padding: `0 12px`,
+            borderRadius: `3px`,
+            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+            fontSize: `14px`,
+            outline: `none`,
+            textOverflow: `ellipses`,
+          }}
+        />
+      </SearchBox>
     </GoogleMap>)
   }));
 
