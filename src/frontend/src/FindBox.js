@@ -3,9 +3,9 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { withStyles, Icon, IconButton,
          ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails,
          Typography, Paper, Divider} from '@material-ui/core/';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
 import PinDropIcon from '@material-ui/icons/PinDrop';
 import DirectionsBus from '@material-ui/icons/DirectionsBus';
