@@ -57,11 +57,11 @@ class MainTable extends React.Component {
   };
 
   setMarker = (direction) => {
-    if(this.state.selectedMarker == -1) return;
+    if (this.state.selectedMarker == -1) return;
 
     let newMarkers = clone(this.state.markers);
 
-    newMarkers[this.state.selectedMarker].location={
+    newMarkers[direction.index].location={
           lat: direction.lat,
           lng: direction.lng
     };

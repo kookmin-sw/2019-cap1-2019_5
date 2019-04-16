@@ -116,7 +116,6 @@ class FindBox extends React.Component {
       userRouteBox.push(
         <div>
           <h2 className= {classes.resultBoxDetailsUser}>{(i+1) + "번째 유저"}</h2>
-          {this.walking(this.props.areas[areaNum].users[i])}
           <div>{"소요시간 : " + this.props.areas[areaNum].users[i].duration}</div>
           <div>{"거리 : " + this.props.areas[areaNum].users[i].distance}</div>
         </div>
@@ -125,8 +124,10 @@ class FindBox extends React.Component {
       for (let j =0; j<this.props.areas[areaNum].users[i].route.length; j++) {
         userRouteBox.push(
           <div>
-            {(j+1) + ". "}
-            {(this.showTransportationIcon(this.props.areas[areaNum].users[i].route[j]))}
+            <table>
+              <td>{(j+1) + ". "}</td>
+              <td>{(this.showTransportationIcon(this.props.areas[areaNum].users[i].route[j]))}</td>
+            </table>
           </div>
         )
       }
@@ -142,17 +143,17 @@ class FindBox extends React.Component {
     return (
       <div>
       <table width="100%">
-      <td>
-        <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
-          <AddBoxIcon />
-        </IconButton>
+        <td>
+          <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
+            <AddBoxIcon />
+          </IconButton>
         </td>
         <td align="right">
-        <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
-          <SearchIcon />
-        </IconButton>
+          <IconButton color = "secondary" onClick={() => this.props.findLoc()} aria-label="Send data">
+            <SearchIcon />
+          </IconButton>
         </td>
-        </table>
+      </table>
       </div>
     )
   }
@@ -175,8 +176,7 @@ class FindBox extends React.Component {
           {trans.name}
         </div>
       );
-    }
-    else if (trans.transportation == "bus") {
+    } else if (trans.transportation == "bus") {
       return (
         <div>
           {" ( "}
@@ -189,8 +189,7 @@ class FindBox extends React.Component {
           {trans.endName}
         </div>
       );
-    }
-    else{
+    } else if (trans.transportation == "subway") {
       return (
         <div>
           {" ( "}
@@ -203,19 +202,24 @@ class FindBox extends React.Component {
           {trans.endName}
         </div>
       );
+    } else {
+      return (
+        <div>
+          <Icon><DirectionsWalk /></Icon>
+        </div>
+      )
     }
   }
 
   render() {
     return (
       <div>
-      {this.props.showResult ? (<div></div>) : (this.showButton())}
-      <Scrollbars style={{ width: "110%", height: 550 }}>
-        <div>
-          {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
-        </div>
+        {this.props.showResult ? (<div></div>) : (this.showButton())}
+        <Scrollbars style={{ width: "110%", height: 550 }}>
+          <div>
+            {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
+          </div>
         </Scrollbars>
-
       </div>
     );
   }
