@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { withStyles, Icon, IconButton,
+         ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails,
+         Typography, Paper, Divider} from '@material-ui/core/';
 import SearchIcon from '@material-ui/icons/Search';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Divider from '@material-ui/core/Divider';
 import RemoveIcon from '@material-ui/icons/RemoveCircle';
 import PinDropIcon from '@material-ui/icons/PinDrop';
-import { Scrollbars } from 'react-custom-scrollbars';
+import DirectionsBus from '@material-ui/icons/DirectionsBus';
+import DirectionsCar from '@material-ui/icons/DirectionsCar';
+import DirectionsSubway from '@material-ui/icons/DirectionsSubway';
+import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
+
 
 const axios = require('axios');
 
@@ -116,6 +116,7 @@ class FindBox extends React.Component {
       userRouteBox.push(
         <div>
           <h2 className= {classes.resultBoxDetailsUser}>{(i+1) + "번째 유저"}</h2>
+          {this.walking(this.props.areas[areaNum].users[i])}
           <div>{"소요시간 : " + this.props.areas[areaNum].users[i].duration}</div>
           <div>{"거리 : " + this.props.areas[areaNum].users[i].distance}</div>
         </div>
@@ -124,9 +125,8 @@ class FindBox extends React.Component {
       for (let j =0; j<this.props.areas[areaNum].users[i].route.length; j++) {
         userRouteBox.push(
           <div>
-            {(j+1) + ". " + (this.props.areas[areaNum].users[i].route[j].transportation == "driving" ?
-              this.props.areas[areaNum].users[i].route[j].name
-              : " ( " + this.props.areas[areaNum].users[i].route[j].transportation + " " + this.props.areas[areaNum].users[i].route[j].lineNum + " ) " + this.props.areas[areaNum].users[i].route[j].startName + " -> " + this.props.areas[areaNum].users[i].route[j].endName)}
+            {(j+1) + ". "}
+            {(this.showTransportationIcon(this.props.areas[areaNum].users[i].route[j]))}
           </div>
         )
       }
@@ -157,15 +157,65 @@ class FindBox extends React.Component {
     )
   }
 
+  walking(trans){
+    if(trans.route == ''){
+      return(
+        <div>
+          <Icon><DirectionsWalk /></Icon>
+        </div>
+      )
+    }
+  }
+
+  showTransportationIcon(trans){
+    if (trans.transportation == "driving"){
+      return (
+        <div>
+          <Icon><DirectionsCar /></Icon>
+          {trans.name}
+        </div>
+      );
+    }
+    else if (trans.transportation == "bus") {
+      return (
+        <div>
+          {" ( "}
+          <Icon><DirectionsBus /></Icon>
+          {" "}
+          {trans.lineNum}
+          {" ) "}
+          {trans.startName}
+          {" -> "}
+          {trans.endName}
+        </div>
+      );
+    }
+    else{
+      return (
+        <div>
+          {" ( "}
+          <Icon><DirectionsSubway /></Icon>
+          {" "}
+          {trans.lineNum}
+          {" ) "}
+          {trans.startName}
+          {" -> "}
+          {trans.endName}
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
+      {this.props.showResult ? (<div></div>) : (this.showButton())}
       <Scrollbars style={{ width: "110%", height: 550 }}>
         <div>
           {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
         </div>
         </Scrollbars>
-        {this.props.showResult ? (<div></div>) : (this.showButton())}
+
       </div>
     );
   }
