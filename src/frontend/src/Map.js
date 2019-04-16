@@ -16,14 +16,17 @@ class Map extends React.PureComponent {
   onMapClick = (event) => {
     this.props.setMarker({
       lat: event.latLng.lat(),
-      lng: event.latLng.lng()
+      lng: event.latLng.lng(),
+      index: this.props.selectedMarker
     });
   }
 
-  onMarkerChange = (event) => {
+  onMarkerChange = (event, index) => {
+    console.log(index);
     this.props.setMarker({
       lat: event.latLng.lat(),
-      lng: event.latLng.lng()
+      lng: event.latLng.lng(),
+      index: index
     });
   };
 
@@ -33,14 +36,14 @@ class Map extends React.PureComponent {
     if (this.props.showResult != true){
       for (let i = 0; i< this.props.markers.length; i++) {
         visibleMarkers.push(
-          <Marker position={{ lat: this.props.markers[i].location.lat, lng: this.props.markers[i].location.lng }} draggable={this.props.selectedMarker == i ? true : false} onClick={this.onMarkerChange} onDragEnd={this.onMarkerChange} label={(i+1).toString()} >
+          <Marker position={{ lat: this.props.markers[i].location.lat, lng: this.props.markers[i].location.lng }} draggable={true} onClick={this.onMarkerChange} onDragEnd={(e) => this.onMarkerChange(e, i)} label={(i+1).toString()} >
           </Marker>
         )
       }
     } else {
       for (let i = 0; i< this.props.markers.length; i++) {
         visibleMarkers.push(
-          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name)} icon={resultMarkerIcon}>
+          <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name)} icon={resultMarkerIcon} label={(i+1).toString()}>
             <InfoWindow>
               <div>
                 {this.props.markers[i].name}
