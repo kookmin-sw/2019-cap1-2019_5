@@ -141,7 +141,7 @@ class FindBox extends React.Component {
 
   showButton() {
     return (
-      <div>
+      <div style={{height:"10vh"}}>
       <table width="100%">
         <td>
           <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">
@@ -213,9 +213,10 @@ class FindBox extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{height: "90vh"}}>
+      {console.log("window", window)}
         {this.props.showResult ? (<div></div>) : (this.showButton())}
-        <Scrollbars style={{ width: "110%", height: 550 }}>
+        <Scrollbars style={{ width: "110%"}}>
           <div>
             {this.props.showResult ? this.showCandidateResult() : this.userLocBox()}
           </div>
