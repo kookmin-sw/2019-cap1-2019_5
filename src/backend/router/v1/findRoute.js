@@ -108,7 +108,7 @@ module.exports = (passport) => {
     //TODO (Taeyoung): Get sortOption from Request Body
     //TODO (Taeyoung): Separate this sorting algorithm as a module.
     //sortOption : 0 (average distance, DEFAULT), 1 (average duration), 2 (distance standard deviation), 3 (duration standard deviation)
-    let sortOption = 2;
+    let sortOption = 3;
     if (sortOption == 0) {
       output.areas.sort(function sortByAvgDistance(candidate1, candidate2) {
         if (candidate1.average.avgDistance == candidate2.average.avgDistance) {
