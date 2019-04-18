@@ -24,27 +24,31 @@ We’d like to implement an easily accessible service that doesn’t need to ins
 ## 3. 팀 소개
 #### 지도교수 : 황 선 태 교수님
 #### 팀 장 : 최 성 훈
-
+역할 : 알고리즘 개발 , UI/UX
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/최성훈.jpg" height="300" />
 
 #### 팀 원 : 강 인 호
+역할 : UI/UX
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/강인호.jpg" height="300" />
 
 #### 팀 원 : 곽 태 영
+역할 : 알고리즘 개발
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/곽태영.jpg" height="300" />
 
 #### 팀 원 : 신 영 환
+역할 : 데이터베이스 , 서버 관리
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/신영환.jpg" height="300" />
 
 #### 팀 원 : 장 진 형
+역할 : UI/UX 설계
 <img src="./doc/수행계획서 및 발표자료/aboutTeam/장진형.jpg" height="300" />
 
 
 ## 4. 사용법
-#### (1) 각자의 위치 입력
-#### (2) 검색!
-#### 추후 업로드 예정.
-
-### 5. 기타
-
-추가적인 내용
+#### (1) http://meet-mid.s3-website.ap-northeast-2.amazonaws.com/에 접속
+#### (2) '모임만들기' 버튼을 클릭하여 모임생성
+#### (3) '모임'페이지를 다른 사용자들에게 공유
+#### (4) 모임 구성원들이 '모임'페이지에 출발 위치를 입력
+#### (5) '결과보기'버튼을 클릭하여 합리적인 모임장소 리스트를 추천받음
+#### (6) 각각의 모임장소를 클릭하여 경로및 장소의 관한 정보를 확인
+#### (7) 마음에 드는 장소에 투표
