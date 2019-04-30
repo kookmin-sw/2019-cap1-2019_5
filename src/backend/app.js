@@ -1,3 +1,5 @@
+const models = require('./models');
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -11,6 +13,8 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api', rootRouter);
 
-app.listen(config.port || 80, () => {
-  console.log("server start :", config.port)
+models.connectDB().then(async () => {
+  app.listen(config.port || 80, () =>
+    console.log("server start :", config.port)
+  );
 });

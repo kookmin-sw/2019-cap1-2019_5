@@ -5,7 +5,7 @@ const driving = require('../../lib/findRoute/byDriving.js');
 const direction = require('../../location_candidates.json');
 const locationCandidates = require('../../lib/findRoute/find_loc_candidates.js')
 
-module.exports = (passport) => {
+module.exports = () => {
   router.use((req, res, next) => {
     next();
   });
