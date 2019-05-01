@@ -10,14 +10,14 @@ const crypto = require('crypto');
     token: makedToken
   });
 
-  let resultValue;
+  let saveValue;
 
   await meeting.save().then((result) => {
-    resultValue = result;
+    saveValue = result;
     console.log(result);
   });
 
-  return resultValue;
+  return saveValue;
 };
 
 module.exports = {
