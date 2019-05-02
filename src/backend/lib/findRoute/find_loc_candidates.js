@@ -1,24 +1,10 @@
-let mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/db', { useNewUrlParser: true });
-
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log("we're connected!");
-});
-
-let locSchema = new mongoose.Schema({
-    location: {},
-    name: String
-});
-
-let locModel = mongoose.model('locations', locSchema);
+const mongoose = require('mongoose');
+const db = require('../../models');
 
 const findLocationCandidates = async (midLongitude, midLatitude, maxDistance = 500) => {
     const MIN_CANDIDATES = 3;
     let candidates;
-    await locModel.find({
+    await db.CandidateLocs.find({
         location: {
             $nearSphere: {
                 $geometry: {
