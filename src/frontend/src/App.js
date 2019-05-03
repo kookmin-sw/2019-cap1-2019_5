@@ -6,10 +6,19 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ShareIcon from '@material-ui/icons/Share';
+import SearchIcon from '@material-ui/icons/Search';
 
 import Map from './Map';
 import FindBox from './FindBox';
 
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const axios = require('axios');
 
 function clone(a) {
@@ -30,14 +39,22 @@ class MainTable extends React.Component {
       }],
       selectedMarker: 0,
       userNum: 1,
-      resultAreas: []
+      resultAreas: [],
+      swiped: false
     }
+
+    this._onTouchStart = this._onTouchStart.bind(this);
+    this._onTouchMove = this._onTouchMove.bind(this);
+    this._onTouchEnd = this._onTouchEnd.bind(this);
+    this._swipe = {};
+    this.minDistance = 50;
+    this.fmh = 50;
+    this.ymp = 0;
   };
 
 
   findLoc = () => {
     let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
-
     axios({
       method: 'post',
       url: 'http://13.209.137.246/api/v1/findRoute/findLoc/',
@@ -56,14 +73,52 @@ class MainTable extends React.Component {
     return ;
   };
 
+
+  //하단 메뉴 터치 슬라이드 부분
+  _onTouchStart(e) {
+    document.getElementById('side_area').style.height = document.getElementById('side_area').clientHeight+'px';
+    document.getElementById('side_area').classList.remove('ani_up');
+    document.getElementById('side_area').classList.remove('ani_down');
+    const touch = e.touches[0];
+    this._swipe = { x: touch.clientX, y: touch.clientY, fmh_n:document.getElementById('side_area').clientHeight };
+  }
+
+  _onTouchMove(e) {
+    if (e.changedTouches && e.changedTouches.length) {
+      const touch = e.changedTouches[0];
+      var mh = this._swipe.fmh_n + (this._swipe.y - touch.clientY);
+      mh = mh < 50 ? this.fmh : mh;
+      this.ymp = this._swipe.y - touch.clientY;
+      document.getElementById('side_area').style.height = mh+'px';
+      this._swipe.swiping = true;
+    }
+  }
+
+  _onTouchEnd(e) {
+    const touch = e.changedTouches[0];
+    const absY = Math.abs(touch.clientY - this._swipe.y);
+    if (this._swipe.swiping && absY > this.minDistance ) {
+      this.props.onSwiped && this.props.onSwiped();
+      this.setState({ swiped: true });
+    }
+    if(this.ymp < -40){
+      document.getElementById('side_area').classList.add('ani_down');
+    }else if(document.getElementById('side_area').clientHeight - this.fmh > 20){
+      document.getElementById('side_area').classList.add('ani_up');
+    }else{
+      document.getElementById('side_area').classList.add('ani_down');
+    }
+    this._swipe = {};
+  }
+
   setMarker = (direction) => {
     if (this.state.selectedMarker == -1) return;
 
     let newMarkers = clone(this.state.markers);
 
     newMarkers[direction.index].location={
-          lat: direction.lat,
-          lng: direction.lng
+      lat: direction.lat,
+      lng: direction.lng
     };
 
     this.setState({
@@ -128,10 +183,19 @@ class MainTable extends React.Component {
         <Table className={classes.table}>
           <TableBody height = '100%'>
               <TableRow>
-                <TableCell component="th" scope="row" className={classes.info}>
+                <TableCell component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd}>
+                <MenuIcon id="footer_menu_btn" />
+                <div id="side_area_top">
+                  <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
+                    <MenuIcon />
+                  </IconButton>
+                  <IconButton id="side_area_share_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
+                    <ShareIcon />
+                  </IconButton>
+                </div>
                 <FindBox users={this.state.markers} selectMarker={this.selectMarker} newUser= {this.newUser} userNum={this.state.userNum} changeLoc={this.changeLoc} areas={this.state.resultAreas} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser}/>
                 </TableCell>
-                <Map markers={this.state.showResultMarkers ? this.state.resultAreas : this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} />
+                <div id="map_area"><Map markers={this.state.showResultMarkers ? this.state.resultAreas : this.state.markers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} /></div>
               </TableRow>
           </TableBody>
         </Table>
