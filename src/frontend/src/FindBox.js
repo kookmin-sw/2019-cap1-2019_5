@@ -141,7 +141,7 @@ class FindBox extends React.Component {
 
   showButton() {
     return (
-      <div style={{height:"10vh"}}>
+      <div id="add_btn_area" style={{height:"10vh"}}>
       <table width="100%">
         <td>
           <IconButton color = 'primary' onClick={() => this.props.newUser()} aria-label="Make users">

@@ -1,9 +1,21 @@
 import React from "react"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ShareIcon from '@material-ui/icons/Share';
+import SearchIcon from '@material-ui/icons/Search';
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const resultMarkerIcon = {
   url: require('./images/result-marker.png'),
   scaledSize: {width: 30, height:30}
+};
+
+const defaultMapOptions = {
+  fullscreenControl: true,
+  mapTypeControl: true,
+  zoomControl: true,
+  streetViewControl: true
 };
 
 class Map extends React.PureComponent {
@@ -114,31 +126,42 @@ class Map extends React.PureComponent {
 
   CustomMap = withScriptjs(withGoogleMap((props) => {
     return (
-      <GoogleMap defaultZoom={13} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick} ref={this.state.onMapMounted} onBoundsChanged={props.onBoundsChanged} center={this.state.center}>
+      <GoogleMap defaultZoom={13} defaultCenter={{ lat: 37.5665, lng: 126.9780 }} onClick={this.onMapClick} ref={this.state.onMapMounted} onBoundsChanged={props.onBoundsChanged} center={this.state.center} defaultOptions={defaultMapOptions}>
       {this.showMarkers()}
+
         <SearchBox
           ref={this.state.onSearchBoxMounted}
           bounds={this.state.bounds}
           controlPosition={window.google.maps.ControlPosition.TOP}
           onPlacesChanged={this.state.onPlacesChanged}
         >
-        <input
-          type="text"
-          placeholder="위치를 입력하세요"
-          style={{
-            boxSizing: `border-box`,
-            border: `1px solid transparent`,
-            width: `60%`,
-            height: `32px`,
-            marginTop: `27px`,
-            padding: `0 12px`,
-            borderRadius: `3px`,
-            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-            fontSize: `14px`,
-            outline: `none`,
-            textOverflow: `ellipses`,
-          }}
-        />
+        <div id="m_side_area_top">
+          <IconButton id="m_side_area_menu_btn" color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <input
+            id="search_input"
+            type="text"
+            placeholder="위치를 입력하세요"
+            style={{
+              boxSizing: `border-box`,
+              border: `1px solid transparent`,
+              width: `50%`,
+              height: `32px`,
+              marginTop: `27px`,
+              padding: `0 12px`,
+              borderRadius: `3px`,
+              boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+              fontSize: `14px`,
+              outline: `none`,
+              textOverflow: `ellipses`,
+              marginLeft: `26%`
+            }}
+          />
+          <IconButton id="m_side_area_share_btn" color="inherit" aria-label="Share">
+            <ShareIcon />
+          </IconButton>
+        </div>
       </SearchBox>
     </GoogleMap>)
   }));
