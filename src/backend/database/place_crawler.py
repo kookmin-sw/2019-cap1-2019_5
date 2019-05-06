@@ -8,14 +8,30 @@ VERSION = 74
 ### Need to rename chromedriver's name as 'chromedriver_{VERSION}.exe'
 PATH = os.path.dirname(os.path.abspath(__file__)) + \
     '\\chromedriver_' + str(VERSION) + '.exe'
-print(PATH)
-SLEEP_TIME = 2
+SLEEP_TIME_SHORT = 2
+SLEEP_TIME_LONG = 5
 
 
 def get_tags(content):
     condition = re.compile(r'#[^ |^#|^\n]+')
     tags = re.findall(condition, content.text)
     return tags
+
+
+def get_post_content(driver):
+    content = driver.find_element_by_class_name('eo2As')
+    return content
+
+
+def get_location_data(driver):
+    try:
+        location_data = driver.find_element_by_class_name('O4GlU')
+    except Exception as e:
+        # print(e)
+        place_name = 'LOCATION NOT FOUND'
+    else:
+        place_name = location_data.text
+    return place_name
 
 
 def crawler():
@@ -35,41 +51,43 @@ def crawler():
     TAG = '먹스타그램'
     URL = 'https://www.instagram.com/explore/tags/' + TAG
     driver.get(URL)
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME_SHORT)
     article_container = driver.find_element_by_xpath("//article ")
     articles = article_container.find_elements_by_class_name('v1Nh3')
     articles[0].click()
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME_SHORT)
 
     f = open(os.path.dirname(os.path.abspath(__file__)) +
              '\\places.json', 'w', encoding='utf-8')
     places = []
     # replace maximum iter to MAXMUM_SEARCH
-    MAXIMUM_SEARCH = 20
+    MAXIMUM_SEARCH = 100
     for i in range(0, MAXIMUM_SEARCH):
         print("Processing {}th posting".format(i + 1))
-        content_tags = []
-        place_name = ''
+        ### fetching the post may take time
         try:
             move_right_button = driver.find_element_by_class_name('HBoOv')
-            content = driver.find_element_by_class_name('eo2As')
         except Exception as e:
-            # print(e)
-            sleep(SLEEP_TIME)
+            print(e, "Failed to fetch the post")
+            sleep(SLEEP_TIME_SHORT)
             continue
         try:
-            location_data = driver.find_element_by_class_name('O4GlU')
+            content = get_post_content(driver)
         except Exception as e:
-            # print(e)
-            place_name = 'LOCATION NOT FOUND'
-        else:
-            place_name = location_data.text
+            print(e, "Failed to fetch the post")
+            move_right_button.click()
+            sleep(SLEEP_TIME_SHORT)
+            continue
+
+        link = driver.current_url
+        print(link)
+        place_name = get_location_data(driver)
         content_tags = get_tags(content)
         for j in range(0, len(content_tags)):
             content_tags[j] = content_tags[j][1:]
-        places.append({'name': place_name, 'tags': content_tags})
+        places.append({'name': place_name, 'link': link, 'tags': content_tags})
         move_right_button.click()
-        sleep(SLEEP_TIME)
+        sleep(SLEEP_TIME_SHORT)
 
     print("All process complete")
     f.write(json.dumps(places, indent=4, sort_keys=True, ensure_ascii=False))
