@@ -189,7 +189,7 @@ class MainTable extends React.Component {
                   <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
                     <MenuIcon />
                   </IconButton>
-                  <IconButton id="side_area_share_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
+                  <IconButton id="side_area_share_btn" className={classes.shareButton} color="inherit" aria-label="Share">
                     <ShareIcon />
                   </IconButton>
                 </div>
