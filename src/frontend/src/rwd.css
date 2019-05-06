@@ -23,6 +23,7 @@
 
 /*공유버튼*/
 #side_area_share_btn{
+	color:#fff;
 	float:right;
 	margin-right:4px;
 }
