@@ -90,3 +90,7 @@ typings/
 
 # Location candidates file
 location_candidates.json
+
+# Database
+/database/chromedriver_74.exe
+/database/places.json
