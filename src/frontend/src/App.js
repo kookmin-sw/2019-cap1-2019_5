@@ -55,6 +55,7 @@ class MainTable extends React.Component {
 
   findLoc = () => {
     let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
+    document.getElementById('loading_logo').style.display = 'block';
     axios({
       method: 'post',
       url: 'http://13.209.137.246/api/v1/findRoute/findLoc/',
@@ -66,6 +67,7 @@ class MainTable extends React.Component {
         resultAreas : res.data.areas,
         showResultMarkers: true,
       });
+      document.getElementById('loading_logo').style.display = 'none';
     }).catch((err) => {
       console.log(err);
     });
