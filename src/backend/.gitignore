@@ -92,5 +92,6 @@ typings/
 location_candidates.json
 
 # Database
-/database/chromedriver_74.exe
+/database/chromedriver.exe
+/database/chromedriver
 /database/places.json

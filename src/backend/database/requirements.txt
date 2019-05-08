@@ -1,2 +1,4 @@
 selenium==3.9.0
 BeautifulSoup4==4.7.1
+python-dateutil==2.8.0
+pytz==2018.9
