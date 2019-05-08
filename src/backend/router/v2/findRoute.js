@@ -3,8 +3,7 @@ const router = express.Router();
 const public = require('../../lib/findRoute/byPublic.js');
 const driving = require('../../lib/findRoute/byDriving.js');
 const direction = require('../../location_candidates.json');
-const locationCandidates = require('../../lib/findRoute/find_loc_candidates.js')
-const { makeMeeting } = require('../../lib/meeting/makeMeeting.js')
+const locationCandidates = require('../../lib/findRoute/find_loc_candidates.js');
 
 module.exports = () => {
   router.use((req, res, next) => {
@@ -13,7 +12,6 @@ module.exports = () => {
 
   router.all('/', (req, res) => {
     res.send("Hello World");
-    makeMeeting("gooddddd?");
   });
 
   router.post('/findLoc', async (req, res) => {
