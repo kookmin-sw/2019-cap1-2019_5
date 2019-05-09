@@ -213,7 +213,7 @@ class FindBox extends React.Component {
 
   render() {
     return (
-      <div style={{height: "90vh"}}>
+      <div id="scroll_Bar" style={{height: "80vh"}}>
       {console.log("window", window)}
         {this.props.showResult ? (<div></div>) : (this.showButton())}
         <Scrollbars style={{ width: "110%"}}>

@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShareIcon from '@material-ui/icons/Share';
 import SearchIcon from '@material-ui/icons/Search';
+import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const resultMarkerIcon = {
   url: require('./images/result-marker.png'),
@@ -138,6 +139,9 @@ class Map extends React.PureComponent {
         <div id="m_side_area_top">
           <IconButton id="m_side_area_menu_btn" color="inherit" aria-label="Menu">
             <MenuIcon />
+          </IconButton>
+          <IconButton id="gps_Button" aria-label="GPS">
+            <GpsFixedIcon />
           </IconButton>
           <input
             id="search_input"
