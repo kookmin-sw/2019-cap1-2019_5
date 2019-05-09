@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Meeting = require('./Meeting.js');
 const MeetingUser = require('./MeetingUser.js');
-const CandidateLocs = require('./CandidateLocs.js')
+const CandidateLocs = require('./CandidateLocs.js');
+const Result = require('./Result.js');
 
 const connectDB = () => {
   console.log("connect with DB")
@@ -10,4 +11,4 @@ const connectDB = () => {
 
 const models = { Meeting, CandidateLocs, MeetingUser };
 
-module.exports = { connectDB, Meeting, CandidateLocs, MeetingUser};
+module.exports = { connectDB, Meeting, CandidateLocs, MeetingUser, Result};

@@ -7,7 +7,8 @@ const meetingSchema = new mongoose.Schema({
   token : {type:String},
   users : [{
     type: mongoose.Schema.Types.ObjectId, ref: 'MeetingUsers'
-  }]
+  }],
+  result : {type: Boolean, default:false}
 })
 
 meetingSchema.pre('remove', (next) => {
