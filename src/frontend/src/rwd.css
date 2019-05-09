@@ -1,4 +1,36 @@
 
+/*로딩 백그라운드*/
+#loading_logo{
+	display:block;
+	width:100%;
+	height:100%;
+	z-index:1000;
+	background-image:url("./images/logo.png");
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+	background-color:rgba(0,0,0,.7);
+	position:fixed;
+	top:0;
+	left:0;
+}
+#loading_logo > p{
+	position:fixed;
+	top:50%;
+	left:50%;
+	color:rgb(157, 92, 187)
+}
+#loading_logo > p span{
+	animation-name:loading_dot_ani;
+	animation-duration:1.4s;
+	animation-iteration-count:infinite;
+	animation-fill-mode:both;
+}
+#loading_logo > p span:nth-child(2){
+	animation-delay: .2s;
+}
+#loading_logo > p span:nth-child(3){
+	animation-delay: .4s;
+}
 
 /*위치 리스트 해더 영역추가*/
 #side_area_top{
@@ -64,7 +96,16 @@
 }
 
 /*모바일 화면(iPhoneXS : 1125, iPhoneXS Max : 1242, Galaxy S10 : 1440)*/
-@media screen and (max-width: 1440px) {
+/*맥북에어를 위해 잠시 1366으로 수정*/
+@media screen and (max-width: 1365px) {
+	/*로고*/
+	#loading_logo{
+		background-size:100px 100px;
+	}
+	#loading_logo > p{
+		font-size:30px;
+		margin:50px 0 0 -60px
+	}
 
     /*맵 하단 버튼 위치 수정*/
     .gm-bundled-control-on-bottom{
@@ -133,11 +174,31 @@
 }
 
 /*태블릿 화면(iPad : 1536px, Galaxy Tab S5 : 1600, iPad Air : 1668)*/
-@media screen and (min-width: 1441px) and (max-width: 1668px) {
+@media screen and (min-width: 1366px) and (max-width: 1668px) {
+	#loading_logo{
+		background-size:200px 200px;
+	}
+	#loading_logo > p{
+		font-size:50px;
+		margin:92px 0 0 -97px
+	}
 }
 
 /*PC 화면*/
 @media screen and (min-width: 1669px) {
+	#loading_logo{
+		background-size:300px 300px;
+	}
+	#loading_logo > p{
+		font-size:60px;
+		margin:136px 0 0 -114px
+	}
+}
+
+@keyframes loading_dot_ani{
+    0%   { opacity: .2 }
+    20%  { opacity: 1  }
+    100% { opacity: .2 }
 }
 
 @keyframes footer_menu_up{

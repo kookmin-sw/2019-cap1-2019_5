@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShareIcon from '@material-ui/icons/Share';
 import SearchIcon from '@material-ui/icons/Search';
-
+import LoadingWindow from './LoadingWindow';
 import Map from './Map';
 import FindBox from './FindBox';
 
@@ -40,7 +40,8 @@ class MainTable extends React.Component {
       selectedMarker: 0,
       userNum: 1,
       resultAreas: [],
-      swiped: false
+      swiped: false,
+      showLoadingWindow: false
     }
 
     this._onTouchStart = this._onTouchStart.bind(this);
@@ -55,6 +56,9 @@ class MainTable extends React.Component {
 
   findLoc = () => {
     let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
+    this.setState({
+      showLoadingWindow : true
+    });
     axios({
       method: 'post',
       url: 'http://13.209.137.246/api/v1/findRoute/findLoc/',
@@ -65,14 +69,22 @@ class MainTable extends React.Component {
       this.setState({
         resultAreas : res.data.areas,
         showResultMarkers: true,
+        showLoadingWindow : false
       });
     }).catch((err) => {
       console.log(err);
     });
-
     return ;
   };
 
+  showLoadingWindow() {
+    let result = [];
+    if (this.state.showLoadingWindow) {
+    result.push(<LoadingWindow></LoadingWindow>);
+    }
+    else;
+    return result;
+  }
 
   //하단 메뉴 터치 슬라이드 부분
   _onTouchStart(e) {
@@ -180,6 +192,7 @@ class MainTable extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+       {this.showLoadingWindow()}
         <Table className={classes.table}>
           <TableBody height = '100%'>
               <TableRow>
