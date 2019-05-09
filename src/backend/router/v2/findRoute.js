@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const candidatesWithUserdatas = require('../../lib/findRoute/candidatesWithUserdatas.js');
+const candidatesWithUserData = require('../../lib/findRoute/candidatesWithUserData.js');
 const db = require('../../models')
 
 module.exports = () => {
@@ -9,12 +9,6 @@ module.exports = () => {
   });
 
   router.post('/findLoc', async (req, res) => {
-
-    await db.Meeting.findOne({
-      token: req.query.token
-    }).then(result => {
-      console.log(result);
-    });
 
     let meetingData = await db.Meeting.findOne({
       token: req.query.token
@@ -34,7 +28,7 @@ module.exports = () => {
     } else {
       // TODO : 결과가 없으면서 현재까지 입력한 사람들의 데이터를 보내주는 경우 만들어야함.
 
-      let result = await candidatesWithUserdatas(req.body);
+      let result = await candidatesWithUserData(req.body);
 
       let resultColumn = new db.Result({
         areas: result.areas,

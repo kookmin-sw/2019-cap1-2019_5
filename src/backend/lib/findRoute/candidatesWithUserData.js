@@ -70,7 +70,7 @@ const sort = (output, sortOption) => {
   };
 };
 
-const candidatesWithUserdatas = async (userdatas) => {
+const candidatesWithUserData = async (userData) => {
   let output = {
     'areas': []
   };
@@ -82,12 +82,12 @@ const candidatesWithUserdatas = async (userdatas) => {
 
   // 중간위치 계산
   // TODO: 기준점으로 바꾸고 front에서 받게하고 이부분 삭제
-  for (let i = 0; i < userdatas.startLocs.length; i++) {
-    middle.lat += parseFloat(userdatas.startLocs[i].location.lat);
-    middle.lng += parseFloat(userdatas.startLocs[i].location.lng);
+  for (let i = 0; i < userData.startLocs.length; i++) {
+    middle.lat += parseFloat(userData.startLocs[i].location.lat);
+    middle.lng += parseFloat(userData.startLocs[i].location.lng);
   }
-  middle.lat /= userdatas.startLocs.length;
-  middle.lng /= userdatas.startLocs.length;
+  middle.lat /= userData.startLocs.length;
+  middle.lng /= userData.startLocs.length;
 
   let locCandidates = await locationCandidates.findLocationCandidates(middle.lng, middle.lat);
 
@@ -99,12 +99,12 @@ const candidatesWithUserdatas = async (userdatas) => {
 
     // user들 각각 계산
     let groupTravelInfo = [];
-    for (let j = 0; j < userdatas.startLocs.length; j++) {
+    for (let j = 0; j < userData.startLocs.length; j++) {
       let userTravelInfo;
-      if (userdatas.startLocs[j].transportation == 'public') {
-        userTravelInfo = await public.shortestPath(userdatas.startLocs[j].location.lng, userdatas.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
+      if (userData.startLocs[j].transportation == 'public') {
+        userTravelInfo = await public.shortestPath(userData.startLocs[j].location.lng, userData.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
       } else {
-        userTravelInfo = await driving.shortestPath(userdatas.startLocs[j].location.lng, userdatas.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
+        userTravelInfo = await driving.shortestPath(userData.startLocs[j].location.lng, userData.startLocs[j].location.lat, locCandidates[i].location.coordinates[0], locCandidates[i].location.coordinates[1]);
       }
       groupTravelInfo.push(userTravelInfo);
     }
@@ -124,4 +124,4 @@ const candidatesWithUserdatas = async (userdatas) => {
   return output;
 }
 
-module.exports = candidatesWithUserdatas;
+module.exports = candidatesWithUserData;
