@@ -8,7 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const resultMarkerIcon = {
-  url: require('./images/result-marker.png'),
+  url: require('../images/result-marker.png'),
   scaledSize: {width: 30, height:30}
 };
 
