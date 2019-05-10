@@ -106,9 +106,9 @@
 
 #search_input{padding-left:43px !important;}
 
-/*모바일 화면(iPhoneXS : 1125, iPhoneXS Max : 1242, Galaxy S10 : 1440)*/
-/*맥북에어를 위해 잠시 1366으로 수정*/
-@media screen and (max-width: 1365px) {
+/*모바일 화면(iPhoneXS : 375, iPhoneXS Max : 414, Galaxy S10 : 480)
+  태블릿 세로화면(Nexus7 : 600px, iPad : 768, Galaxy Tab 10 : 800)*/
+@media screen and (max-width: 800px) {
 	/*로고*/
 	#loading_logo{
 		background-size:100px 100px;
@@ -193,8 +193,8 @@
 		}
 }
 
-/*태블릿 화면(iPad : 1536px, Galaxy Tab S5 : 1600, iPad Air : 1668)*/
-@media screen and (min-width: 1366px) and (max-width: 1668px) {
+/*태블릿 가로화면*/
+@media screen and (min-width: 801px) and (max-width: 1024px) {
 	#loading_logo{
 		background-size:200px 200px;
 	}
@@ -205,7 +205,7 @@
 }
 
 /*PC 화면*/
-@media screen and (min-width: 1669px) {
+@media screen and (min-width: 1025px) {
 	#loading_logo{
 		background-size:300px 300px;
 	}
