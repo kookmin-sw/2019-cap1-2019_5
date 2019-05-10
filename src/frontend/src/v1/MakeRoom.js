@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './MakeRoom.css';
 import PropTypes from 'prop-types';
-import logo from './images/logo.png'
+import logo from '../images/logo.png'
 
 class MakeRoom extends React.Component {
     constructor(props) {
