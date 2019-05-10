@@ -1,0 +1,176 @@
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+.top-bar {
+  height: 50px;
+  background-color:#d344ffc5;
+  color: #ffff;
+  font-weight: 800;
+  font-size: 3rem;
+  text-align: center;
+}
+.top-bar-title {
+  width: inherit;
+  line-height: 1.5;
+  margin-top: -0.0rem;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.share-box {
+  width: 301px;
+  height: 50px;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.location-input-table {
+  background-color: #da93d434;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+}
+
+.Wrapper {
+  position: relative;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.Input-text {
+  display: block;
+  margin: 0;
+  padding: 0.8rem 1.6rem;
+  color: inherit;
+  width: 100%;
+  font-family: inherit;
+  font-size: 2.1rem;
+  font-weight: inherit;
+  line-height: 1.8;
+  border: none;
+  border-radius: 0.4rem;
+  transition: box-shadow 300ms;
+}
+
+.Input-text::placeholder {
+  color: #B0BEC5;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.Input-text:hover {
+  outline: none;
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+}
+
+.Input-text:focus {
+  outline: none;
+}
+
+.Input-label {
+  display: block;
+  position: absolute;
+  bottom: 95%;
+  left: 3rem;
+  color: rgb(59, 58, 58);
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.search-table {
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  background: #2196f3;
+  color: #d3eafd;
+  border: 1px solid #dfe1e5;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.btn:hover {
+  border: none;
+  background: #2196f3;
+  color: #deeffd;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18), 0 5px 5px rgba(0, 0, 0, 0.12);
+}
+.btn.btn-share {
+    width:100%;
+    height: 100%;
+  background: #ffff;
+  color: #d344ffc5;
+}
+.btn.btn-share:hover {
+  background: #d344ffc5;
+  color: #deeffd;
+}
+
+.btn.btn-share:active {
+  background: #9f33c0c5;
+}
+
+.btn.btn-submit {
+  width:100%;
+  height: 100%;
+  background: #ffff;
+  color: #d344ffc5;
+}
+.btn.btn-submit:hover {
+  background: #d344ffc5;
+  color: #deeffd;
+}
+
+.btn.btn-submit:active {
+  background: #9f33c0c5;
+}
+
+.btn.btn-result {
+  width:100%;
+  height: 100%;
+  background: #ffff;
+  color: #d344ffc5;
+}
+.btn.btn-result:hover {
+  background: #d344ffc5;
+  color: #deeffd;
+}
+
+.btn.btn-result:active {
+  background: #9f33c0c5;
+}.Input-label
+
+.btn-box {
+  text-align: center;
+  margin: 50px 0;
+}
