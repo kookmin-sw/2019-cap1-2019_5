@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Meeting = require('./Meeting.js');
 const MeetingUser = require('./MeetingUser.js');
 const CandidateLocs = require('./CandidateLocs.js');
+const VotedLocs = require('./CandidateVoting.js')
 const Result = require('./Result.js');
 
 const connectDB = () => {
@@ -11,4 +12,4 @@ const connectDB = () => {
 
 const models = { Meeting, CandidateLocs, MeetingUser };
 
-module.exports = { connectDB, Meeting, CandidateLocs, MeetingUser, Result};
+module.exports = { connectDB, Meeting, CandidateLocs, MeetingUser, Result,VotedLocs};

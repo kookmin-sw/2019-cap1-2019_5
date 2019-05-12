@@ -6,6 +6,7 @@ const version = config.version;
 module.exports = () => {
   const findRouteRouter = require('./' + version + '/findRoute')();
   const meetingRouter = require('./' + version + '/meeting')();
+  const votingRouter = require('./'+version+'/voting')();
 
   router.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', "*");
@@ -16,6 +17,7 @@ module.exports = () => {
 
   router.use('/' + version + '/findRoute', findRouteRouter);
   router.use('/' + version + '/meeting', meetingRouter);
+  router.use('/'+version+'/voting',votingRouter);
 
   return router;
 };
