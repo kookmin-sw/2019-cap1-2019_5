@@ -94,4 +94,4 @@ location_candidates.json
 # Database
 /database/chromedriver.exe
 /database/chromedriver
-/database/places.json
+/database/places_*.json

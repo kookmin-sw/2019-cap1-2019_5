@@ -15,10 +15,11 @@ For linux,
 
 1. Make sure variable `PATH` is properly assigned in `place_crawler.py`.
 2. Enable or disable `headless` in chrome option.
-4. Run by `python3 place_crawler.py {maximum search iteration}`
-    ex: `python3 place_crawler.py 100`
+4. Run by `python3 place_crawler.py {number of posts} {number of threads}`
+    ex: `python3 place_crawler.py 1000 10`
 5. JSON formatted document(including `location`, `link`, `timestamp`,`captions`, `hashtags` respectively) will be created.
 
 ####
 
 This crawler might not run properly depending on instagram's update.
+argparser will be updated 😅
