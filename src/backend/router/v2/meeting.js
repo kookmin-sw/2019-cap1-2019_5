@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { makeMeeting } = require('../../lib/meeting/makeMeeting.js');
 const makeMeetingUser = require('../../lib/meeting/makeMeetingUser.js');
+const findMeetingData = require('../../lib/meeting/findMeetingData.js');
 
 module.exports = () => {
   router.use((req, res, next) => {
@@ -18,8 +19,15 @@ module.exports = () => {
 
   router.post('/enrolledUser', async (req, res) => {
     let token = req.query.token;
-    let makedUser = await makeMeetingUser(token, req.body.name, {coordinates: req.body.location, type: "Point"});
-    res.json(makedUser);
+    let createdUser = await makeMeetingUser(token, req.body.name, {coordinates: req.body.location, type: "Point"});
+    res.json(createdUser);
+  });
+
+  router.get('/findMeeting', async (req, res) => {
+    let token = req.query.token;
+    let meetingData = await findMeetingData(token);
+
+    res.json(meetingData);
   });
 
   return router;

@@ -102,6 +102,19 @@ class Map extends React.PureComponent {
       </Marker>
     )
 
+    // alert(this.props.meetingUsers.length);
+    for (let i=0; i < this.props.meetingUsers.length; i++) {
+      visibleMarkers.push(
+        <Marker position={{ lat: this.props.meetingUsers[i].location.coordinates[1], lng: this.props.meetingUsers[i].location.coordinates[0] }} draggable={false} >
+          <InfoWindow>
+            <div>
+              {this.props.meetingUsers[i].name}
+            </div>
+          </InfoWindow>
+        </Marker>
+      )
+    }
+
     // if (this.props.showResult != true){
     //   for (let i = 0; i< this.props.markers.length; i++) {
     //     visibleMarkers.push(
