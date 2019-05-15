@@ -10,13 +10,28 @@ class PrivateRoom extends React.Component {
         }
     }
 
+    showOtherUsers() {
+      let usersBox = [];
+      console.log(this.props.meetingUsers);
+      for (let i=0; i < this.props.meetingUsers.length; i++) {
+        usersBox.push(
+          <tr>
+            <td>{this.props.meetingUsers[i].name}</td>
+            <td>{this.props.meetingUsers[i].location.coordinates[0]}</td>
+            <td>{this.props.meetingUsers[i].location.coordinates[1]}</td>
+          </tr>
+        )
+      }
+      return usersBox;
+    };
+
     render() {
         const { classes } = this.props;
         return (
             <div>
                 <div class="top-bar">
                     <div class="top-bar-title">
-                        ㅁㄷㅁㅇ
+                        {this.props.meeting.name}
                     </div>
                 </div>
                 <div class="share-box">
@@ -51,8 +66,8 @@ class PrivateRoom extends React.Component {
                 </table>
                 <div class="show-other-people">
                     <table class="location-input-table">
+                      {this.showOtherUsers()}
                         <tr>
-
                         </tr>
                         <tr>
 

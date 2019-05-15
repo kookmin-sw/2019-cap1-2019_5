@@ -40,6 +40,7 @@ class MainTable extends React.Component {
         name: ""
       },
       meeting: {},
+      meetingUsers: [],
       showResultMarkers: false,
       userMarkers: [],
       resultMarkers: [],
@@ -60,12 +61,13 @@ class MainTable extends React.Component {
 
     //TODO : findmeeting
     axios({
-      method: 'post',
+      method: 'get',
       url: 'http://localhost/api/v2/meeting/findMeeting?token=' + this.props.match.params.token,
       data: {}
     }).then((res) => {
       this.setState({
-        meeting : res.data.meeting
+        meeting : res.data.meeting,
+        meetingUsers : res.data.meetingUsers
       });
     }).catch((err) => {
       console.log(err);
@@ -216,6 +218,9 @@ class MainTable extends React.Component {
         showResultMarkers: true,
         showLoadingWindow : false
       });
+
+      console.log(this.props.match.params.token);
+      window.location = this.props.match.url;
     }).catch((err) => {
       console.log(err);
     });
@@ -246,9 +251,9 @@ class MainTable extends React.Component {
                     <ShareIcon />
                   </IconButton>
                 </div>
-                <PrivateRoom myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange}/>
+                <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange}/>
                 </TableCell>
-                <div id="map_area"><Map myMarker={this.state.myMarker} setMyMarker={this.setMyMarker} userMarkers={this.state.userMarkers} resultMarkers={this.state.resultMarkers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} /></div>
+                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} userMarkers={this.state.userMarkers} resultMarkers={this.state.resultMarkers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} /></div>
               </TableRow>
           </TableBody>
         </Table>
