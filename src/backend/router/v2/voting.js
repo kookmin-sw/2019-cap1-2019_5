@@ -8,12 +8,12 @@ module.exports = () => {
   router.use((req, res, next) => {
     next();
   });
-  let votingResult = new Array();
+  
   router.post('/makeVoting', async (req, res) => {
     // let clientToken = req.query.token; //토큰으로 받을경우
     // let locIndex = req.query.index;
     // let meeting = await db.Meeting.findOne({token : clientToken})
-
+    let votingResult = new Array();
     let locIndex = 0;
     let meeting = await db.Meeting.findOne({name : "테스트"})
     let resultData = await db.Result.findOne({meetingID : meeting._id})
