@@ -11,12 +11,22 @@ db.once('open', function () {
 
 //define schema
 let locationSchema = new mongoose.Schema({
-  location: {},
+  location : {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  },
   name: String
 });
 
 // compile schema to model
-let areaModel = mongoose.model('locations', locationSchema);
+let areaModel = mongoose.model('CandidateLocs', locationSchema);
 
 //read JSONfile
 let locationCandidates = JSON.parse(fs.readFileSync('location_candidates.json', 'utf8'));
