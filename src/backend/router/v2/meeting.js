@@ -19,8 +19,8 @@ module.exports = () => {
 
   router.post('/enrolledUser', async (req, res) => {
     let token = req.query.token;
-    let makedUser = await makeMeetingUser(token, req.body.name, {coordinates: req.body.location, type: "Point"});
-    res.json(makedUser);
+    let createdUser = await makeMeetingUser(token, req.body.name, {coordinates: req.body.location, type: "Point"});
+    res.json(createdUser);
   });
 
   router.get('/findMeeting', async (req, res) => {
