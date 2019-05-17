@@ -31,7 +31,7 @@ def set_browser():
     chrome_option.add_argument('--start-maximized')
     # chrome_option.add_argument('window-size=1920x1080')
     # chrome_option.add_argument('disable-gpu')
-    chrome_option.add_argument("lang=ko_KR")  # ko_KR or en
+    chrome_option.add_argument("--lang=ko_KR")  # ko_KR or en
     chrome_option.add_argument(
         "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36")
     # undo the below comment to open chrome
@@ -155,11 +155,10 @@ def thread_get_place(batch_size, thread_idx, links, result_queue):
     lock.release()
 
 
-def crawler(max_search_iteration=10, thread_nums=5):
+def fetch_post_links(max_search_iteration, tag):
     start_time = time.time()
     driver = set_browser()
-    TAG = '먹스타그램'
-    URL = 'https://www.instagram.com/explore/tags/' + TAG
+    URL = 'https://www.instagram.com/explore/tags/' + tag
     driver.get(URL)
     driver.execute_script('window.scrollTo(0, 0)')
     sleep(SLEEP_TIME_LONG)
@@ -199,7 +198,7 @@ def crawler(max_search_iteration=10, thread_nums=5):
 
     end_time = time.time()
     link_file = open(os.path.dirname(os.path.abspath(__file__)) +
-                     '/places_link.json', 'w', encoding='utf-8')
+                     '/places_' + tag + '_links.json', 'w', encoding='utf-8')
     link_file.write(json.dumps(links, indent=4,
                                sort_keys=False, ensure_ascii=False))
     link_file.close()
@@ -208,11 +207,15 @@ def crawler(max_search_iteration=10, thread_nums=5):
         "Fetching links completed. Fetched {} posts. Execution time : {:.2f}sec".format(fetched_article,
                                                                                         end_time - start_time))
 
+
+def get_posts(tag, thread_nums=5):
+    start_time = time.time()
     f_links = open(os.path.dirname(os.path.abspath(__file__)) +
-                   '/places_link.json', 'r', encoding='utf-8')
+                   '/places_' + tag + '_links.json', 'r', encoding='utf-8')
     links = json.load(f_links)
     links = list(set(links))
     links_length = len(links)
+    # links_length = 100
     batch_size = int(links_length / thread_nums)
     last_batch_size = links_length - thread_nums * batch_size
 
@@ -236,20 +239,27 @@ def crawler(max_search_iteration=10, thread_nums=5):
     while not result_queue.empty():
         for place in result_queue.get():
             places.append(place)
-
     f_places = open(os.path.dirname(os.path.abspath(__file__)) +
-                    '/places_' + TAG + '.json', 'w', encoding='utf-8')
+                    '/places_' + tag + '_posts.json', 'w', encoding='utf-8')
     f_places.write(json.dumps(places, indent=4,
                               sort_keys=False, ensure_ascii=False))
     f_links.close()
     f_places.close()
-    end_time2 = time.time()
+    end_time = time.time()
     print('Fetched {} places data. Failed {} posts due to network error '.format(
         len(places), links_length - len(places)))
-    print('Execution time: {:.2f}sec'.format(end_time2 - start_time))
+    print('Execution time: {:.2f}sec'.format(end_time - start_time))
+
+
+def crawler(post_num, thread_num, tag='먹스타그램'):
+    fetch_post_links(post_num, tag)
+    get_posts(tag, thread_num)
 
 
 if __name__ == '__main__':
     print('Start Instagram Crawler')
-    crawler(int(sys.argv[1]), int(sys.argv[2]))  # post numbers, thread numbers
+    try:
+        crawler(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3])  # post numbers, thread numbers, tag
+    except Exception as e:
+        print(e)
     # crawler(10000, 10)
