@@ -247,9 +247,6 @@ class MainTable extends React.Component {
                   <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
                     <MenuIcon />
                   </IconButton>
-                  <IconButton id="side_area_share_btn" className={classes.shareButton} color="inherit" aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
                 </div>
                 <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange}/>
                 </TableCell>

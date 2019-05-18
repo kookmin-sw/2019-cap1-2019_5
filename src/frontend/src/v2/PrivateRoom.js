@@ -25,6 +25,31 @@ class PrivateRoom extends React.Component {
       return usersBox;
     };
 
+    componentDidMount(){
+        window.Kakao.Link.createDefaultButton({
+          container: '#kakaoShareBtn',
+          objectType: 'feed',
+          content: {
+            title: 'MDMY', //카카오톡 공유 제목영역
+            description: '모임방 링크', //카카오톡 공유 내용영역
+            imageUrl: '', //공유 이미지
+            link: {
+              mobileWebUrl: document.location.href,
+              webUrl: document.location.href
+            }
+          },
+          buttons: [
+            {
+              title: '웹으로 보기',
+              link: {
+                mobileWebUrl: document.location.href,
+                webUrl: document.location.href
+              }
+            }
+          ]
+        });
+      }
+
     render() {
         const { classes } = this.props;
         return (
@@ -35,7 +60,7 @@ class PrivateRoom extends React.Component {
                     </div>
                 </div>
                 <div class="share-box">
-                    <button class="btn btn-share" onClick={() => this }>친구들에게 공유</button>
+                    <button id="kakaoShareBtn" class="btn btn-share">친구들에게 공유</button>
                 </div>
                 <table class="location-input-table">
                     <tr>
