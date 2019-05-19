@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './PrivateRoom.css';
 import PropTypes from 'prop-types';
+import car from '../images/car.png';
+import metro from '../images/metro.png';
 
 class PrivateRoom extends React.Component {
     constructor(props) {
@@ -46,13 +48,21 @@ class PrivateRoom extends React.Component {
                     </tr>
                     <tr>
                         <div class="Wrapper">
-                            <input type="text" id="room-name" class="Input-text" placeholder="읭 인풋이 아니지" />
-                            <label for="room-name" class="Input-label">출발 위치</label>
+                            <div id="start-position" class="Start-position">
+                                서울특별시
+                            </div>
+                            <label for="start-position" class="Input-label">출발 위치</label>
                         </div>
                     </tr>
                     <tr>
-                      latitude : <input type="text" size = '16' name="lat" id={0} value={this.props.myMarker.location.lat} onChange={this.props.handleChange} /><br></br>
-                      longitude : <input type="text" size = '14' name="lng" id={0} value={this.props.myMarker.location.lng} onChange={this.props.handleChange} />
+                        <div>
+                            <img src={car} alt="car" className="TransfortationImage"/>
+                            <input class='toggle' id='cb1' type='checkbox'/>
+                            <label class='toggle-button' for='cb1'></label>
+                            <label for='cb1'>
+                            </label>
+                            <img src={metro} alt="metro" className="TransfortationImage"/>
+                        </div>
                     </tr>
                 </table>
                 <table class="search-table">

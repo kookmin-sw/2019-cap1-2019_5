@@ -241,7 +241,7 @@ class MainTable extends React.Component {
         <Table className={classes.table}>
           <TableBody height = '100%'>
               <TableRow>
-                <TableCell component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd}>
+                <td component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd}>
                 <MenuIcon id="footer_menu_btn" />
                 <div id="side_area_top">
                   <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
@@ -252,7 +252,7 @@ class MainTable extends React.Component {
                   </IconButton>
                 </div>
                 <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange}/>
-                </TableCell>
+                </td>
                 <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} userMarkers={this.state.userMarkers} resultMarkers={this.state.resultMarkers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} /></div>
               </TableRow>
           </TableBody>
@@ -273,7 +273,7 @@ const AppStyles = theme => ({
     height: '100%',
   },
   info: {
-    width: 300,
+    width: 380,
     verticalAlign: 'top',
   },
   map: {
