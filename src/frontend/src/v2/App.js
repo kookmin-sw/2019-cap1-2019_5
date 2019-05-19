@@ -23,6 +23,7 @@ class App extends React.Component {
 
 
   render() {
+    window.Kakao.init('23abfbfc99a7cd6eb09c2984417716c8');
     return (
       <Router>
         <Route exact path="/" component={MakeRoom} />

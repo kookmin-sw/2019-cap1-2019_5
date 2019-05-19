@@ -176,9 +176,6 @@ class Map extends React.PureComponent {
               marginLeft: `26%`
             }}
           />
-          <IconButton id="m_side_area_share_btn" color="inherit" aria-label="Share">
-            <ShareIcon />
-          </IconButton>
         </div>
       </SearchBox>
     </GoogleMap>)
