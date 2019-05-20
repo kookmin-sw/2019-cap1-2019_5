@@ -79,6 +79,8 @@ class MainTable extends React.Component {
       console.log(this.state.meetingUsers);
     }).catch((err) => {
       console.log(err);
+      alert("잘못된 경로입니다.");
+      window.location = "/";
     });
 
   }
