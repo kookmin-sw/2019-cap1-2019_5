@@ -1,7 +1,7 @@
 const db = require('../../models');
 const crypto = require('crypto');
 
-module.exports = async (token, name, location) => {
+module.exports = async (token, name, transportation, location) => {
 
   let meeting = await db.Meeting.findOne({
     token: token

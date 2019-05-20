@@ -27,8 +27,12 @@ module.exports = () => {
       res.json(result);
     } else {
       // TODO : 결과가 없으면서 현재까지 입력한 사람들의 데이터를 보내주는 경우 만들어야함.
+      let userData = await db.MeetingUser.find({
+        meetingID: meetingData._id
+      });
+      console.log(userData);
 
-      let result = await candidatesWithUserData(req.body);
+      let result = await candidatesWithUserData(userData);
 
       let resultColumn = new db.Result({
         areas: result.areas,

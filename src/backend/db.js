@@ -25,6 +25,8 @@ let locationSchema = new mongoose.Schema({
   name: String
 });
 
+locationSchema.index({location: '2dsphere'});
+
 // compile schema to model
 let areaModel = mongoose.model('CandidateLocs', locationSchema);
 

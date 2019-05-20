@@ -59,14 +59,6 @@ class PrivateRoom extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <div class="top-bar">
-                    <div class="top-bar-title">
-                        {this.props.meeting.name}
-                    </div>
-                </div>
-                <div class="share-box">
-                    <button id="kakaoShareBtn" class="btn btn-share">친구들에게 공유</button>
-                </div>
                 <table class="location-input-table">
                     <tr>
                       <td>
@@ -99,11 +91,11 @@ class PrivateRoom extends React.Component {
                 </table>
                 <table class="search-table">
                     <td>
-                        <button  class="btn btn-submit" onClick={() => this } onClick={() => {this.props.submit()}}>이름과 출발위치 제출</button>
+                        <button  class="btn btn-submit" onClick={() => {this.props.submit()}}>이름과 출발위치 제출</button>
                     </td>
                     <td width="20"></td>
                     <td>
-                        <button class="btn btn-result" onClick={() => this }>결과 보기</button>
+                        <button class="btn btn-result" onClick={() => {this.props.showResult()}}>결과 보기</button>
                     </td>
                 </table>
                 <div class="show-other-people" id="submit-list">

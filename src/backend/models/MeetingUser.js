@@ -16,6 +16,10 @@ const meetingUserSchema = new mongoose.Schema({
       required: true
     }
   },
+  transportation : {
+    type: String,
+    default: "public"
+  },
   meetingID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Meetings',

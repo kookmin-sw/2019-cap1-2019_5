@@ -17,6 +17,7 @@ import LoadingWindow from './LoadingWindow';
 import Map from './Map';
 import FindBox from './FindBox';
 import PrivateRoom from './PrivateRoom';
+import ResultRoom from './ResultRoom';
 import { Redirect } from 'react-router-dom';
 
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
@@ -58,6 +59,9 @@ class MainTable extends React.Component {
     this.fmh = 50;
     this.ymp = 0;
 
+  };
+
+  componentDidMount() {
     //TODO : findmeeting
     axios({
       method: 'get',
@@ -66,13 +70,18 @@ class MainTable extends React.Component {
     }).then((res) => {
       this.setState({
         meeting : res.data.meeting,
-        meetingUsers : res.data.meetingUsers
+        meetingUsers : res.data.meetingUsers,
+        resultAreas: res.data.resultAreas
       });
+      console.log(res.data.meeting);
+      console.log(this.state.meeting);
+      console.log(res.data.meetingUsers);
+      console.log(this.state.meetingUsers);
     }).catch((err) => {
       console.log(err);
     });
 
-  };
+  }
 
   findLoc = () => {
     let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
@@ -104,7 +113,7 @@ class MainTable extends React.Component {
     }
     else;
     return result;
-  }
+  };
 
   //하단 메뉴 터치 슬라이드 부분
   _onTouchStart(e) {
@@ -225,14 +234,32 @@ class MainTable extends React.Component {
     });
 
     return ;
+  };
+
+  showResult = () => {
+    let transportAPI = 'http://localhost/api/v2/findRoute/findLoc?token=' + this.props.match.params.token;
+
+    this.setState({
+      showLoadingWindow : true
+    });
+
+    axios({
+      method: 'post',
+      url: transportAPI
+    }).then((res) => {
+      this.setState({
+        showLoadingWindow : false
+      });
+      window.location = this.props.match.url;
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    return ;
   }
 
   render() {
     const { classes } = this.props;
-
-    // if (Object.keys(this.state.meeting).length === 0) {
-    //   return (<Redirect to={'/'} />);
-    // };
 
     return (
       <div className={classes.root}>
@@ -247,9 +274,23 @@ class MainTable extends React.Component {
                     <MenuIcon />
                   </IconButton>
                 </div>
-                <div id="privateroom">
-                  <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange}/>
+                <div class="top-bar">
+                    <div class="top-bar-title">
+                        {this.state.meeting.name}
+                    </div>
                 </div>
+                <div class="share-box">
+                    <button id="kakaoShareBtn" class="btn btn-share">친구들에게 공유</button>
+                </div>
+                {
+                  this.state.meeting.result ?
+                  (<div id="resultroom">
+                      <ResultRoom resultAreas={this.state.resultAreas} />
+                  </div>)
+                  : (<div id="privateroom">
+                    <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
+                  </div>)
+                }
                 </td>
                 <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} userMarkers={this.state.userMarkers} resultMarkers={this.state.resultMarkers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} /></div>
               </TableRow>
