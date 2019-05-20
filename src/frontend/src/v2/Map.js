@@ -3,7 +3,6 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ShareIcon from '@material-ui/icons/Share';
 import SearchIcon from '@material-ui/icons/Search';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");

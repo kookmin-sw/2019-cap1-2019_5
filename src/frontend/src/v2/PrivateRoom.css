@@ -17,6 +17,8 @@ body {
 
 .top-bar {
   height: 50px;
+  width:100%;
+  margin-top:20px;
   background-color:#d344ffc5;
   color: #ffff;
   font-weight: 800;
@@ -39,8 +41,6 @@ body {
   margin-right: auto;
 }
 
-
-
 .location-input-table {
   background-color: #da93d434;
   margin-top: 25px;
@@ -48,6 +48,16 @@ body {
   margin-right: auto;
   padding-top: 24px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+}
+
+.location-input-table:nth-child(3) > tr:nth-child(3) > td{
+	padding:20px;
+}
+
+.location-input-table:nth-child(3) > tr:nth-child(3) > td > span{
+	font-size:14px;
+	display:inline-block;
+	width:70px;
 }
 
 .Wrapper {
@@ -268,4 +278,54 @@ body {
   height: 2em;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+/*제출시 나오는 아래 화면에 대한 css 처리*/
+#submit-list > table{
+	width:290px;
+	padding-top:0;
+	padding-bottom:20px;
+}
+#submit-list tr td:nth-child(2){
+	padding-top:20px;
+	vartical-align:middle;
+}
+#submit-list tr td div{
+	width:auto;
+	height:30px
+}
+#submit-list tr td div p{
+	display:inline-block;
+	padding:0;
+	margin:0;
+	vertical-align:top
+}
+#submit-list tr td div p:nth-child(1){
+	width:70px;
+	box-sizing:border-box;
+	padding-left:10px;
+	font-size:12px;
+}
+#submit-list tr td div p:nth-child(2){
+	width:150px;
+	overflow:hidden;
+	border-radius:5px;
+	background-color:#fff;
+	padding:0 10px;
+	font-size:12px
+}
+#privateroom{
+	overflow-y:scroll;
+	height:100%;
+	width:380px;
+}
+#privateroom .top-bar{
+	width:100%;
+	max-width:300px;
+	margin:0 auto;
+	border-radius:5px
+}
+#privateroom .share-box{
+	box-sizing:border-box;
+	max-width:300px;
 }
