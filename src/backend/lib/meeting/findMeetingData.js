@@ -15,10 +15,18 @@ module.exports = async (token) => {
     meetingID: meeting._id
   });
 
+  let areas;
+  if (!resultAreas) {
+    areas = [];
+  } else {
+    areas = resultAreas.areas;
+  };
+
+
   let meetingData = {
     meeting: meeting,
     meetingUsers: meetingUsers,
-    resultAreas: resultAreas.areas
+    resultAreas: areas
   };
 
   return meetingData;
