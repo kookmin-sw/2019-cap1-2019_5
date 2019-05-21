@@ -73,10 +73,6 @@ class MainTable extends React.Component {
         meetingUsers : res.data.meetingUsers,
         resultAreas: res.data.resultAreas
       });
-      console.log(res.data.meeting);
-      console.log(this.state.meeting);
-      console.log(res.data.meetingUsers);
-      console.log(this.state.meetingUsers);
     }).catch((err) => {
       console.log(err);
       alert("잘못된 경로입니다.");
@@ -155,13 +151,14 @@ class MainTable extends React.Component {
   }
 
   setMyMarker = (direction) => {
+    let newMyMarker = clone(this.state.myMarker);
+    newMyMarker.location = {
+      lat: direction.lat,
+      lng: direction.lng
+    };
+
     this.setState({
-      myMarker: {
-        location: {
-          lat: direction.lat,
-          lng: direction.lng
-        }
-      }
+      myMarker: newMyMarker
     });
   };
 
@@ -187,7 +184,7 @@ class MainTable extends React.Component {
       newMyMarker.name = e.target.value;
       this.setState({
         myMarker: newMyMarker
-      })
+      });
     };
   };
 
@@ -229,7 +226,6 @@ class MainTable extends React.Component {
         showLoadingWindow : false
       });
 
-      console.log(this.props.match.params.token);
       window.location = this.props.match.url;
     }).catch((err) => {
       console.log(err);
