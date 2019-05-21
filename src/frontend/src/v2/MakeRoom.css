@@ -11,7 +11,9 @@ html {
 body {
   font-size: 1.6rem;
   line-height: 1.8;
-  background-color: #91588c0a;
+  background-image: url(../images/init_back.png);
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .makeroom-table {
