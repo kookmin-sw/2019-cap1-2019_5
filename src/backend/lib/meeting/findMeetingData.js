@@ -11,9 +11,22 @@ module.exports = async (token) => {
     meetingID: meeting._id,
   });
 
+  let resultAreas = await db.Result.findOne({
+    meetingID: meeting._id
+  });
+
+  let areas;
+  if (!resultAreas) {
+    areas = [];
+  } else {
+    areas = resultAreas.areas;
+  };
+
+
   let meetingData = {
     meeting: meeting,
-    meetingUsers: meetingUsers
+    meetingUsers: meetingUsers,
+    resultAreas: areas
   };
 
   return meetingData;
