@@ -6,10 +6,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
-const resultMarkerIcon = {
-  url: require('../images/result-marker.png'),
-  scaledSize: {width: 30, height:30}
+const myMarkerIcon = {
+  url: require('../images/marker_red.png'),
+  scaledSize: {width: 35, height:42}
 };
+const otherMarkerIcon = {
+  url: require('../images/marker_orange.png'),
+  scaledSize: {width: 25, height:35}
+};
+const resultMarkerIcon = {
+  url: require('../images/marker_blue.png'),
+  scaledSize: {width: 25, height:35}
+};
+
 
 const defaultMapOptions = {
   fullscreenControl: true,
@@ -97,14 +106,13 @@ class Map extends React.PureComponent {
     let visibleMarkers = [];
 
     visibleMarkers.push(
-      <Marker position={{ lat: this.props.myMarker.location.lat, lng: this.props.myMarker.location.lng }} draggable={true} onClick={() => alert(this.props.MyMarker)} >
+      <Marker position={{ lat: this.props.myMarker.location.lat, lng: this.props.myMarker.location.lng }} draggable={true} onClick={() => alert(this.props.MyMarker)} icon={myMarkerIcon}>
       </Marker>
     )
 
-    // alert(this.props.meetingUsers.length);
     for (let i=0; i < this.props.meetingUsers.length; i++) {
       visibleMarkers.push(
-        <Marker position={{ lat: this.props.meetingUsers[i].location.coordinates[1], lng: this.props.meetingUsers[i].location.coordinates[0] }} draggable={false} >
+        <Marker position={{ lat: this.props.meetingUsers[i].location.coordinates[1], lng: this.props.meetingUsers[i].location.coordinates[0] }} draggable={false} icon={otherMarkerIcon}>
           <InfoWindow>
             <div>
               {this.props.meetingUsers[i].name}
@@ -114,26 +122,17 @@ class Map extends React.PureComponent {
       )
     }
 
-    // if (this.props.showResult != true){
-    //   for (let i = 0; i< this.props.markers.length; i++) {
-    //     visibleMarkers.push(
-    //       <Marker position={{ lat: this.props.markers[i].location.lat, lng: this.props.markers[i].location.lng }} draggable={true} onClick={this.onMarkerChange} onDragEnd={(e) => this.onMarkerChange(e, i)} label={(i+1).toString()} >
-    //       </Marker>
-    //     )
-    //   }
-    // } else {
-    //   for (let i = 0; i< this.props.markers.length; i++) {
-    //     visibleMarkers.push(
-    //       <Marker position={{ lat: this.props.markers[i].location.coordinates[1], lng: this.props.markers[i].location.coordinates[0] }} draggable={false} onClick={() => alert(this.props.markers[i].name)} icon={resultMarkerIcon} label={(i+1).toString()}>
-    //         <InfoWindow>
-    //           <div>
-    //             {this.props.markers[i].name}
-    //           </div>
-    //         </InfoWindow>
-    //       </Marker>
-    //     )
-    //   }
-    // }
+    for (let i=0; i < this.props.resultAreas.length; i++) {
+      visibleMarkers.push(
+        <Marker position={{ lat: this.props.resultAreas[i].location.coordinates[1], lng: this.props.resultAreas[i].location.coordinates[0] }} draggable={false} icon={resultMarkerIcon}>
+          <InfoWindow>
+            <div>
+              {this.props.resultAreas[i].name}
+            </div>
+          </InfoWindow>
+        </Marker>
+      )
+    }
 
     return visibleMarkers;
   }
