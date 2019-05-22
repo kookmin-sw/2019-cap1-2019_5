@@ -16,6 +16,9 @@ const meetingUserSchema = new mongoose.Schema({
       required: true
     }
   },
+  locationName: {
+    type: String,
+  },
   transportation : {
     type: String,
     default: "public"

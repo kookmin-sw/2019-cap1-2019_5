@@ -34,10 +34,11 @@ class MainTable extends React.Component {
       myMarker: {
         location: {
           lat: 0,
-          lng: 0
+          lng: 0,
+          name: "위치를 선택해주세요!"
         },
         transportation: "public",
-        name: ""
+        name: "이름을 입력해주세요!"
       },
       meeting: {},
       meetingUsers: [],
@@ -127,7 +128,8 @@ class MainTable extends React.Component {
     let newMyMarker = clone(this.state.myMarker);
     newMyMarker.location = {
       lat: direction.lat,
-      lng: direction.lng
+      lng: direction.lng,
+      name: direction.where
     };
 
     this.setState({
@@ -163,6 +165,7 @@ class MainTable extends React.Component {
       data: {
         name: this.state.myMarker.name,
         location: [this.state.myMarker.location.lng, this.state.myMarker.location.lat],
+        locationName: this.state.myMarker.location.name,
         transportation: this.state.myMarker.transportation
       }
     }).then((res) => {

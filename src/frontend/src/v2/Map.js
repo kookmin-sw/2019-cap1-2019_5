@@ -36,7 +36,7 @@ class Map extends React.PureComponent {
   }
 
   componentWillMount() {
-    const refs = {}
+    const refs = {};
 
     this.setState({
       bounds: null,
@@ -67,11 +67,10 @@ class Map extends React.PureComponent {
             bounds.extend(place.geometry.location)
           }
         });
-        console.log("bound2", bounds)
+
         const nextMarkers = places.map(place => ({
           position: place.geometry.location,
         }));
-        console.log("place2", places);
 
         let nextCenter = places[0].geometry.location;
 
@@ -82,18 +81,33 @@ class Map extends React.PureComponent {
 
         this.props.setMyMarker({
           lat: places[0].geometry.location.lat(),
-          lng: places[0].geometry.location.lng()
+          lng: places[0].geometry.location.lng(),
+          where: places[0].name
         });
       },
     })
   }
 
   onMapClick = (event) => {
-    this.props.setMyMarker({
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng()
+    if (this.props.resultAreas.length != 0) {
+      return ;
+    };
+
+    let geocoder = new window.google.maps.Geocoder();
+
+    geocoder.geocode({'location': {lat: event.latLng.lat(), lng: event.latLng.lng()}}, (results, status) => {
+      if (status == 'OK') {
+        this.props.setMyMarker({
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+          where: results[0].formatted_address
+        });
+      } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
+      }
     });
-  }
+
+  };
 
   onMarkerChange = (event) => {
     this.props.setMyMarker({

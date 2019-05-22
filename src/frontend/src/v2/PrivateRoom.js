@@ -69,7 +69,7 @@ class PrivateRoom extends React.Component {
     showNumInputUser() {
       return(
         <td>
-          <div><p>제출현황 : {this.props.meetingUsers.length} / ??</p></div>
+          <div><p>제출현황 : {this.props.meetingUsers.length} / {this.props.meeting.number}</p></div>
           <hr></hr>
         </td>
       )
@@ -77,14 +77,12 @@ class PrivateRoom extends React.Component {
 
     showOtherUsers() {
       let usersBox = [];
-      console.log(this.props.meetingUsers);
       for (let i=0; i < this.props.meetingUsers.length; i++) {
         usersBox.push(
           <tr>
             <td>
               <div><p>이름</p> <p>{this.props.meetingUsers[i].name}</p></div>
-              <div><p>Latitude</p> <p>{this.props.meetingUsers[i].location.coordinates[0]}</p></div>
-              <div><p>Longitude</p> <p>{this.props.meetingUsers[i].location.coordinates[1]}</p></div>
+              <div><p>출발위치</p> <p>{this.props.meetingUsers[i].locationName}</p></div>
             </td>
           </tr>
         )
@@ -147,7 +145,7 @@ class PrivateRoom extends React.Component {
                       <td>
                           <div class="Wrapper">
                               <div id="start-position" class="Start-position">
-                                  서울특별시
+                                  {this.props.myMarker.location.name}
                               </div>
                               <label for="start-position" class="Input-label">출발 위치</label>
                           </div>

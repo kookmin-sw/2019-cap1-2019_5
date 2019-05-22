@@ -58,6 +58,10 @@ class MakeRoom extends React.Component {
       if (e.target.value === '' || re.test(e.target.value)) {
         this.setState({ onlynumber: e.target.value})
       }
+
+      this.setState({
+        num: e.target.value
+      })
     }
 
     render() {
