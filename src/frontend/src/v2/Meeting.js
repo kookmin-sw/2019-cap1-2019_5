@@ -41,10 +41,6 @@ class MainTable extends React.Component {
       },
       meeting: {},
       meetingUsers: [],
-      showResultMarkers: false,
-      userMarkers: [],
-      resultMarkers: [],
-      selectedMarker: 0,
       userNum: 1,
       resultAreas: [],
       swiped: false,
@@ -79,29 +75,6 @@ class MainTable extends React.Component {
       window.location = "/";
     });
 
-  }
-
-  findLoc = () => {
-    let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
-    this.setState({
-      showLoadingWindow : true
-    });
-    axios({
-      method: 'post',
-      url: 'http://13.209.137.246/api/v1/findRoute/findLoc/',
-      data: {
-        startLocs: this.state.markers,
-      }
-    }).then((res) => {
-      this.setState({
-        resultAreas : res.data.areas,
-        showResultMarkers: true,
-        showLoadingWindow : false
-      });
-    }).catch((err) => {
-      console.log(err);
-    });
-    return ;
   };
 
   showLoadingWindow() {
@@ -162,22 +135,6 @@ class MainTable extends React.Component {
     });
   };
 
-  changeLoc = (direction) => {
-    if(this.state.selectedMarker == -1) return;
-
-    let newMarkers = clone(this.state.markers);
-
-    if (direction.name == "transportation") {
-      newMarkers[direction.index].transportation = direction.value;
-    } else if (direction.name != "transportation") {
-      newMarkers[direction.index].location[direction.name] = direction.value;
-    }
-
-    this.setState({
-      markers: newMarkers
-    });
-  };
-
   handleChange = (e) => {
     if (e.target.id == "user-name"){
       let newMyMarker = clone(this.state.myMarker);
@@ -186,17 +143,6 @@ class MainTable extends React.Component {
         myMarker: newMyMarker
       });
     };
-  };
-
-  deleteUser = (index) => {
-    let newMarkers = clone(this.state.markers);
-    newMarkers.splice(index, 1);
-
-    this.setState({
-      markers: newMarkers,
-      selectedMarker: this.state.userNum-2,
-      userNum: this.state.userNum-1
-    });
   };
 
   submit = () => {
@@ -222,7 +168,6 @@ class MainTable extends React.Component {
     }).then((res) => {
       this.setState({
         resultAreas : res.data.areas,
-        showResultMarkers: true,
         showLoadingWindow : false
       });
 
@@ -286,11 +231,11 @@ class MainTable extends React.Component {
                       <ResultRoom resultAreas={this.state.resultAreas} />
                   </div>)
                   : (<div id="privateroom">
-                    <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} showResult={this.state.showResultMarkers} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
+                    <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
                   </div>)
                 }
                 </td>
-                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} userMarkers={this.state.userMarkers} resultMarkers={this.state.resultMarkers} setMarker={this.setMarker} selectedMarker={this.state.selectedMarker} showResult={this.state.showResultMarkers} /></div>
+                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} setMarker={this.setMarker} resultAreas={this.state.resultAreas} /></div>
               </TableRow>
           </TableBody>
         </Table>
