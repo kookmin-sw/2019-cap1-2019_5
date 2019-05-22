@@ -167,7 +167,6 @@ class MainTable extends React.Component {
       }
     }).then((res) => {
       this.setState({
-        resultAreas : res.data.areas,
         showLoadingWindow : false
       });
 
