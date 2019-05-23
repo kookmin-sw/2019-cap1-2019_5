@@ -187,6 +187,10 @@
 		top:0;
 		margin-left:-30%;
 	}
+
+	#makeroom-Table{
+		width:300px;
+	}
 }
 
 /*태블릿 가로화면*/

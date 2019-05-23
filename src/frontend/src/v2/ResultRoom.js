@@ -137,15 +137,11 @@ class ResultRoom extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-          <div id="scroll_Bar" style={{height: "80vh"}}>
-            <Scrollbars style={{ width: "100%"}}>
             <div class="set-font">
                 <div class="candidates-window">
                     {this.result()}
                 </div>
             </div>
-            </Scrollbars>
-          </div>
         )
     }
 };

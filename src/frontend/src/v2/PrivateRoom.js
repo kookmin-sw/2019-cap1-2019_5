@@ -120,8 +120,6 @@ class PrivateRoom extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <div id="scroll_Bar" style={{height: "85vh"}}>
-                <Scrollbars style={{ width: "100%"}}>
                 <table class="location-input-table">
                     <tr>
                       <td>
@@ -160,8 +158,6 @@ class PrivateRoom extends React.Component {
                       {this.showOtherUsers()}
                     </table>
                 </div>
-                </Scrollbars>
-            </div>
             </div>
         )
     }
