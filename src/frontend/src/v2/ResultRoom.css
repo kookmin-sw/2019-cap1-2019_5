@@ -9,7 +9,7 @@
     height: 400px;
     padding: 2%;
   }
-  
+
 body {
     overflow-x: hidden;
 }
@@ -112,6 +112,15 @@ body {
     line-height: 22px;
 }
 
+.votebox {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 15%;
+  text-align: center;
+  z-index: 10;
+}
+
 .area-title + .area-path-details {
     max-height: 0;
     overflow: hidden;
@@ -205,7 +214,7 @@ body {
     font-weight: 500;
     line-height: 20px;
     color: #242a32;
-    text-transform: capitalize; 
+    text-transform: capitalize;
 }
 
 .area-spec-header > span:nth-child(2) {

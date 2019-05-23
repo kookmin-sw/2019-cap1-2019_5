@@ -8,6 +8,7 @@ import DirectionsBus from '@material-ui/icons/DirectionsBus';
 import DirectionsCar from '@material-ui/icons/DirectionsCar';
 import DirectionsSubway from '@material-ui/icons/DirectionsSubway';
 import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
+import Checkbox from '@material-ui/core/Checkbox';
 
 class ResultRoom extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class ResultRoom extends React.Component {
       for(let i =0; i < this.state.resultAreas.length; i++){
         candidates.push(
           <div class="candidates ">
-              <input id={i} i type="checkbox" class="area-checkbox" name="candidates-open"/>
+            <input id={i} i type="checkbox" class="area-checkbox" name="candidates-open"/>
               <label for={i} class="area-label"></label>
               <div class="area-title">
                   <div class="area-info">
@@ -36,6 +37,7 @@ class ResultRoom extends React.Component {
                           <span class="chart-pie-count">1</span>
                       </div>
                       <span class="area-name">{this.state.resultAreas[i].name}</span>
+                      <span class="votebox"><Checkbox /></span>
                   </div>
               </div>
               <div class="area-path-details">

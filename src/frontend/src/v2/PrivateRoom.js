@@ -3,7 +3,6 @@ import './PrivateRoom.css';
 import PropTypes from 'prop-types';
 import car from '../images/car.png';
 import metro from '../images/metro.png';
-import Checkbox from '@material-ui/core/Checkbox';
 
 class PrivateRoom extends React.Component {
     constructor(props) {
@@ -11,6 +10,15 @@ class PrivateRoom extends React.Component {
         this.state = {
 
         }
+    }
+
+    showNumInputUser() {
+      return(
+        <td>
+          <div><p>제출현황 : {this.props.meetingUsers.length} / ??</p></div>
+          <hr></hr>
+        </td>
+      )
     }
 
     showOtherUsers() {
@@ -100,6 +108,7 @@ class PrivateRoom extends React.Component {
                 </table>
                 <div class="show-other-people" id="submit-list">
                     <table class="location-input-table">
+                      {this.showNumInputUser()}
                       {this.showOtherUsers()}
                     </table>
                 </div>
