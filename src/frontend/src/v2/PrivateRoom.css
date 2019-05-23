@@ -223,8 +223,8 @@ body {
 .toggle + .toggle-button {
   outline: 0;
   display: inline-block;
-  width: 4em;
-  height: 2em;
+  width: 16em;
+  height: 3em;
   position: relative;
   cursor: pointer;
   border: 2px solid #333;
@@ -252,6 +252,10 @@ body {
 
 .toggle:checked + .toggle-button:after {
   left: 50%;
+  border-bottom-right-radius: 2em;
+  border-top-right-radius: 2em;
+  border-top-left-radius: 0em;
+  border-bottom-left-radius: 0em;
 }
 
 .toggle + .toggle-button {
@@ -260,6 +264,7 @@ body {
   transition: all .2s ease;
   border: 2px solid #d344ffc5;
   border-radius: 2em;
+  background: rgba(97, 95, 95, 0.171);
 }
 
 .toggle + .toggle-button:after {
@@ -267,17 +272,30 @@ body {
   transition: all .2s ease;
   background: #d344ffc5;
   content: "";
-  border-radius: 1em;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
 }
 
 .toggle:checked + .toggle-button:after {
   left: 50%;
 }
 
-.TransfortationImage{
-  height: 2em;
-  margin-left: 5%;
-  margin-right: 5%;
+.TransfortationImageDiv{
+  text-align: center;
+  position: relative;
+  top: -48px;
+  height: 10px;
+  pointer-events: none;
+  max-height: 50%;  
+  font-size: 1.2em;
+  left: -3%;
+}
+
+.public-transport-svg {
+  height: 1.2em;
+  margin-left: 3%;
+  position: relative;
+  top: 40%;
 }
 
 /*제출시 나오는 아래 화면에 대한 css 처리*/

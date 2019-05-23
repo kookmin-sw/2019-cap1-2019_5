@@ -209,7 +209,7 @@ class MainTable extends React.Component {
         <Table className={classes.table}>
           <TableBody height = '100%'>
               <TableRow>
-                <td component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd}>
+                <td component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd} style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
                 <MenuIcon id="footer_menu_btn" />
                 <div id="side_area_top">
                   <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
