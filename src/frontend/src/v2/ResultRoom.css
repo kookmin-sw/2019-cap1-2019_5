@@ -1,5 +1,8 @@
-.set-font {
-    font-family: 'Noto Sans KR', sans-serif;
+.set-scroll {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin: 0px;
+    padding: 0px;
 }
 
 .result-list {
@@ -119,6 +122,11 @@ body {
   top: 15%;
   text-align: center;
   z-index: 10;
+  pointer-events: none;
+}
+
+.votebox > span {
+    pointer-events: visiblePainted;
 }
 
 .area-title + .area-path-details {

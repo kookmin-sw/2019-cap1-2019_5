@@ -10,7 +10,8 @@ class PrivateRoom extends React.Component {
         super(props);
         this.state = {
           tBool: false,
-          transportation: "public"
+          transportation: "public",
+          scrollHeight: window.innerHeight - 210
         }
     }
 
@@ -114,12 +115,25 @@ class PrivateRoom extends React.Component {
             }
           ]
         });
+    }
+
+    getScrollHeight() {
+      return {
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        height: this.state.scrollHeight
       }
+    }
 
     render() {
         const { classes } = this.props;
+
+        window.onresize = () => {
+          this.setState({ scrollHeight: window.innerHeight -210 });
+        }
+
         return (
-            <div>
+            <div style={this.getScrollHeight()}>
                 <table class="location-input-table">
                     <tr>
                       <td>
