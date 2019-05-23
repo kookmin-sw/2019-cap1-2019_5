@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 import './ResultRoom.css';
 import PropTypes from 'prop-types';
 import { withStyles, Icon, IconButton,

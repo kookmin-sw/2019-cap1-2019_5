@@ -53,13 +53,6 @@
 	position:relative;
 }
 
-/*공유버튼*/
-#side_area_share_btn{
-	color:#fff;
-	float:right;
-	margin-right:4px;
-}
-
 #m_side_area_menu_btn, #m_side_area_share_btn{display:none;}
 
 #side_area{
@@ -147,6 +140,7 @@
 
   /*모바일용 해더 영역*/
 	#m_side_area_top{
+		position:fixed;
 		z-index:10 !important;
 		background-color:#f79ff3;
 	}
@@ -166,15 +160,9 @@
 		top:0;
 		left:0;
 	}
-	#m_side_area_share_btn{
-		display:block;
-		color:#fff;
-		position:fixed;
-		top:0;
-		right:0;
-	}
 
   #side_area_top{
+		position:fixed;
     display:none;
     border-radius:0 0 10px 10px;
   }
@@ -195,8 +183,13 @@
 	}
 
 	#gps_Button{
+		position:fixed;
 		top:0;
 		margin-left:-30%;
+	}
+
+	#makeroom-Table{
+		width:300px;
 	}
 }
 

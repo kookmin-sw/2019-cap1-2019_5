@@ -62,7 +62,7 @@ class MakeRoom extends React.Component {
             <div style={{display:"table", width:"100%", height:"100vh", textAlign: "center"}}>
             <div style={{display:"table-cell", verticalAlign:"middle"}}>
             <img src={logo} alt="MDMY" height="150px" width="150px"/>
-                <table width='400' class="makeroom-table">
+                <table width='400' id="makeroom-Table" class="makeroom-table">
                     <tr height="25px">
                     </tr>
                     <tr class="makeroom-insert-box">
