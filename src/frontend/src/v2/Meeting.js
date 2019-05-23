@@ -204,7 +204,7 @@ class MainTable extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} style={{overflowY: "hidden"}}>
        {this.showLoadingWindow()}
         <Table className={classes.table}>
           <TableBody height = '100%'>

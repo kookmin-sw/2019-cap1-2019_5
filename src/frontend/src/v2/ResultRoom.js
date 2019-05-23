@@ -15,7 +15,8 @@ class ResultRoom extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          resultAreas: this.props.resultAreas
+          resultAreas: this.props.resultAreas,
+          scrollHeight: window.innerHeight - 210
         }
     };
 
@@ -134,10 +135,21 @@ class ResultRoom extends React.Component {
       }
     };
 
+    getScrollHeight() {
+      return {
+        height: this.state.scrollHeight
+      }
+    }
+
     render() {
         const { classes } = this.props;
+
+        window.onresize = () => {
+          this.setState({ scrollHeight: window.innerHeight - 210 });
+        }
+
         return (
-            <div class="set-font">
+            <div class="set-scroll" style={this.getScrollHeight()}>
                 <div class="candidates-window">
                     {this.result()}
                 </div>

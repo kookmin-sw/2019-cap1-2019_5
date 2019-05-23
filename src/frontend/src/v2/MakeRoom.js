@@ -10,8 +10,10 @@ class MakeRoom extends React.Component {
         super(props);
         this.state = {
           createMeeting: false,
-          meetingToken: ""
+          meetingToken: "",
+          onlynumber: ''
         }
+        this.handlePositiveInteger = this.handlePositiveInteger.bind(this)
     }
 
     makeMeeting = () => {
@@ -51,6 +53,13 @@ class MakeRoom extends React.Component {
       return ;
     };
 
+    handlePositiveInteger(e){
+      const re = /^[0-9\b]+$/;
+      if (e.target.value === '' || re.test(e.target.value)) {
+        this.setState({ onlynumber: e.target.value})
+      }
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -73,7 +82,7 @@ class MakeRoom extends React.Component {
                     </tr>
                     <tr class="makeRoom-insert-box">
                     <div class="Wrapper">
-                        <input type="text" id="number-of-people" class="Input-text" placeholder="예) 6" />
+                        <input type="text" id="number-of-people" class="Input-text" placeholder="예) 6" value={this.state.onlynumber} onChange={this.handlePositiveInteger}/>
                         <label for="number-of-people" class="Input-label">인원수</label>
                     </div>
                     </tr>
