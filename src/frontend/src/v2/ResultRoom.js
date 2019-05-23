@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 import './ResultRoom.css';
 import PropTypes from 'prop-types';
 import { withStyles, Icon, IconButton,
@@ -136,11 +137,15 @@ class ResultRoom extends React.Component {
     render() {
         const { classes } = this.props;
         return (
+          <div id="scroll_Bar" style={{height: "80vh"}}>
+            <Scrollbars style={{ width: "100%"}}>
             <div class="set-font">
                 <div class="candidates-window">
                     {this.result()}
                 </div>
             </div>
+            </Scrollbars>
+          </div>
         )
     }
 };

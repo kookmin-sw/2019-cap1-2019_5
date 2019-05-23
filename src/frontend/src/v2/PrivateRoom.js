@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 import './PrivateRoom.css';
 import PropTypes from 'prop-types';
 import car from '../images/car.png';
@@ -57,7 +58,7 @@ class PrivateRoom extends React.Component {
                       c5.92,0,10.71,4.792,10.71,10.713C296.994,277.595,292.204,282.389,286.284,282.389z M395.051,285.776h-51.846
                       c-9.343,0-16.91-7.578-16.91-16.912c0-9.337,7.573-16.91,16.91-16.91h51.846c9.343,0,16.916,7.573,16.916,16.91
                       C411.967,278.198,404.394,285.776,395.051,285.776z"/>
-                </svg> 자동차 
+                </svg> 자동차
               </a>
           </div>
         </div>
@@ -119,6 +120,8 @@ class PrivateRoom extends React.Component {
         const { classes } = this.props;
         return (
             <div>
+                <div id="scroll_Bar" style={{height: "85vh"}}>
+                <Scrollbars style={{ width: "100%"}}>
                 <table class="location-input-table">
                     <tr>
                       <td>
@@ -157,6 +160,8 @@ class PrivateRoom extends React.Component {
                       {this.showOtherUsers()}
                     </table>
                 </div>
+                </Scrollbars>
+            </div>
             </div>
         )
     }
