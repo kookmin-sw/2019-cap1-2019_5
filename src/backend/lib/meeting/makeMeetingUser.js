@@ -1,7 +1,7 @@
 const db = require('../../models');
 const crypto = require('crypto');
 
-module.exports = async (token, name, transportation, location) => {
+module.exports = async (token, name, transportation, location, locationName) => {
 
   let meeting = await db.Meeting.findOne({
     token: token
@@ -10,7 +10,8 @@ module.exports = async (token, name, transportation, location) => {
   let meetingUser = new db.MeetingUser({
     name: name,
     location: location,
-    meetingID: meeting._id,
+    locationName: locationName,
+    meetingID: meeting._id
   });
 
   let saveValue;
