@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import './PrivateRoom.css';
 import PropTypes from 'prop-types';
-import car from '../images/car.png';
-import metro from '../images/metro.png';
 
 class PrivateRoom extends React.Component {
     constructor(props) {
