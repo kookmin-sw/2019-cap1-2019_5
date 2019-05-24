@@ -286,7 +286,7 @@ body {
   top: -48px;
   height: 10px;
   pointer-events: none;
-  max-height: 50%;  
+  max-height: 50%;
   font-size: 1.2em;
   left: -3%;
 }
@@ -296,6 +296,27 @@ body {
   margin-left: 3%;
   position: relative;
   top: 40%;
+}
+
+::-webkit-scrollbar {
+	width: 11px;
+	height: auto;
+}
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	box-shadow: inset 0 0 8px #d344ffc5;
+
+}
+::-webkit-scrollbar-thumb {
+	background: #d344ffc5;
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #d344ffc5;
+}
+::-webkit-scrollbar-thumb:active {
+	background: #d344ffc5;
 }
 
 /*제출시 나오는 아래 화면에 대한 css 처리*/

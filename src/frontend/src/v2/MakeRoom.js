@@ -58,6 +58,10 @@ class MakeRoom extends React.Component {
       if (e.target.value === '' || re.test(e.target.value)) {
         this.setState({ onlynumber: e.target.value})
       }
+      if (e.target.value < 1) {
+        alert("1이상의 정수를 입력해주세요");
+        this.setState({ onlynumber: ""})
+      }
 
       this.setState({
         num: e.target.value
