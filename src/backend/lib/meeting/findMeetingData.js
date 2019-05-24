@@ -15,13 +15,29 @@ module.exports = async (token) => {
     meetingID: meeting._id
   });
 
+  if (resultAreas != null) {
+    for (let i = 0; i < resultAreas.areas.length; i++) {
+      resultAreas.areas[i].vote = 0;
+    }
+    let result = await db.VotedLocs.find({
+      ResultID: resultAreas._id
+    });
+
+    for (let i = 0; i < resultAreas.areas.length; i++) {
+      for (let j = 0; j < result.length; j++) {
+        if (result[j].location == resultAreas.areas[i].name) {
+          resultAreas.areas[i].vote++;
+        }
+      }
+    }
+  }
+
   let areas;
   if (!resultAreas) {
     areas = [];
   } else {
     areas = resultAreas.areas;
   };
-
 
   let meetingData = {
     meeting: meeting,
