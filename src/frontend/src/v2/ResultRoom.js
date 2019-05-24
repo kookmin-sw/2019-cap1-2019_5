@@ -5,11 +5,8 @@ import PropTypes from 'prop-types';
 import { withStyles, Icon, IconButton,
          ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails,
          Typography, Paper, Divider} from '@material-ui/core/';
-import DirectionsBus from '@material-ui/icons/DirectionsBus';
-import DirectionsCar from '@material-ui/icons/DirectionsCar';
-import DirectionsSubway from '@material-ui/icons/DirectionsSubway';
-import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
 import Checkbox from '@material-ui/core/Checkbox';
+import SubwayIcon from '../images/subway.png';
 
 class ResultRoom extends React.Component {
     constructor(props) {
@@ -24,6 +21,10 @@ class ResultRoom extends React.Component {
       this.setState({ resultAreas: this.props.resultAreas });
     };
 
+    convertToKm(input) {
+      return (input/1000).toFixed(1);
+    }
+
     result = () => {
       let candidates = [];
       console.log("??", this.state.resultAreas.length);
@@ -36,7 +37,7 @@ class ResultRoom extends React.Component {
               <div class="area-title">
                   <div class="area-info">
                       <div class="chart-pie negative over50">
-                          <span class="chart-pie-count">1</span>
+                          <span class="chart-pie-count">{i+1}</span>
                       </div>
                       <span class="area-name">{this.state.resultAreas[i].name}</span>
                       <span class="votebox"><Checkbox /></span>
@@ -46,12 +47,13 @@ class ResultRoom extends React.Component {
                   <div class="area-details-wrapper">
                       <div>
                           <div class="area-spec-header">
-                              <span>평균소요시간: {this.state.resultAreas[i].average.avgDuration}</span>
-                              <span>평균거리: {this.state.resultAreas[i].average.avgDistance}</span>
+                              <span style={{fontWeight: "bold", fontSize: "1.1em"}}>평균소요시간: {this.state.resultAreas[i].average.avgDuration}분</span>
+                              <span>평균거리: {this.convertToKm(this.state.resultAreas[i].average.avgDistance)}km</span>
                           </div>
-                          <hr class="area-spec-hr"></hr>
+                          <div>
                           <div class="area-spec-header">
-                              <span>{this.showUserRouteResult(i)}</span>
+                              {this.showUserRouteResult(i)}
+                          </div>
                           </div>
                       </div>
                   </div>
@@ -67,26 +69,35 @@ class ResultRoom extends React.Component {
 
       for (let i=0; i<this.state.resultAreas[areaNum].users.length; i++) {
         userRouteBox.push(
-          <div>
-            <h2>{(i+1) + "번째 유저"}</h2>
-            <div>{"소요시간 : " + this.state.resultAreas[areaNum].users[i].duration}</div>
-            <div>{"거리 : " + this.state.resultAreas[areaNum].users[i].distance}</div>
-          </div>
+          <span>
+            <hr class="area-spec-hr"></hr>
+            <div class="area-spec-header">
+              <h2>{this.props.meetingUsers[i].name}</h2>
+              <span>{"거리 : " + this.convertToKm(this.state.resultAreas[areaNum].users[i].distance)}km</span>
+              <span>{"소요시간 : " + this.state.resultAreas[areaNum].users[i].duration}분</span>
+            </div>
+          </span>
         )
 
         for (let j =0; j<this.state.resultAreas[areaNum].users[i].route.length; j++) {
           userRouteBox.push(
             <div>
               <table>
-                <td>{(j+1) + ". "}</td>
-                <td>{(this.showTransportationIcon(this.state.resultAreas[areaNum].users[i].route[j]))}</td>
+                <tr>
+                <td style={{verticalAlign: "middle", paddingRight: "13px"}}>{(j+1)}</td>
+                <td style={{position:"relative"}}>
+                  <div style={{height: "100%", marginRight: "4px"}}>
+                  <div class="vertical-hr"></div>
+                  </div>
+                </td>
+                <td>
+                  {(this.showTransportationIcon(this.state.resultAreas[areaNum].users[i].route[j]))}
+                </td>
+                </tr>
               </table>
             </div>
           )
         }
-        userRouteBox.push(
-          <br></br>
-        )
       }
 
       return userRouteBox;
@@ -96,44 +107,82 @@ class ResultRoom extends React.Component {
       if (trans.transportation == "driving"){
         return (
           <div>
-            <Icon><DirectionsCar /></Icon>
-            {trans.name}
+            <table>
+              <td style={{paddingRight: "8px", textAlign: "center"}}>
+                {this.carIcon()}
+              </td>
+              <td style={{verticalAlign: "middle"}}>
+                {trans.name}
+              </td>
+            </table>
           </div>
         );
       } else if (trans.transportation == "bus") {
         return (
           <div>
-            {" ( "}
-            <Icon><DirectionsBus /></Icon>
-            {" "}
-            {trans.lineNum}
-            {" ) "}
-            {trans.startName}
-            {" -> "}
-            {trans.endName}
+            <table>
+              <td style={{paddingRight: "8px", textAlign: "center"}}>
+                {this.busIcon()}
+                <br></br>
+                {trans.lineNum}
+              </td>
+              <td style={{verticalAlign: "middle"}}>
+                {trans.startName}
+                {" → "}
+                {trans.endName}
+              </td>
+            </table>
           </div>
         );
       } else if (trans.transportation == "subway") {
         return (
           <div>
-            {" ( "}
-            <Icon><DirectionsSubway /></Icon>
-            {" "}
-            {trans.lineNum}
-            {" ) "}
-            {trans.startName}
-            {" -> "}
-            {trans.endName}
+            <table>
+              <td style={{paddingRight: "8px", textAlign: "center"}}>
+                <img src={SubwayIcon} style= {{height: "1.5em"}}/>
+                <br></br>
+                {trans.lineNum}
+              </td>
+              <td style={{verticalAlign: "middle"}}>
+                {trans.startName}
+                {" → "}
+                {trans.endName}
+              </td>
+            </table>
           </div>
         );
       } else {
         return (
           <div>
-            <Icon><DirectionsWalk /></Icon>
+            {this.walkIcon()}
           </div>
         )
       }
     };
+
+    carIcon() {
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 459 459" style={{height: "1.5em"}}>
+        <path d="M405.45,51c-5.101-15.3-20.4-25.5-35.7-25.5H89.25c-17.85,0-30.6,10.2-35.7,25.5L0,204v204c0,15.3,10.2,25.5,25.5,25.5H51 c15.3,0,25.5-10.2,25.5-25.5v-25.5h306V408c0,15.3,10.2,25.5,25.5,25.5h25.5c15.3,0,25.5-10.2,25.5-25.5V204L405.45,51z M89.25,306C68.85,306,51,288.15,51,267.75s17.85-38.25,38.25-38.25s38.25,17.85,38.25,38.25S109.65,306,89.25,306z M369.75,306 c-20.4,0-38.25-17.85-38.25-38.25s17.85-38.25,38.25-38.25S408,247.35,408,267.75S390.15,306,369.75,306z M51,178.5L89.25,63.75 h280.5L408,178.5H51z"/>
+      </svg>
+      )
+    }
+
+    busIcon() {
+      return (
+        <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 484.5 484.5" style={{height: "1.5em"}}>
+          <path d="M38.25,357c0,22.95,10.2,43.35,25.5,56.1V459c0,15.3,10.2,25.5,25.5,25.5h25.5c15.3,0,25.5-10.2,25.5-25.5v-25.5h204V459 c0,15.3,10.2,25.5,25.5,25.5h25.5c15.3,0,25.5-10.2,25.5-25.5v-45.9c15.3-12.75,25.5-33.149,25.5-56.1V102 c0-89.25-91.8-102-204-102s-204,12.75-204,102V357z M127.5,382.5c-20.4,0-38.25-17.85-38.25-38.25S107.1,306,127.5,306 s38.25,17.85,38.25,38.25S147.9,382.5,127.5,382.5z M357,382.5c-20.4,0-38.25-17.85-38.25-38.25S336.6,306,357,306 s38.25,17.85,38.25,38.25S377.4,382.5,357,382.5z M395.25,229.5h-306V102h306V229.5z"/>
+        </svg>
+      )
+    }
+
+    walkIcon() {
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style={{height: "2em", position: "relative" ,top: "2px"}}>
+          <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"></path>
+        </svg>
+      )
+    }
 
     getScrollHeight() {
       return {
