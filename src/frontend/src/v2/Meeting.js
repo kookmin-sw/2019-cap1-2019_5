@@ -46,7 +46,8 @@ class MainTable extends React.Component {
       userNum: 1,
       resultAreas: [],
       swiped: false,
-      showLoadingWindow: false
+      showLoadingWindow: false,
+      selectedResult: -1,
     }
 
     this._onTouchStart = this._onTouchStart.bind(this);
@@ -139,6 +140,7 @@ class MainTable extends React.Component {
   };
 
   handleChange = (e) => {
+    console.log(e);
     if (e.target.id == "user-name"){
       let newMyMarker = clone(this.state.myMarker);
       newMyMarker.name = e.target.value;
@@ -216,7 +218,33 @@ class MainTable extends React.Component {
     });
 
     return ;
-  }
+  };
+
+  selectResult = (e) => {
+    if (this.state.selectedResult == e.target.id) {
+      this.setState({
+        selectedResult: -1
+      });
+      return ;
+    }
+
+    this.setState({
+      selectedResult: e.target.id
+    });
+  };
+
+  selectResultMarker = (e) => {
+    if (this.state.selectedResult == e) {
+      this.setState({
+        selectedResult: -1
+      });
+      return ;
+    }
+
+    this.setState({
+      selectedResult: e
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -254,14 +282,14 @@ class MainTable extends React.Component {
                 {
                   this.state.meeting.result ?
                   (<div id="resultroom">
-                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers}/>
+                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} handleChange={this.handleChange}/>
                   </div>)
                   : (<div id="privateroom">
                     <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
                   </div>)
                 }
                 </td>
-                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} setMarker={this.setMarker} resultAreas={this.state.resultAreas} /></div>
+                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} setMarker={this.setMarker} resultAreas={this.state.resultAreas} selectResultMarker={this.selectResultMarker} /></div>
               </TableRow>
           </TableBody>
         </Table>

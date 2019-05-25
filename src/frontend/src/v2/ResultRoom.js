@@ -27,12 +27,11 @@ class ResultRoom extends React.Component {
 
     result = () => {
       let candidates = [];
-      console.log("??", this.state.resultAreas.length);
 
       for(let i =0; i < this.state.resultAreas.length; i++){
         candidates.push(
-          <div class="candidates ">
-            <input id={i} i type="checkbox" class="area-checkbox" name="candidates-open"/>
+          <div class="candidates">
+            <input id={i} type="checkbox" class="area-checkbox" name="candidates-open" checked={i == this.props.selectedResult ? true : false} onChange={this.props.selectResult} ></input>
               <label for={i} class="area-label"></label>
               <div class="area-title">
                   <div class="area-info">
@@ -198,11 +197,19 @@ class ResultRoom extends React.Component {
         }
 
         return (
+          <div>
+            <div class="share-box">
+                <button id="kakaoShareBtn" class="btn btn-share">투표 제출</button>
+            </div>
             <div class="set-scroll" style={this.getScrollHeight()}>
                 <div class="candidates-window">
                     {this.result()}
                 </div>
             </div>
+            <div>
+              <p>asdasdas</p>
+            </div>
+          </div>
         )
     }
 };
