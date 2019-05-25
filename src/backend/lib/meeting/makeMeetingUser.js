@@ -11,7 +11,8 @@ module.exports = async (token, name, transportation, location, locationName) => 
     name: name,
     location: location,
     locationName: locationName,
-    meetingID: meeting._id
+    meetingID: meeting._id,
+    transportation: transportation
   });
 
   let saveValue;

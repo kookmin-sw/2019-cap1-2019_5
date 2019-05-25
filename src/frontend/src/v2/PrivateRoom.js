@@ -22,14 +22,16 @@ class PrivateRoom extends React.Component {
       else {
         this.setState({ tBool: event.target.checked, transportation: "public"});
       }
+
+      this.props.handleChange(event);
     }
 
     selectingTransportation() {
       return(
         <div style={{textAlign:"center"}}>
-          <input class='toggle' id='cb1' type='checkbox' checked={this.state.tBool} onChange={this.transportationCheckBox}/>
-          <label class='toggle-button' for='cb1'></label>
-          <label for='cb1'></label>
+          <input class='toggle' id='transportation' type='checkbox' checked={this.state.tBool} onChange={this.transportationCheckBox}/>
+          <label class='toggle-button' for='transportation'></label>
+          <label for='transportation'></label>
           <div className="TransfortationImageDiv">
               <a style= {{color:(this.state.tBool ? "#888888" : "white"), fill: (this.state.tBool ? "#888888" : "white"), marginRight: "3%" }}>
                 <svg className='public-transport-svg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.437 45.437" >

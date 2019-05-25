@@ -145,6 +145,23 @@ class MainTable extends React.Component {
         myMarker: newMyMarker
       });
     };
+
+    if (e.target.id == "transportation") {
+
+        console.log(e.target.checked);
+      let newMyMarker = clone(this.state.myMarker);
+      if (e.target.checked == false) {
+        newMyMarker.transportation = "public"
+      } else {
+        newMyMarker.transportation = "driving";
+      }
+
+      console.log(newMyMarker.transportation);
+
+      this.setState({
+        myMarker: newMyMarker
+      })
+    }
   };
 
   submit = () => {
