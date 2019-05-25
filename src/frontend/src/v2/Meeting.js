@@ -22,6 +22,7 @@ import { Redirect } from 'react-router-dom';
 
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const axios = require('axios');
+const serverAPI = require('../config/API_KEY.json');
 
 function clone(a) {
    return JSON.parse(JSON.stringify(a));
@@ -62,7 +63,7 @@ class MainTable extends React.Component {
     //TODO : findmeeting
     axios({
       method: 'get',
-      url: 'http://localhost/api/v2/meeting/findMeeting?token=' + this.props.match.params.token,
+      url: serverAPI.serverURL + serverAPI.serverVersion + 'meeting/findMeeting?token=' + this.props.match.params.token,
       data: {}
     }).then((res) => {
       this.setState({
@@ -170,15 +171,13 @@ class MainTable extends React.Component {
       return ;
     }
 
-    let transportAPI = 'http://localhost/api/v2/meeting/enrolledUser?token=' + this.props.match.params.token;
-
     this.setState({
       showLoadingWindow : true
     });
 
     axios({
       method: 'post',
-      url: transportAPI,
+      url: serverAPI.serverURL + serverAPI.serverVersion + 'meeting/enrolledUser?token=' + this.props.match.params.token,
       data: {
         name: this.state.myMarker.name,
         location: [this.state.myMarker.location.lng, this.state.myMarker.location.lat],
@@ -199,7 +198,6 @@ class MainTable extends React.Component {
   };
 
   showResult = () => {
-    let transportAPI = 'http://localhost/api/v2/findRoute/findLoc?token=' + this.props.match.params.token;
 
     this.setState({
       showLoadingWindow : true
@@ -207,7 +205,7 @@ class MainTable extends React.Component {
 
     axios({
       method: 'post',
-      url: transportAPI
+      url: serverAPI.serverURL + serverAPI.serverVersion + 'findRoute/findLoc?token=' + this.props.match.params.token
     }).then((res) => {
       this.setState({
         showLoadingWindow : false
