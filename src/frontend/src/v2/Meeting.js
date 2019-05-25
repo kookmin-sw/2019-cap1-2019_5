@@ -205,9 +205,23 @@ class MainTable extends React.Component {
       showLoadingWindow : true
     });
 
+    let middle = {
+      lat: 0,
+      lng: 0
+    }
+    for (let i=0; i < this.state.meetingUsers.length; i++) {
+      middle.lat += this.state.meetingUsers[i].location.coordinates[1];
+      middle.lng += this.state.meetingUsers[i].location.coordinates[0];
+    }
+    middle.lat /= this.state.meetingUsers.length;
+    middle.lng /= this.state.meetingUsers.length;
+
     axios({
       method: 'post',
-      url: transportAPI
+      url: transportAPI,
+      data: {
+        middle: middle
+      }
     }).then((res) => {
       this.setState({
         showLoadingWindow : false
