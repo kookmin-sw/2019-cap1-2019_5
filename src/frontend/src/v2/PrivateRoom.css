@@ -337,30 +337,19 @@ body {
 
 /*제출시 나오는 아래 화면에 대한 css 처리*/
 #submit-list > table{
-	width: 90%;
-	padding-top:0;
+	padding-top: 8px;
 }
-#submit-list tr td:nth-child(2){
-  vertical-align: middle;
-}
-#submit-list tr td div{
-	width:auto;
-	height:30px
-}
+
 #submit-list tr td div p{
 	display:inline-block;
 	padding:0;
 	margin:0;
-	vertical-align:top
+  vertical-align:top;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  color: #333333;  
 }
 
-#submit-list tr td div p:nth-child(2){
-	width:150px;
-	overflow:hidden;
-	border-radius:5px;
-	background-color:#fff;
-	padding:0 10px;
-}
 #privateroom{
 	height:100%;
 	width:380px;
