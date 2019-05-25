@@ -252,6 +252,24 @@ body {
     top: 5px;
 }
 
+.showTransportationDiv {
+    width: 100%;
+}
+
+.showTransportaionDiv > table {
+    width: 100%;
+}
+
+.showTransportaionDiv > table > td {
+    vertical-align: middle;
+}
+
+.showTransportaionDiv > table > td:nth-child(1) {
+    padding-right: 5px;
+    text-align: center;
+    width: 25%;
+}
+
 ::-webkit-scrollbar {
 	width: 11px;
 	height: auto;
