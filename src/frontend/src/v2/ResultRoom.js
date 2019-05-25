@@ -206,9 +206,6 @@ class ResultRoom extends React.Component {
                     {this.result()}
                 </div>
             </div>
-            <div>
-              <p>asdasdas</p>
-            </div>
           </div>
         )
     }

@@ -116,10 +116,6 @@ class Map extends React.PureComponent {
     });
   };
 
-  test = (e) => {
-    console.log(e);
-  };
-
   showMarkers() {
     let visibleMarkers = [];
 
@@ -142,7 +138,7 @@ class Map extends React.PureComponent {
 
     for (let i=0; i < this.props.resultAreas.length; i++) {
       visibleMarkers.push(
-        <Marker key={i} position={{ lat: this.props.resultAreas[i].location.coordinates[1], lng: this.props.resultAreas[i].location.coordinates[0] }} draggable={false} icon={resultMarkerIcon} onClick={() => {this.props.selectResultMarker(i)}} >
+        <Marker position={{ lat: this.props.resultAreas[i].location.coordinates[1], lng: this.props.resultAreas[i].location.coordinates[0] }} draggable={false} icon={resultMarkerIcon} onClick={() => {this.props.selectResultMarker(i)}} >
           <InfoWindow>
             <div>
               {this.props.resultAreas[i].name}

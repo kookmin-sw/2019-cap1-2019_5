@@ -140,7 +140,6 @@ class MainTable extends React.Component {
   };
 
   handleChange = (e) => {
-    console.log(e);
     if (e.target.id == "user-name"){
       let newMyMarker = clone(this.state.myMarker);
       newMyMarker.name = e.target.value;
@@ -282,7 +281,7 @@ class MainTable extends React.Component {
                 {
                   this.state.meeting.result ?
                   (<div id="resultroom">
-                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} handleChange={this.handleChange}/>
+                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} />
                   </div>)
                   : (<div id="privateroom">
                     <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
