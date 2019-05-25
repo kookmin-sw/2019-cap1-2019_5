@@ -123,6 +123,14 @@ class PrivateRoom extends React.Component {
       }
     }
 
+    showResult() {
+      if (this.props.meetingUsers.length >= this.props.meeting.number/2) {
+        this.props.showResult();
+      } else {
+        alert("모임인원의 과반수가 위치를 입력하여야 합니다!");
+      }
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -169,7 +177,7 @@ class PrivateRoom extends React.Component {
                     </td>
                     <td width="20"></td>
                     <td>
-                        <button class="btn btn-result" onClick={() => {this.props.showResult()}}>결과 보기</button>
+                        <button class="btn btn-result" onClick={() => {this.showResult()}}>결과 보기</button>
                     </td>
                 </table>
                 <div class="show-other-people" id="submit-list">
