@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
 import './ResultRoom.css';
 import PropTypes from 'prop-types';
-import { withStyles, Icon, IconButton,
-         ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails,
-         Typography, Paper, Divider} from '@material-ui/core/';
 import Checkbox from '@material-ui/core/Checkbox';
 import SubwayIcon from '../images/subway.png';
 
@@ -71,7 +67,7 @@ class ResultRoom extends React.Component {
           <span>
             <hr class="area-spec-hr"></hr>
             <div class="area-spec-header">
-              <h2>{this.props.meetingUsers[i].name}</h2>
+              <h2 style={{color: "#535353"}}>{this.props.meetingUsers[i].name}</h2>
               <span>{"거리 : " + this.convertToKm(this.state.resultAreas[areaNum].users[i].distance)}km</span>
               <span>{"소요시간 : " + this.state.resultAreas[areaNum].users[i].duration}분</span>
             </div>
@@ -81,11 +77,11 @@ class ResultRoom extends React.Component {
         for (let j =0; j<this.state.resultAreas[areaNum].users[i].route.length; j++) {
           userRouteBox.push(
             <div>
-              <table>
+              <table width="100%">
                 <tr>
-                <td style={{verticalAlign: "middle", paddingRight: "13px"}}>{(j+1)}</td>
-                <td style={{position:"relative"}}>
-                  <div style={{height: "100%", marginRight: "4px"}}>
+                <td style={{verticalAlign: "middle", paddingRight: "15px", width: "13px"}}>{(j+1)}</td>
+                <td style={{position:"relative", width: "1px"}}>
+                  <div style={{height: "100%", marginRight: "2px"}}>
                   <div class="vertical-hr"></div>
                   </div>
                 </td>
@@ -105,9 +101,9 @@ class ResultRoom extends React.Component {
     showTransportationIcon(trans){
       if (trans.transportation == "driving"){
         return (
-          <div>
-            <table>
-              <td style={{paddingRight: "8px", textAlign: "center"}}>
+          <div className="showTransportationDiv">
+            <table width="100%">
+              <td style={{paddingRight: "0px", textAlign: "center", width: "25%", verticalAlign: "middle"}}>
                 {this.carIcon()}
               </td>
               <td style={{verticalAlign: "middle"}}>
@@ -118,9 +114,9 @@ class ResultRoom extends React.Component {
         );
       } else if (trans.transportation == "bus") {
         return (
-          <div>
-            <table>
-              <td style={{paddingRight: "8px", textAlign: "center"}}>
+          <div className="showTransportationDiv" >
+            <table width="100%">
+              <td style={{paddingRight: "2px", textAlign: "center", width: "25%", verticalAlign: "middle"}}>
                 {this.busIcon()}
                 <br></br>
                 {trans.lineNum}
@@ -135,9 +131,9 @@ class ResultRoom extends React.Component {
         );
       } else if (trans.transportation == "subway") {
         return (
-          <div>
-            <table>
-              <td style={{paddingRight: "8px", textAlign: "center"}}>
+          <div class="showTransportationDiv">
+            <table width="100%">
+              <td style={{paddingRight: "2px", textAlign: "center", width: "25%", verticalAlign: "middle"}}>
                 <img src={SubwayIcon} style= {{height: "1.5em"}}/>
                 <br></br>
                 {trans.lineNum}
@@ -152,8 +148,10 @@ class ResultRoom extends React.Component {
         );
       } else {
         return (
-          <div>
+          <div class="showTransportationDiv">
+            <table width="25%"><td style={{textAlign: "center"}}>
             {this.walkIcon()}
+            </td></table>
           </div>
         )
       }

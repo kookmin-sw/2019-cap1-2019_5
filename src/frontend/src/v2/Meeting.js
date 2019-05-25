@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import './Meeting.css';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import LoadingWindow from './LoadingWindow';
 import Map from './Map';
-import FindBox from './FindBox';
 import PrivateRoom from './PrivateRoom';
 import ResultRoom from './ResultRoom';
 import { Redirect } from 'react-router-dom';
@@ -249,23 +242,24 @@ class MainTable extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root} style={{overflowY: "hidden"}}>
+      <div className="root">
        {this.showLoadingWindow()}
-        <Table className={classes.table}>
+        <Table style={{height: "100%"}}>
           <TableBody height = '100%'>
               <TableRow>
-                <td component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd} style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
+                <td component="th" scope="row" className="info" id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd} style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
                 <MenuIcon id="footer_menu_btn" />
                 <div id="side_area_top">
-                  <table width="100%">
+                  <table class="app-bar">
                     <td>
-                      <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
+                      <IconButton id="side_area_menu_btn"  color="inherit" aria-label="Menu">
                         <MenuIcon />
                       </IconButton>
                     </td>
-                    <td align="right">
-                      <button class="btn btn-result" onClick={() => {window.location = '/'}}>
-                        메인페이지로 가기
+                    <td>
+                      <button class="btn-goback" onClick={() => {window.location = '/'}}>
+                      <svg viewBox="-33 -141 1065.0001 1065" height="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="m679.929688 141.726562h-440.1875v-150.5l-241.761719 241.773438 241.761719 241.761719v-155.546875h440.1875c76.644531 0 139.003906 62.359375 139.003906 139.003906 0 76.648438-62.359375 139-139.003906 139h-501.996094v177.488281h501.996094c174.511718 0 316.488281-141.972656 316.488281-316.488281s-141.976563-316.492188-316.488281-316.492188zm0 0"/></svg>
+                        처음으로 돌아가기
                       </button>
                     </td>
                   </table>
@@ -297,31 +291,10 @@ class MainTable extends React.Component {
   }
 };
 
-const AppStyles = theme => ({
-  root: {
-    width: '100%',
-    height: '100%',
-    overflowX: 'auto',
-    backgroundColor: '#FAFAFA',
-  },
-  table: {
-    height: '100%',
-  },
-  info: {
-    width: 380,
-    verticalAlign: 'top',
-  },
-  map: {
-    minWidth: 300,
-    backgroundColor: '#CEF6D8',
-  },
-  displayInput: {
-    display: 'block',
-  },
-});
+
 
 MainTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(AppStyles)(MainTable);
+export default MainTable;
