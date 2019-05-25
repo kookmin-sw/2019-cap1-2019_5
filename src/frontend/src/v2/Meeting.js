@@ -230,9 +230,18 @@ class MainTable extends React.Component {
                 <td component="th" scope="row" className={classes.info} id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd} style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
                 <MenuIcon id="footer_menu_btn" />
                 <div id="side_area_top">
-                  <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
-                    <MenuIcon />
-                  </IconButton>
+                  <table width="100%">
+                    <td>
+                      <IconButton id="side_area_menu_btn" className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <MenuIcon />
+                      </IconButton>
+                    </td>
+                    <td align="right">
+                      <button class="btn btn-result" onClick={() => {window.location = '/'}}>
+                        메인페이지로 가기
+                      </button>
+                    </td>
+                  </table>
                 </div>
                 <div class="top-bar">
                     <div class="top-bar-title">

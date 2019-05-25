@@ -81,8 +81,7 @@ class PrivateRoom extends React.Component {
         usersBox.push(
           <tr>
             <td>
-              <div><p>이름</p> <p>{this.props.meetingUsers[i].name}</p></div>
-              <div><p>출발위치</p> <p>{this.props.meetingUsers[i].locationName}</p></div>
+              <div> <p>{this.props.meetingUsers[i].name}</p> <p>{this.props.meetingUsers[i].locationName}</p></div>
             </td>
           </tr>
         )
