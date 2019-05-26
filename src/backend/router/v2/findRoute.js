@@ -30,9 +30,8 @@ module.exports = () => {
       let userData = await db.MeetingUser.find({
         meetingID: meetingData._id
       });
-      console.log(userData);
 
-      let result = await candidatesWithUserData(userData);
+      let result = await candidatesWithUserData(userData, req.body.searchPoint);
 
       let resultColumn = new db.Result({
         areas: result.areas,

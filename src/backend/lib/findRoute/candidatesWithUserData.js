@@ -70,26 +70,12 @@ const sort = (output, sortOption) => {
   };
 };
 
-const candidatesWithUserData = async (userData) => {
+const candidatesWithUserData = async (userData, searchPoint) => {
   let output = {
     'areas': []
   };
 
-  let middle = {
-    'lat' : 0,
-    'lng' : 0
-  };
-
-  // 중간위치 계산
-  // TODO: 기준점으로 바꾸고 front에서 받게하고 이부분 삭제
-  for (let i = 0; i < userData.length; i++) {
-    middle.lat += parseFloat(userData[i].location.coordinates[1]);
-    middle.lng += parseFloat(userData[i].location.coordinates[0]);
-  }
-  middle.lat /= userData.length;
-  middle.lng /= userData.length;
-
-  let locCandidates = await locationCandidates.findLocationCandidates(middle.lng, middle.lat);
+  let locCandidates = await locationCandidates.findLocationCandidates(searchPoint.location.lng, searchPoint.location.lat);
 
   for (let i = 0; i < locCandidates.length; i++) {
     let area = {};

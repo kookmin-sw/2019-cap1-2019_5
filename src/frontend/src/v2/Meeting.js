@@ -40,6 +40,15 @@ class Meeting extends React.Component {
       showLoadingWindow: false,
       selectedResult: -1,
       voteArea: -1,
+      searchPoint: {
+        location: {
+          lat: 0,
+          lng: 0,
+          name: ""
+        },
+        active: false,
+        control: false
+      },
     }
 
     this._onTouchStart = this._onTouchStart.bind(this);
@@ -131,6 +140,42 @@ class Meeting extends React.Component {
     });
   };
 
+  setSearchPoint = (direction) => {
+    let newSearchPoint = clone(this.state.searchPoint);
+
+    newSearchPoint.location = {
+      lat: direction.lat,
+      lng: direction.lng,
+      name: direction.where
+    };
+
+    newSearchPoint.control = false;
+
+    this.setState({
+      searchPoint: newSearchPoint
+    });
+  };
+
+  clickSearchButton = (e) => {
+    console.log(this.state.searchPoint);
+    let newSearchPoint = clone(this.state.searchPoint);
+
+    if( newSearchPoint.active == false && newSearchPoint.control == false) {
+      newSearchPoint.active = true;
+      newSearchPoint.control = true;
+    } else if( newSearchPoint.active == true && newSearchPoint.control == true) {
+      newSearchPoint.active = false;
+      newSearchPoint.control = false;
+    } else if( newSearchPoint.active == true && newSearchPoint.control == false) {
+      newSearchPoint.active = false;
+    }
+
+    this.setState({
+      searchPoint: newSearchPoint
+    });
+
+  };
+
   handleChange = (e) => {
     if (e.target.id == "user-name"){
       let newMyMarker = clone(this.state.myMarker);
@@ -192,9 +237,30 @@ class Meeting extends React.Component {
       showLoadingWindow : true
     });
 
+    let searchPoint = {
+      location: {
+        lat: 0,
+        lng: 0
+      }
+    };
+
+    if (this.state.searchPoint.active && this.state.searchPoint.location.lng != 0) {
+      searchPoint = this.state.searchPoint;
+    } else {
+      for (let i = 0; i < this.state.meetingUsers.length; i++) {
+        searchPoint.location.lat += this.state.meetingUsers[i].location.coordinates[1];
+        searchPoint.location.lng += this.state.meetingUsers[i].location.coordinates[0];
+      }
+      searchPoint.location.lat /= this.state.meetingUsers.length;
+      searchPoint.location.lng /= this.state.meetingUsers.length;
+    }
+
     axios({
       method: 'post',
-      url: serverAPI.serverURL + serverAPI.serverVersion + 'findRoute/findLoc?token=' + this.props.match.params.token
+      url: serverAPI.serverURL + serverAPI.serverVersion + 'findRoute/findLoc?token=' + this.props.match.params.token,
+      data: {
+        searchPoint: searchPoint
+      }
     }).then((res) => {
       this.setState({
         showLoadingWindow : false
@@ -307,7 +373,7 @@ class Meeting extends React.Component {
                   </div>)
                 }
                 </td>
-                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} setMarker={this.setMarker} resultAreas={this.state.resultAreas} selectResultMarker={this.selectResultMarker} /></div>
+                <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} setMarker={this.setMarker} resultAreas={this.state.resultAreas} selectResultMarker={this.selectResultMarker} searchPoint={this.state.searchPoint} setSearchPoint={this.setSearchPoint} clickSearchButton={this.clickSearchButton}/></div>
               </TableRow>
           </TableBody>
         </Table>

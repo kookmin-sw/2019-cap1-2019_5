@@ -93,6 +93,24 @@ class Map extends React.PureComponent {
 
     let geocoder = new window.google.maps.Geocoder();
 
+    if (this.props.searchPoint.control) {
+      geocoder.geocode({'location': {lat: event.latLng.lat(), lng: event.latLng.lng()}}, (results, status) => {
+        if (status == 'OK') {
+          this.props.setSearchPoint({
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+            where: results[0].formatted_address
+          });
+        } else {
+          console.log('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+
+      console.log(this.props.searchPoint);
+
+      return ;
+    }
+
     geocoder.geocode({'location': {lat: event.latLng.lat(), lng: event.latLng.lng()}}, (results, status) => {
       if (status == 'OK') {
         this.props.setMyMarker({
@@ -122,6 +140,13 @@ class Map extends React.PureComponent {
       </Marker>
     )
 
+    if (this.props.searchPoint.active) {
+      visibleMarkers.push(
+        <Marker position={{ lat: this.props.searchPoint.location.lat, lng: this.props.searchPoint.location.lng }} onClick={() => console.log(this.props.searchPoint)} animation={1}>
+        </Marker>
+      )
+    }
+
     for (let i=0; i < this.props.meetingUsers.length; i++) {
       visibleMarkers.push(
         <Marker position={{ lat: this.props.meetingUsers[i].location.coordinates[1], lng: this.props.meetingUsers[i].location.coordinates[0] }} draggable={false} icon={otherMarkerIcon}>
@@ -147,7 +172,17 @@ class Map extends React.PureComponent {
     }
 
     return visibleMarkers;
-  }
+  };
+
+  searchPoint() {
+    if (!this.props.searchPoint.active && !this.props.searchPoint.control) {
+      return "검색기준 위치지정"
+    } else if(this.props.searchPoint.active && this.props.searchPoint.control) {
+      return "검색기준 위치지정 취소"
+    } else if(this.props.searchPoint.active && !this.props.searchPoint.control) {
+      return "검색기준위치 제거"
+    }
+  };
 
   CustomMap = withScriptjs(withGoogleMap((props) => {
     return (
@@ -186,6 +221,14 @@ class Map extends React.PureComponent {
               marginLeft: `26%`
             }}
           />
+        </div>
+      </SearchBox>
+
+      <SearchBox controlPosition={window.google.maps.ControlPosition.BOTTOM_CENTER}>
+        <div>
+          <button style={{marginBottom: `25px`}} onClick={this.props.clickSearchButton} >
+              {this.searchPoint()}
+          </button>
         </div>
       </SearchBox>
     </GoogleMap>)
