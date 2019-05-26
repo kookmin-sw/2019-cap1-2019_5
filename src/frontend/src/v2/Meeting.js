@@ -12,8 +12,6 @@ import Map from './Map';
 import PrivateRoom from './PrivateRoom';
 import ResultRoom from './ResultRoom';
 import { Redirect } from 'react-router-dom';
-
-const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const axios = require('axios');
 const serverAPI = require('../config/API_KEY.json');
 
@@ -21,7 +19,7 @@ function clone(a) {
    return JSON.parse(JSON.stringify(a));
 }
 
-class MainTable extends React.Component {
+class Meeting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +39,7 @@ class MainTable extends React.Component {
       swiped: false,
       showLoadingWindow: false,
       selectedResult: -1,
+      voteArea: -1,
     }
 
     this._onTouchStart = this._onTouchStart.bind(this);
@@ -142,16 +141,12 @@ class MainTable extends React.Component {
     };
 
     if (e.target.id == "transportation") {
-
-        console.log(e.target.checked);
       let newMyMarker = clone(this.state.myMarker);
       if (e.target.checked == false) {
         newMyMarker.transportation = "public"
       } else {
         newMyMarker.transportation = "driving";
       }
-
-      console.log(newMyMarker.transportation);
 
       this.setState({
         myMarker: newMyMarker
@@ -238,6 +233,35 @@ class MainTable extends React.Component {
     });
   };
 
+  vote = () => {
+    if (this.state.voteArea == -1) {
+      alert("투표지역을 선택해야 합니다!");
+    };
+
+    axios({
+      method: 'post',
+      url: serverAPI.serverURL + serverAPI.serverVersion + 'voting/makeVoting?token=' + this.props.match.params.token,
+      data: {
+        index: this.state.voteArea
+      }
+    }).then((res) => {
+      alert(this.state.resultAreas[this.state.voteArea].name + "에 투표하셨습니다");
+      window.location = this.props.match.url;
+    }).catch((err) => {
+      console.log(err);
+      alert("잘못된 경로입니다.");
+      window.location = "/";
+    });
+  };
+
+  selectVoteArea = (e) => {
+
+    this.setState({
+      voteArea: e.target.id
+    });
+
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -275,7 +299,7 @@ class MainTable extends React.Component {
                 {
                   this.state.meeting.result ?
                   (<div id="resultroom">
-                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} />
+                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} vote={this.vote} voteArea={this.state.voteArea} selectVoteArea={this.selectVoteArea} />
                   </div>)
                   : (<div id="privateroom">
                     <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
@@ -291,10 +315,4 @@ class MainTable extends React.Component {
   }
 };
 
-
-
-MainTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default MainTable;
+export default Meeting;

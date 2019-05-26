@@ -32,10 +32,10 @@ class ResultRoom extends React.Component {
               <div class="area-title">
                   <div class="area-info">
                       <div class="chart-pie negative over50">
-                          <span class="chart-pie-count">{i+1}</span>
+                          <span class="chart-pie-count">{this.props.resultAreas[i].vote} 표</span>
                       </div>
                       <span class="area-name">{this.state.resultAreas[i].name}</span>
-                      <span class="votebox"><Checkbox /></span>
+                      <span class="votebox"><Checkbox id={i} checked={i == this.props.voteArea ? true : false} onChange={this.props.selectVoteArea} /></span>
                   </div>
               </div>
               <div class="area-path-details">
@@ -197,7 +197,7 @@ class ResultRoom extends React.Component {
         return (
           <div>
             <div class="share-box">
-                <button id="kakaoShareBtn" class="btn btn-share">투표 제출</button>
+                <button id="kakaoShareBtn" class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
             </div>
             <div class="set-scroll" style={this.getScrollHeight()}>
                 <div class="candidates-window">
