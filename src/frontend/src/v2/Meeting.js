@@ -72,12 +72,36 @@ class Meeting extends React.Component {
         meeting : res.data.meeting,
         meetingUsers : res.data.meetingUsers,
         resultAreas: res.data.resultAreas
+      }, () => {
+        window.Kakao.Link.createDefaultButton({
+          container: '#kakaoShareBtn',
+          objectType: 'feed',
+          content: {
+            title: 'ㅁㄷㅁㅇ', //카카오톡 공유 제목영역
+            description: '모임 : ' + this.state.meeting.name, //카카오톡 공유 내용영역
+            imageUrl: 'http://meet-mid.s3-website.ap-northeast-2.amazonaws.com/static/media/logo.94db3323.png', //공유 이미지
+            link: {
+              mobileWebUrl: document.location.href,
+              webUrl: document.location.href
+            }
+          },
+          buttons: [
+            {
+              title: '웹으로 보기',
+              link: {
+                mobileWebUrl: document.location.href,
+                webUrl: document.location.href
+              }
+            }
+          ]
+        });
       });
     }).catch((err) => {
       console.log(err);
       alert("잘못된 경로입니다.");
       window.location = "/";
     });
+
 
   };
 

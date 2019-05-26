@@ -197,7 +197,7 @@ class ResultRoom extends React.Component {
         return (
           <div>
             <div class="share-box">
-                <button id="kakaoShareBtn" class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
+                <button class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
             </div>
             <div class="set-scroll" style={this.getScrollHeight()}>
                 <div class="candidates-window">
