@@ -236,6 +236,7 @@ class Meeting extends React.Component {
   vote = () => {
     if (this.state.voteArea == -1) {
       alert("투표지역을 선택해야 합니다!");
+      return ;
     };
 
     axios({
