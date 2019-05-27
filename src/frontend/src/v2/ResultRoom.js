@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Star } from "@material-ui/icons";
 import SubwayIcon from '../images/subway.png';
-import { Button, ButtonGroup } from 'react-bootstrap';
 
 class ResultRoom extends React.Component {
     constructor(props) {

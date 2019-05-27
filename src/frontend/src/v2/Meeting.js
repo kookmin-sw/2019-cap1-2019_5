@@ -426,12 +426,14 @@ class Meeting extends React.Component {
                   <table class="app-bar">
                     <td>
                     <button class="btn-goback" onClick={() => {window.location = '/'}}>
+                      <td>
                       <svg viewBox="-33 -141 1065.0001 1065" height="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="m679.929688 141.726562h-440.1875v-150.5l-241.761719 241.773438 241.761719 241.761719v-155.546875h440.1875c76.644531 0 139.003906 62.359375 139.003906 139.003906 0 76.648438-62.359375 139-139.003906 139h-501.996094v177.488281h501.996094c174.511718 0 316.488281-141.972656 316.488281-316.488281s-141.976563-316.492188-316.488281-316.492188zm0 0"/></svg>
-                        처음으로 돌아가기
+                      </td>
+                      <td>HOME</td>
                       </button>
                     </td>
                     <td>
-                    <button id="kakaoShareBtn" class="btn btn-share">친구들에게 공유</button>
+                    <button id="kakaoShareBtn" class="share-button">친구들에게 공유</button>
                     </td>
                   </table>
                 </div>

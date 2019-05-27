@@ -1,0 +1,43 @@
+.search-point-table {
+  margin-bottom: 30px;
+}
+
+.search-point-table > td:nth-child(2) {
+  background: white;
+  height: 22px;
+  border-radius: 0.4em;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+}
+
+.tooltip > svg {
+  position: relative;
+  top: 0.6em;
+}
+  
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 13em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.6em 0.3em;
+  font-size: 1.2em;
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: 130%;
+  left: -250%;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

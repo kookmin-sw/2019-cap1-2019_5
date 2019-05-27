@@ -36,11 +36,11 @@
 }
 
 .btn-goback {
-  background: white;
+  background: #f5f5f5;
   color: #616161;
   fiLL: #616161;
   border: none;
-  padding: 6px 12px;
+  padding: 2px 6px;
   margin-right: 3%;
   border-radius: 0.6rem;
   letter-spacing: 0.01em;
@@ -59,8 +59,36 @@
     margin-right: 0.3em;
 }
 
+.btn-goback > td {
+  padding: 0px;
+}
+
+.btn-goback > td:nth-child(2) {
+  vertical-align: middle;
+}
+
 .btn-goback:hover {
   background: #616161;
   color: white;
   fill: white;
+}
+
+.share-button {
+  background:white;
+  color: #DC6EFE;
+  border: 1px solid white;
+  padding: 10px 30px;
+  border-radius: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1em;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.share-button:hover {
+  color: white;
+  background: #DC6EFE;
 }
