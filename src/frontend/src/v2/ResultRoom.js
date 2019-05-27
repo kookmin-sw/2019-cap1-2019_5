@@ -9,7 +9,7 @@ class ResultRoom extends React.Component {
         super(props);
         this.state = {
           resultAreas: this.props.resultAreas,
-          scrollHeight: window.innerHeight - 210
+          scrollHeight: window.innerHeight - 300
         }
     };
 
@@ -191,19 +191,20 @@ class ResultRoom extends React.Component {
         const { classes } = this.props;
 
         window.onresize = () => {
-          this.setState({ scrollHeight: window.innerHeight - 210 });
+          this.setState({ scrollHeight: window.innerHeight - 300 });
         }
 
         return (
           <div>
-            <div class="share-box">
-                <button class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
-            </div>
+            
             <div class="set-scroll" style={this.getScrollHeight()}>
                 <div class="candidates-window">
                     {this.result()}
                 </div>
-                <div id="empty_Space"></div>
+                
+            </div>
+            <div class="share-box">
+                <button class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
             </div>
           </div>
         )
