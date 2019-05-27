@@ -20,7 +20,7 @@ class PrivateRoom extends React.Component {
                     </div>
                 </div>
                 <div class="share-box">
-                    <button class="btn btn-share" onClick={() => this }>친구들에게 공유</button>
+                    <button id="kakaoShareBtn" class="btn btn-share">친구들에게 공유</button>
                 </div>
                 <table class="location-input-table">
                     <tr>
@@ -48,7 +48,7 @@ class PrivateRoom extends React.Component {
                 <div class="show-other-people">
                     <table class="location-input-table">
                         <tr>
-                            
+
                         </tr>
                         <tr>
 
