@@ -71,7 +71,7 @@ class PrivateRoom extends React.Component {
               {this.props.meetingUsers[i].locationName}
             </td>
             <td>
-              <button id={i} onClick={this.props.deleteUser}>삭제</button>
+              <button class="btn-del" id={i} onClick={this.props.deleteUser}>X</button>
             </td>
           </tr>
         )
