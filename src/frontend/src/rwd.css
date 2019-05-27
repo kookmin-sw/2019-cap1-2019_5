@@ -195,6 +195,10 @@
 		#empty_Space{
 			padding-bottom: 30%;
 		}
+
+		::-webkit-scrollbar {
+			display: none;
+		}
 }
 
 /*태블릿 가로화면*/

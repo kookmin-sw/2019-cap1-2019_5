@@ -134,7 +134,6 @@
 
   #side_area > div{
     width:100%;
-    max-width:300px;
     margin:20px auto 0 auto;
   }
 
@@ -194,6 +193,10 @@
 
 	#empty_Space{
 		padding-bottom: 30%;
+	}
+
+	::-webkit-scrollbar {
+    display: none;
 	}
 }
 

@@ -196,6 +196,10 @@ body {
     line-height: 22px;
 }
 
+.area-name > div {
+    margin-bottom: 0.1em;
+}
+
 .votebox {
   position: absolute;
   display: block;
