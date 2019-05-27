@@ -338,7 +338,7 @@ class Meeting extends React.Component {
       method: 'post',
       url: serverAPI.serverURL + serverAPI.serverVersion + 'voting/makeVoting?token=' + this.props.match.params.token,
       data: {
-        index: this.state.voteArea
+        locName: this.state.resultAreas[this.state.voteArea].name
       }
     }).then((res) => {
       alert(this.state.resultAreas[this.state.voteArea].name + "에 투표하셨습니다");
@@ -375,6 +375,42 @@ class Meeting extends React.Component {
     });
   };
 
+  sortingResult = (e) => {
+    let newResult = clone(this.state.resultAreas);
+
+    if (e.target.id == "추천순") {
+      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
+        if (candidate1.average.durationStdDeviation == candidate2.average.durationStdDeviation) {
+          return 0;
+        } else {
+          return candidate1.average.durationStdDeviation > candidate2.average.durationStdDeviation ? 1 : -1;
+        }
+      });
+    } else if (e.target.id == "별점순") {
+      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
+        if (candidate1.rating == candidate2.average.rating) {
+          return 0;
+        } else {
+          return candidate1.rating > candidate2.rating ? -1 : 1;
+        }
+      });
+    } else if (e.target.id == "투표순") {
+      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
+        if (candidate1.vote == candidate2.average.vote) {
+          return 0;
+        } else {
+          return candidate1.vote > candidate2.vote ? -1 : 1;
+        }
+      });
+    }
+
+    this.setState({
+      resultAreas: newResult,
+      selectedResult: -1
+    })
+
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -404,11 +440,11 @@ class Meeting extends React.Component {
                         {this.state.meeting.name}
                     </div>
                 </div>
-                
+
                 {
                   this.state.meeting.result ?
                   (<div id="resultroom">
-                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} vote={this.vote} voteArea={this.state.voteArea} selectVoteArea={this.selectVoteArea} />
+                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} vote={this.vote} voteArea={this.state.voteArea} selectVoteArea={this.selectVoteArea} sortingResult={this.sortingResult} />
                   </div>)
                   : (<div id="privateroom">
                     <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult} deleteUser={this.deleteUser}/>

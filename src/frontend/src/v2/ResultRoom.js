@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './ResultRoom.css';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Star } from "@material-ui/icons";
 import SubwayIcon from '../images/subway.png';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 class ResultRoom extends React.Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class ResultRoom extends React.Component {
     result = () => {
       let candidates = [];
 
-      for(let i =0; i < this.state.resultAreas.length; i++){
+      for(let i =0; i < this.props.resultAreas.length; i++){
         candidates.push(
           <div class="candidates">
             <input id={i} type="checkbox" class="area-checkbox" name="candidates-open" checked={i == this.props.selectedResult ? true : false} onChange={this.props.selectResult} ></input>
@@ -34,7 +36,10 @@ class ResultRoom extends React.Component {
                       <div class="chart-pie negative over50">
                           <span class="chart-pie-count">{this.props.resultAreas[i].vote} 표</span>
                       </div>
-                      <span class="area-name">{this.state.resultAreas[i].name}</span>
+                      <span class="area-name">
+                        <div>{this.props.resultAreas[i].name}</div>
+                        {Array(3).fill(<Star style={{height: `0.5em`, fill: "yellow"}}/>)}
+                      </span>
                       <span class="votebox"><Checkbox id={i} checked={i == this.props.voteArea ? true : false} onChange={this.props.selectVoteArea} /></span>
                   </div>
               </div>
@@ -42,8 +47,8 @@ class ResultRoom extends React.Component {
                   <div class="area-details-wrapper">
                       <div>
                           <div class="area-spec-header">
-                              <span style={{fontWeight: "bold", fontSize: "1.1em"}}>평균소요시간: {this.state.resultAreas[i].average.avgDuration}분</span>
-                              <span>평균거리: {this.convertToKm(this.state.resultAreas[i].average.avgDistance)}km</span>
+                              <span style={{fontWeight: "bold", fontSize: "1.1em"}}>평균소요시간: {this.props.resultAreas[i].average.avgDuration}분</span>
+                              <span>평균거리: {this.convertToKm(this.props.resultAreas[i].average.avgDistance)}km</span>
                           </div>
                           <div>
                           <div class="area-spec-header">
@@ -62,19 +67,19 @@ class ResultRoom extends React.Component {
     showUserRouteResult(areaNum) {
       let userRouteBox = [];
 
-      for (let i=0; i<this.state.resultAreas[areaNum].users.length; i++) {
+      for (let i=0; i<this.props.resultAreas[areaNum].users.length; i++) {
         userRouteBox.push(
           <span>
             <hr class="area-spec-hr"></hr>
             <div class="area-spec-header">
               <h2 style={{color: "#535353"}}>{this.props.meetingUsers[i].name}</h2>
-              <span>{"거리 : " + this.convertToKm(this.state.resultAreas[areaNum].users[i].distance)}km</span>
-              <span>{"소요시간 : " + this.state.resultAreas[areaNum].users[i].duration}분</span>
+              <span>{"거리 : " + this.convertToKm(this.props.resultAreas[areaNum].users[i].distance)}km</span>
+              <span>{"소요시간 : " + this.props.resultAreas[areaNum].users[i].duration}분</span>
             </div>
           </span>
         )
 
-        for (let j =0; j<this.state.resultAreas[areaNum].users[i].route.length; j++) {
+        for (let j =0; j<this.props.resultAreas[areaNum].users[i].route.length; j++) {
           userRouteBox.push(
             <div>
               <table width="100%">
@@ -86,7 +91,7 @@ class ResultRoom extends React.Component {
                   </div>
                 </td>
                 <td>
-                  {(this.showTransportationIcon(this.state.resultAreas[areaNum].users[i].route[j]))}
+                  {(this.showTransportationIcon(this.props.resultAreas[areaNum].users[i].route[j]))}
                 </td>
                 </tr>
               </table>
@@ -196,12 +201,21 @@ class ResultRoom extends React.Component {
 
         return (
           <div>
-            
+            <div class="share-box">
+                <button class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
+            </div>
+            <div class="menu">
+              <ul class="menu__list">
+                <li class="menu__group" ><div id={"추천순"} onClick={this.props.sortingResult} class="menu__link">추천순</div></li>
+                <li class="menu__group" ><div id={"별점순"} onClick={this.props.sortingResult} class="menu__link">별점순</div></li>
+                <li class="menu__group" ><div id={"투표순"} onClick={this.props.sortingResult} class="menu__link">투표순</div></li>
+              </ul>
+            </div>
             <div class="set-scroll" style={this.getScrollHeight()}>
                 <div class="candidates-window">
                     {this.result()}
                 </div>
-                
+
             </div>
             <div class="share-box">
                 <button class="btn btn-share" onClick={this.props.vote} >투표 제출</button>

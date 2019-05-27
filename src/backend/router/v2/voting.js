@@ -6,10 +6,9 @@ module.exports = () => {
   router.use((req, res, next) => {
     next();
   });
-  
+
   router.post('/makeVoting', async (req, res) => {
     let clientToken = req.query.token;
-    let locIndex = req.body.index;
     let meeting = await db.Meeting.findOne({token : clientToken})
 
     let resultData = await db.Result.findOne({meetingID : meeting._id})
@@ -17,9 +16,9 @@ module.exports = () => {
 
     let votingData = new db.VotedLocs({
       ResultID: resultid,
-      location: resultData.areas[locIndex].name
+      location: req.body.locName
     });
-    
+
     let resultValue;
     await votingData.save().then(result => {
       resultValue = result;
