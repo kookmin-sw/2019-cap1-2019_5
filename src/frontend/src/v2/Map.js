@@ -226,9 +226,11 @@ class Map extends React.PureComponent {
 
       <SearchBox controlPosition={window.google.maps.ControlPosition.BOTTOM_CENTER}>
         <div>
-          <button style={{marginBottom: `25px`}} onClick={this.props.clickSearchButton} >
+        {this.props.resultAreas.length == 0 ?
+          (<button style={{marginBottom: `25px`}} onClick={this.props.clickSearchButton} >
               {this.searchPoint()}
-          </button>
+          </button>) : (<div></div>)
+        }
         </div>
       </SearchBox>
     </GoogleMap>)

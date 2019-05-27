@@ -4,6 +4,7 @@ const { makeMeeting } = require('../../lib/meeting/makeMeeting.js');
 const makeMeetingUser = require('../../lib/meeting/makeMeetingUser.js');
 const findMeetingData = require('../../lib/meeting/findMeetingData.js');
 const deleteUser = require('../../lib/meeting/deleteUser.js')
+const changedMeeting = require('../../lib/meeting/changeMeetingUserNum.js');
 
 module.exports = () => {
   router.use((req, res, next) => {
@@ -36,6 +37,12 @@ module.exports = () => {
 
     res.json(meetingData);
   });
+
+  router.post('/changeMeetingUserNum', async (req, res) => {
+    let changedMeeting = await changeMeetingUserNum(req,query.token, req.body.num);
+
+    res.json(changedMeeting);
+  })
 
   return router;
 };
