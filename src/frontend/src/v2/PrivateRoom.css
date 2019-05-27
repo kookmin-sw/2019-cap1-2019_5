@@ -347,7 +347,7 @@ body {
   vertical-align:top;
   letter-spacing: 0.03em;
   font-weight: 600;
-  color: #333333;  
+  color: #333333;
 }
 
 #privateroom{
@@ -391,4 +391,8 @@ body {
 .show-other-people > tr > td:nth-child(3) {
   padding-top: 3px;
   padding-bottom: 3px;
+}
+
+#empty_Space{
+  padding-bottom: 60%;
 }

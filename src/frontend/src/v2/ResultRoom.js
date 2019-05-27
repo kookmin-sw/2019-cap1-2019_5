@@ -203,6 +203,7 @@ class ResultRoom extends React.Component {
                 <div class="candidates-window">
                     {this.result()}
                 </div>
+                <div id="empty_Space"></div>
             </div>
           </div>
         )

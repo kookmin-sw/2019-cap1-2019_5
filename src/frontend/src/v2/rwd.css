@@ -191,6 +191,10 @@
 	#makeroom-Table{
 		width:300px;
 	}
+
+	#empty_Space{
+	  padding-bottom: 60%;
+	}
 }
 
 /*태블릿 가로화면*/

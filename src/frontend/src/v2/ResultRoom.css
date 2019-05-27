@@ -291,6 +291,10 @@ body {
 	background: #d344ffc5;
 }
 
+#empty_Space{
+  padding-bottom: 60%;
+}
+
 @media screen and (max-width: 800px) {
     .area-label {
         max-height: 102px;
