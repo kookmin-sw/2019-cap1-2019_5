@@ -30,7 +30,7 @@ class Meeting extends React.Component {
           name: "위치를 선택해주세요!"
         },
         transportation: "public",
-        name: "이름을 입력해주세요!"
+        name: ""
       },
       meeting: {},
       meetingUsers: [],
@@ -229,6 +229,11 @@ class Meeting extends React.Component {
       return ;
     }
 
+    if (this.state.myMarker.name == "") {
+      alert("이름을 입력해주세요.")
+      return ;
+    }
+
     this.setState({
       showLoadingWindow : true
     });
@@ -355,8 +360,6 @@ class Meeting extends React.Component {
 
   deleteUser = (e) => {
 
-    console.log(e.target.id);
-    console.log(this.state.meetingUsers[e.target.id]._id);
     axios({
       method: 'post',
       url: serverAPI.serverURL + serverAPI.serverVersion + 'meeting/deleteUser/?token=' + this.props.match.params.token,
