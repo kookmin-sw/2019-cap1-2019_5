@@ -38,7 +38,7 @@ class ResultRoom extends React.Component {
                       </div>
                       <span class="area-name">
                         <div>{this.props.resultAreas[i].name}</div>
-                        {Array(3).fill(<Star style={{height: `0.5em`, fill: "yellow"}}/>)}
+                        {Array(Math.round(this.props.resultAreas[i].rating)).fill(<Star style={{height: `0.5em`, fill: "yellow"}}/>)}
                       </span>
                       <span class="votebox"><Checkbox id={i} checked={i == this.props.voteArea ? true : false} onChange={this.props.selectVoteArea} /></span>
                   </div>
