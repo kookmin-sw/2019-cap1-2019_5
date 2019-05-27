@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Star } from "@material-ui/icons";
 import SubwayIcon from '../images/subway.png';
+import Star2 from '../images/star.svg';
 
 class ResultRoom extends React.Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class ResultRoom extends React.Component {
                       </div>
                       <span class="area-name">
                         <div>{this.props.resultAreas[i].name}</div>
-                        {Array(Math.round(this.props.resultAreas[i].rating)).fill(<Star style={{height: `0.5em`, fill: "yellow"}}/>)}
+                        {Array(Math.round(this.props.resultAreas[i].rating)).fill(<img src={Star2}/>)}
                       </span>
                       <span class="votebox"><Checkbox id={i} checked={i == this.props.voteArea ? true : false} onChange={this.props.selectVoteArea} /></span>
                   </div>
@@ -200,9 +201,6 @@ class ResultRoom extends React.Component {
 
         return (
           <div>
-            <div class="share-box">
-                <button class="btn btn-share" onClick={this.props.vote} >투표 제출</button>
-            </div>
             <div class="menu">
               <ul class="menu__list">
                 <li class="menu__group" ><div id={"추천순"} onClick={this.props.sortingResult} class="menu__link">추천순</div></li>
