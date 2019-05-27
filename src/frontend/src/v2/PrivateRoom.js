@@ -161,6 +161,7 @@ class PrivateRoom extends React.Component {
                       </table>
                       </tr>
                     </table>
+                    <div id="empty_Space"></div>
                 </div>
             </div>
         )
