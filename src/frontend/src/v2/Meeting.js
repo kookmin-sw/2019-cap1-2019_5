@@ -353,6 +353,25 @@ class Meeting extends React.Component {
 
   };
 
+  deleteUser = (e) => {
+
+    console.log(e.target.id);
+    console.log(this.state.meetingUsers[e.target.id]._id);
+    axios({
+      method: 'post',
+      url: serverAPI.serverURL + serverAPI.serverVersion + 'meeting/deleteUser/?token=' + this.props.match.params.token,
+      data: {
+        user: this.state.meetingUsers[e.target.id]._id
+      }
+    }).then((res) => {
+      window.location = this.props.match.url;
+    }).catch((err) => {
+      console.log(err);
+      alert("잘못된 요청입니다.");
+      window.location = "/";
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -393,7 +412,7 @@ class Meeting extends React.Component {
                       <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} vote={this.vote} voteArea={this.state.voteArea} selectVoteArea={this.selectVoteArea} />
                   </div>)
                   : (<div id="privateroom">
-                    <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult}/>
+                    <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult} deleteUser={this.deleteUser}/>
                   </div>)
                 }
                 </td>

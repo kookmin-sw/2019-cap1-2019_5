@@ -70,6 +70,9 @@ class PrivateRoom extends React.Component {
             <td>
               {this.props.meetingUsers[i].locationName}
             </td>
+            <td>
+              <button id={i} onClick={this.props.deleteUser}>삭제</button>
+            </td>
           </tr>
         )
       }
@@ -77,7 +80,7 @@ class PrivateRoom extends React.Component {
     };
 
     componentDidMount(){
-      
+
     }
 
     getScrollHeight() {
