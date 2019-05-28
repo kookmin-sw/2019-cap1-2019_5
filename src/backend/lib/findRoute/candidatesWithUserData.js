@@ -82,7 +82,7 @@ const candidatesWithUserData = async (userData, searchPoint) => {
     area['name'] = locCandidates[i].name;
     area['location'] = locCandidates[i].location;
     area['average'] = {};
-    area['rating'] = locCandidates[i].toObject().rating;
+    area['rating'] = locCandidates[i].toObject().ratingByVoting + locCandidates[i].toObject().ratingByCrawling + 1;
 
     // user들 각각 계산
     let groupTravelInfo = [];

@@ -25,7 +25,8 @@ let locationSchema = new mongoose.Schema({
     }
   },
   name: String,
-  rating: Number
+  ratingByCrawling: Number,
+  ratingByVoting: Number
 });
 
 locationSchema.index({location: '2dsphere'});
@@ -36,33 +37,18 @@ let areaModel = mongoose.model('CandidateLocs', locationSchema);
 //read JSONfile
 let locationCandidates = JSON.parse(fs.readFileSync('location_candidates.json', 'utf8'));
 
-console.log(locationCandidates.length);
-console.log(typeof locationCandidates[0]);
-console.log(typeof locationCandidates[0].location.coordinates);
-console.log(typeof locationCandidates[0].name);
-console.log(locationCandidates[0].location);
-let x = [];
 for(let i=0;i < locationCandidates.length; i++){
-  let test = new areaModel({
+
+  let location = new areaModel({
     location: locationCandidates[i].location,
     name: locationCandidates[i].name,
-    rating: 1
+    // 크롤링을 통한 평점 : 크롤링을 통해 나온 candidate.json 파일에서 추출됨
+    ratingByCrawling: parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2)),
+    // 투표를 통한 평점 : 투표를 통해 나온 평점으로 db_rating_update에서 주기적으로 변경되는 값
+    ratingByVoting: parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2))
   })
-  // x.push(locationCandidates[i]);
-  // locationCandidates[i].rating = Math.random() * (2.0 - 0.0) + 0.0;
-  // console.log((parseFloat(Math.random() * (2.0 - 0.0) + 0.0)).toFixed(2));
-  // locationCandidates[i].rating = parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2));
-  // locationCandidates[i].rating = (Math.random() * (2.0 - 0.0) + 0.0).toFixed(2);
-  // locationCandidates[i].rating = 2;
-  // console.log(typeof locationCandidates[i].rating)
 
-  test.save().then(result => {
+  location.save().then(result => {
     console.log(result);
   });
 };
-
-// insert data in db
-// areaModel.collection.insertMany(locationCandidates, function (err, r) {
-//   if (err) console.log(err)
-//   else db.close
-// });

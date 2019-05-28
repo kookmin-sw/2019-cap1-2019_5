@@ -13,7 +13,8 @@ const CandidateLocsSchema = new mongoose.Schema({
       required: true
     }
   },
-  rating : Number
+  ratingByVoting : Number,
+  ratingByCrawling : Number
 });
 
 module.exports = mongoose.model('CandidateLocs', CandidateLocsSchema);
