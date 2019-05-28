@@ -420,8 +420,11 @@ class Meeting extends React.Component {
         <Table style={{height: "100%"}}>
           <TableBody height = '100%'>
               <TableRow>
-                <td component="th" scope="row" className="info" id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd} style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
+                <td component="th" scope="row" className="info" id="side_area" style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
+                <div id="side_area_hamberger" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd}>
                 <MenuIcon id="footer_menu_btn" />
+                </div>
+                <div>
                 <div id="side_area_top">
                   <table class="app-bar">
                     <td>
@@ -452,6 +455,7 @@ class Meeting extends React.Component {
                     <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult} deleteUser={this.deleteUser}/>
                   </div>)
                 }
+                </div>
                 </td>
                 <div id="map_area"><Map myMarker={this.state.myMarker} meetingUsers={this.state.meetingUsers} setMyMarker={this.setMyMarker} setMarker={this.setMarker} resultAreas={this.state.resultAreas} selectResultMarker={this.selectResultMarker} searchPoint={this.state.searchPoint} setSearchPoint={this.setSearchPoint} clickSearchButton={this.clickSearchButton}/></div>
               </TableRow>
