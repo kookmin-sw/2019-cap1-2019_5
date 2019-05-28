@@ -131,8 +131,7 @@ class PrivateRoom extends React.Component {
                         {this.selectingTransportation()}
                     </tr>
                 </table>
-                <table class="search-table">
-                    <td>
+                <div class="search-table">
                         <button  class="btn btn-submit" onClick={() => {
                           if((this.props.meetingUsers.length) < (this.props.meeting.number)) {
                           {this.props.submit()}
@@ -142,12 +141,7 @@ class PrivateRoom extends React.Component {
                           }
                         }
                         }>이름과 출발위치 제출</button>
-                    </td>
-                    <td width="8%"></td>
-                    <td>
-                        <button class="btn btn-result" onClick={() => {this.showResult()}}>결과 보기</button>
-                    </td>
-                </table>
+                </div>
                 <div id="submit-list">
                     <table class="location-input-table">
                       <tr>
@@ -164,6 +158,8 @@ class PrivateRoom extends React.Component {
                       </table>
                       </tr>
                     </table>
+                    <div width="100%" style={{textAlign: "center", marginTop: "25px"}}>
+                    <button class="btn btn-result" onClick={() => {this.showResult()}}>결과 보기</button></div>
                     <div id="empty_Space"></div>
                 </div>
             </div>

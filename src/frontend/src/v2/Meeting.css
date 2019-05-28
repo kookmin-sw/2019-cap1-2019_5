@@ -23,11 +23,14 @@
 
 .app-bar > td:nth-child(1) {
   padding-left: 5px;
+  width: 50%;
 }
 
 .app-bar > td:nth-child(2) {
-    text-align: right;
     padding-right: 4px;
+    color: white;
+    font-size: 1.4em;
+    font-weight: 800;
 }
 
 .app-bar > td:nth-child(2) > button {
@@ -74,10 +77,11 @@
 }
 
 .share-button {
-  background:white;
-  color: #DC6EFE;
+  width: 75%;
+  background:#d344ffc5;
+  color: white;
   border: 1px solid white;
-  padding: 10px 30px;
+  padding: 10px 50px;
   border-radius: 0.5rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -90,5 +94,5 @@
 
 .share-button:hover {
   color: white;
-  background: #DC6EFE;
+  background: #F79FF3;
 }
