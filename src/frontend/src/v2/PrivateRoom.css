@@ -120,22 +120,9 @@ body {
 
 .search-table {
   height: 47px;
-  width: 84%;
+  width: 100%;
+  text-align: center;
   margin-top: 25px;
-  margin-left: 8%;
-  margin-right: 8%;
-}
-
-.search-table > td:nth-child(1) {
-  width: 50%;
-}
-
-.search-table > td:nth-child(2) {
-  width: 2%;
-}
-
-.search-table >td:nth-child(3) {
-  width: 30%;
 }
 
 .btn {
@@ -175,7 +162,7 @@ body {
 }
 
 .btn.btn-submit {
-  width: 90%;
+  width: 70%;
   height: 100%;
   background: #ffff;
   color: #d344ffc5;
@@ -190,7 +177,7 @@ body {
 }
 
 .btn.btn-result {
-  width:100%;
+  width: 75%;
   height: 100%;
   background: #ffff;
   color: #d344ffc5;

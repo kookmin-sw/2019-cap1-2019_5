@@ -436,16 +436,16 @@ class Meeting extends React.Component {
                       </button>
                     </td>
                     <td>
-                    <button id="kakaoShareBtn" class="share-button">친구들에게 공유</button>
+                    {this.state.meeting.name}
+                    </td>
+                    <td>
+                    
                     </td>
                   </table>
                 </div>
-                <div class="top-bar">
-                    <div class="top-bar-title">
-                        {this.state.meeting.name}
-                    </div>
-                </div>
-
+                <div style={{textAlign: "center"}}>
+                    <button id="kakaoShareBtn" class="share-button">친구들에게 공유</button>
+                  </div>
                 {
                   this.state.meeting.result ?
                   (<div id="resultroom">
