@@ -200,7 +200,7 @@ class ResultRoom extends React.Component {
           this.setState({ scrollHeight: window.innerHeight - 300 });
           }
           else {
-            scrollHeight: window.innerHeight-(window.innerHeight*0.54)
+            this.setState({scrollHeight: window.innerHeight-(window.innerHeight*0.54)});
           }
         }
 
