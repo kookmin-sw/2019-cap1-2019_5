@@ -1,51 +1,44 @@
 //To connect DB , must excute mongodb
 let fs = require("fs");
-let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/db', { useNewUrlParser: true });
+const db = require('./models');
 
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log("we're connected!");
-});
+db.connectDB().then(async () => {
+  let candidateLocs = await db.CandidateLocs.find();
 
-//define schema
-let locationSchema = new mongoose.Schema({
-  location : {
-    type: {
-      type: String,
-      enum: ['Point'],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true
+  console.log("전체 지역 수 : " + candidateLocs.length);
+
+  let votingData= [];
+
+  for(let i=0;i < candidateLocs.length; i++){
+    let voted = await db.VotedLocs.find({
+      location: candidateLocs[i].name
+    });
+    votingData.push({
+      name: candidateLocs[i].name,
+      voted: voted.length
+    });
+  };
+
+  votingData.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
+    if (candidate1.voted == candidate2.voted) {
+      return 0;
+    } else {
+      return candidate1.voted > candidate2.voted ? -1 : 1;
     }
-  },
-  name: String,
-  rating: {
-    type: Number,
-    default: 1
+  });
+
+  for(let i=0; i< votingData.length; i++) {
+    await db.CandidateLocs.findOneAndUpdate(
+      {
+        name: votingData[i].name
+      },
+      {$set:
+        {rating: parseFloat((2 - 2 / votingData.length * i).toFixed(2))}
+      },
+      (err, res) => {
+
+      }
+    );
   }
-});
 
-locationSchema.index({location: '2dsphere'});
-
-// compile schema to model
-let areaModel = mongoose.model('CandidateLocs', locationSchema);
-
-//read JSONfile
-let locationCandidates = JSON.parse(fs.readFileSync('location_candidates.json', 'utf8'));
-
-console.log(locationCandidates.length);
-for(let i=0;i < locationCandidates.length; i++){
-  // locationCandidates[i].rating = Math.random() * (2.0 - 0.0) + 0.0;
-  // console.log((parseFloat(Math.random() * (2.0 - 0.0) + 0.0)).toFixed(2));
-  locationCandidates[i].rating =(parseFloat(Math.random() * (2.0 - 0.0) + 0.0)).toFixed(2);
-};
-
-// insert data in db
-areaModel.collection.insertMany(locationCandidates, function (err, r) {
-  if (err) console.log(err)
-  else db.close
 });

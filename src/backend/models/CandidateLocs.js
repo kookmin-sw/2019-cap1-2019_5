@@ -11,12 +11,9 @@ const CandidateLocsSchema = new mongoose.Schema({
     coordinates: {
       type: [Number],
       required: true
-    },
-    rating: {
-      type: Number,
-      default: 1
     }
-  }
+  },
+  rating : Number
 });
 
 module.exports = mongoose.model('CandidateLocs', CandidateLocsSchema);
