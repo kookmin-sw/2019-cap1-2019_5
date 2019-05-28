@@ -212,7 +212,7 @@ body {
 .votebox {
   position: absolute;
   display: block;
-  width: 100%;
+  width: 130%;
   top: 15%;
   text-align: center;
   z-index: 10;

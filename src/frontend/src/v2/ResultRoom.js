@@ -11,7 +11,7 @@ class ResultRoom extends React.Component {
         super(props);
         this.state = {
           resultAreas: this.props.resultAreas,
-          scrollHeight: window.innerHeight - 300
+          scrollHeight: window.innerHeight-(window.innerHeight*0.51)
         }
     };
 
@@ -196,7 +196,12 @@ class ResultRoom extends React.Component {
         const { classes } = this.props;
 
         window.onresize = () => {
+          if (window.innerWidth > 800) {
           this.setState({ scrollHeight: window.innerHeight - 300 });
+          }
+          else {
+            scrollHeight: window.innerHeight-(window.innerHeight*0.54)
+          }
         }
 
         return (
