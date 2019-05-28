@@ -17,7 +17,7 @@ class MakeRoom extends React.Component {
     }
 
     makeMeeting = () => {
-      let api = 'http://localhost:80/api/v2/meeting/makeMeeting';
+      let api = 'http://13.209.135.59/api/v2/meeting/makeMeeting';
 
       axios({
         method: 'post',
