@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import logo from '../images/logo.png';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import config from '../config/API_KEY.json';
 
 class MakeRoom extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class MakeRoom extends React.Component {
     }
 
     makeMeeting = () => {
-      let api = 'http://13.209.135.59/api/v2/meeting/makeMeeting';
+      let api = config.serverURL + config.serverVersion + 'meeting/makeMeeting';
 
       axios({
         method: 'post',
