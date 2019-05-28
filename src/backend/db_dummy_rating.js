@@ -13,7 +13,7 @@ db.once('open', function () {
 
 //define schema
 let locationSchema = new mongoose.Schema({
-  location : {
+  location: {
     type: {
       type: String,
       enum: ['Point'],
@@ -29,7 +29,7 @@ let locationSchema = new mongoose.Schema({
   ratingByVoting: Number
 });
 
-locationSchema.index({location: '2dsphere'});
+locationSchema.index({ location: '2dsphere' });
 
 // compile schema to model
 let areaModel = mongoose.model('CandidateLocs', locationSchema);
@@ -37,17 +37,15 @@ let areaModel = mongoose.model('CandidateLocs', locationSchema);
 //read JSONfile
 let locationCandidates = JSON.parse(fs.readFileSync('location_candidates.json', 'utf8'));
 
-for(let i=0;i < locationCandidates.length; i++){
+for (let i = 0; i < locationCandidates.length; i++) {
 
   let location = new areaModel({
     location: locationCandidates[i].location,
     name: locationCandidates[i].name,
     // 크롤링을 통한 평점 : 크롤링을 통해 나온 candidate.json 파일에서 추출됨
-    ratingByCrawling: parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2)),
-    // 투표를 통한 평점 : 투표를 통해 나온 평점으로 db_rating_update에서 주기적으로 변경되는 값
-    ratingByVoting: parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2))
+    ratingByCrawling: locationCandidates[i].ratingByCrawling,
+    ratingByVoting: locationCandidates[i].ratingByVoting
   })
-
   location.save().then(result => {
     console.log(result);
   });

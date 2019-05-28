@@ -387,16 +387,16 @@ class Meeting extends React.Component {
         }
       });
     } else if (e.target.id == "별점순") {
-      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
-        if (candidate1.rating == candidate2.average.rating) {
+      newResult.sort(function sortByRating(candidate1, candidate2) {
+        if (candidate1.rating == candidate2.rating) {
           return 0;
         } else {
           return candidate1.rating > candidate2.rating ? -1 : 1;
         }
       });
     } else if (e.target.id == "투표순") {
-      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
-        if (candidate1.vote == candidate2.average.vote) {
+      newResult.sort(function sortByVotes(candidate1, candidate2) {
+        if (candidate1.vote == candidate2.vote) {
           return 0;
         } else {
           return candidate1.vote > candidate2.vote ? -1 : 1;

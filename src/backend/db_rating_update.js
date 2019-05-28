@@ -7,9 +7,9 @@ db.connectDB().then(async () => {
 
   console.log("전체 지역 수 : " + candidateLocs.length);
 
-  let votingData= [];
+  let votingData = [];
 
-  for(let i=0;i < candidateLocs.length; i++){
+  for (let i = 0; i < candidateLocs.length; i++) {
     let voted = await db.VotedLocs.find({
       location: candidateLocs[i].name
     });
@@ -27,13 +27,14 @@ db.connectDB().then(async () => {
     }
   });
 
-  for(let i=0; i< votingData.length; i++) {
+  for (let i = 0; i < votingData.length; i++) {
     await db.CandidateLocs.findOneAndUpdate(
       {
         name: votingData[i].name
       },
-      {$set:
-        {ratingByVoting: parseFloat((2 - 2 / votingData.length * i).toFixed(2))}
+      {
+        $set:
+          { ratingByVoting: parseFloat((2 - 2 / votingData.length * i).toFixed(2)) }
       },
       (err, res) => {
 

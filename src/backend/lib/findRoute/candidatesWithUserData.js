@@ -31,11 +31,9 @@ const calculateAvg = (groupTravelInfo) => {
   return averages;
 };
 
-//TODO (Taeyoung): Get sortOption from Request Body
-//TODO (Taeyoung): Separate this sorting algorithm as a module.
-//sortOption : 0 (average distance, DEFAULT), 1 (average duration), 2 (distance standard deviation), 3 (duration standard deviation)
-const sort = (output, sortOption) => {
-  if (sortOption == 0) {
+//option : 0 (average distance, DEFAULT), 1 (average duration), 2 (distance standard deviation), 3 (duration standard deviation)
+const sortByDuration = (output, option = 3) => {
+  if (option == 0) {
     output.areas.sort(function sortByAvgDistance(candidate1, candidate2) {
       if (candidate1.average.avgDistance == candidate2.average.avgDistance) {
         return 0;
@@ -43,7 +41,7 @@ const sort = (output, sortOption) => {
         return candidate1.average.avgDistance > candidate2.average.avgDistance ? 1 : -1;
       }
     });
-  } else if (sortOption == 1) {
+  } else if (option == 1) {
     output.areas.sort(function sortByAvgDuration(candidate1, candidate2) {
       if (candidate1.average.avgDuration == candidate2.average.avgDuration) {
         return 0;
@@ -51,7 +49,7 @@ const sort = (output, sortOption) => {
         return candidate1.average.avgDuration > candidate2.average.avgDuration ? 1 : -1;
       }
     });
-  } else if (sortOption == 2) {
+  } else if (option == 2) {
     output.areas.sort(function sortBydistanceStdDeviation(candidate1, candidate2) {
       if (candidate1.average.distanceStdDeviation == candidate2.average.distanceStdDeviation) {
         return 0;
@@ -59,7 +57,7 @@ const sort = (output, sortOption) => {
         return candidate1.average.distanceStdDeviation > candidate2.average.distanceStdDeviation ? 1 : -1;
       }
     });
-  } else if (sortOption == 3) {
+  } else if (option == 3) {
     output.areas.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
       if (candidate1.average.durationStdDeviation == candidate2.average.durationStdDeviation) {
         return 0;
@@ -82,8 +80,15 @@ const candidatesWithUserData = async (userData, searchPoint) => {
     area['name'] = locCandidates[i].name;
     area['location'] = locCandidates[i].location;
     area['average'] = {};
-    area['rating'] = locCandidates[i].toObject().ratingByVoting + locCandidates[i].toObject().ratingByCrawling + 1;
-
+    // undefined 처리
+    if (locCandidates[i].ratingByVoting === undefined) {
+      locCandidates[i].ratingByVoting = parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2));
+    }
+    if (locCandidates[i].ratingByCrawling === undefined) {
+      locCandidates[i].ratingByCrawling = parseFloat((Math.random() * (2.0 - 0.0) + 0.0).toFixed(2));
+    }
+    area['rating'] = locCandidates[i].ratingByVoting + locCandidates[i].ratingByCrawling + 1;
+    
     // user들 각각 계산
     let groupTravelInfo = [];
     for (let j = 0; j < userData.length; j++) {
@@ -106,7 +111,8 @@ const candidatesWithUserData = async (userData, searchPoint) => {
     output.areas.push(area);
   }
 
-  sort(output, 3);
+  //처음 결과는 duration을 기준으로 sort
+  sortByDuration(output, 3);
 
   return output;
 }
