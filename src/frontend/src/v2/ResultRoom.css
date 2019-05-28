@@ -11,11 +11,20 @@
 }
 
 .menu__list{
+  display: flex;
   text-align: center;
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0;
   list-style: none;
+}
+
+.menu__list > li:nth-child(1), li:nth-child(3) {
+    width: 33%;
+}
+
+.menu__list > li:nth-child(2) {
+    width: 34%;
 }
 
 .menu__link{

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './rwd.css';
 import PropTypes from 'prop-types';
 import MakeRoom from './MakeRoom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";

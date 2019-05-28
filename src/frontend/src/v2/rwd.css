@@ -129,13 +129,20 @@
   	z-index:900;
   	box-sizing:border-box;
   	border-radius:50px 50px 0 0;
-  	padding:34px 20px 0 20px !important;
+  	padding:0px 20px 0 20px !important;
   }
 
   #side_area > div{
     width:100%;
-    margin:20px auto 0 auto;
-  }
+	}
+	
+	#side_area_hamberger {
+		height: 3.7em;
+	}
+
+	#side_area > div > div{
+    width:100%;
+	}
 
   /*모바일용 해더 영역*/
 	#m_side_area_top{
@@ -198,6 +205,11 @@
 	::-webkit-scrollbar {
     display: none;
 	}
+
+	.menu__link {
+		padding: 1rem 1.5rem !important; 
+	}
+
 }
 
 /*태블릿 가로화면*/
