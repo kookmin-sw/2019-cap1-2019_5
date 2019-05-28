@@ -33,7 +33,7 @@ db.connectDB().then(async () => {
         name: votingData[i].name
       },
       {$set:
-        {rating: parseFloat((2 - 2 / votingData.length * i).toFixed(2))}
+        {ratingByVoting: parseFloat((2 - 2 / votingData.length * i).toFixed(2))}
       },
       (err, res) => {
 
