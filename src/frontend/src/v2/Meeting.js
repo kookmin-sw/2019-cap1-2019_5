@@ -338,7 +338,7 @@ class Meeting extends React.Component {
       method: 'post',
       url: serverAPI.serverURL + serverAPI.serverVersion + 'voting/makeVoting?token=' + this.props.match.params.token,
       data: {
-        locName: this.state.resultAreas[this.state.voteArea].name
+        index: this.state.voteArea
       }
     }).then((res) => {
       alert(this.state.resultAreas[this.state.voteArea].name + "에 투표하셨습니다");
@@ -375,42 +375,6 @@ class Meeting extends React.Component {
     });
   };
 
-  sortingResult = (e) => {
-    let newResult = clone(this.state.resultAreas);
-
-    if (e.target.id == "추천순") {
-      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
-        if (candidate1.average.durationStdDeviation == candidate2.average.durationStdDeviation) {
-          return 0;
-        } else {
-          return candidate1.average.durationStdDeviation > candidate2.average.durationStdDeviation ? 1 : -1;
-        }
-      });
-    } else if (e.target.id == "별점순") {
-      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
-        if (candidate1.rating == candidate2.average.rating) {
-          return 0;
-        } else {
-          return candidate1.rating > candidate2.rating ? -1 : 1;
-        }
-      });
-    } else if (e.target.id == "투표순") {
-      newResult.sort(function sortBydurationStdDeviation(candidate1, candidate2) {
-        if (candidate1.vote == candidate2.average.vote) {
-          return 0;
-        } else {
-          return candidate1.vote > candidate2.vote ? -1 : 1;
-        }
-      });
-    }
-
-    this.setState({
-      resultAreas: newResult,
-      selectedResult: -1
-    })
-
-  };
-
   render() {
     const { classes } = this.props;
 
@@ -420,20 +384,20 @@ class Meeting extends React.Component {
         <Table style={{height: "100%"}}>
           <TableBody height = '100%'>
               <TableRow>
-                <td component="th" scope="row" className="info" id="side_area" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd} style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
-                <MenuIcon id="footer_menu_btn" />
+                <td component="th" scope="row" className="info" id="side_area" style={{fontFamily: "'Noto Sans KR', sans-serif"}}>
+                <div id="footer_menu_touch" onClick={this.footerMenuSlide} onTouchStart={this._onTouchStart} onTouchMove={this._onTouchMove} onTouchEnd={this._onTouchEnd}><MenuIcon id="footer_menu_btn" /></div>
                 <div id="side_area_top">
                   <table class="app-bar">
                     <td>
-                    <button class="btn-goback" onClick={() => {window.location = '/'}}>
-                      <td>
-                      <svg viewBox="-33 -141 1065.0001 1065" height="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="m679.929688 141.726562h-440.1875v-150.5l-241.761719 241.773438 241.761719 241.761719v-155.546875h440.1875c76.644531 0 139.003906 62.359375 139.003906 139.003906 0 76.648438-62.359375 139-139.003906 139h-501.996094v177.488281h501.996094c174.511718 0 316.488281-141.972656 316.488281-316.488281s-141.976563-316.492188-316.488281-316.492188zm0 0"/></svg>
-                      </td>
-                      <td>HOME</td>
-                      </button>
+                      <IconButton id="side_area_menu_btn"  color="inherit" aria-label="Menu">
+                        <MenuIcon />
+                      </IconButton>
                     </td>
                     <td>
-                    <button id="kakaoShareBtn" class="share-button">친구들에게 공유</button>
+                      <button class="btn-goback" onClick={() => {window.location = '/'}}>
+                      <svg viewBox="-33 -141 1065.0001 1065" height="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="m679.929688 141.726562h-440.1875v-150.5l-241.761719 241.773438 241.761719 241.761719v-155.546875h440.1875c76.644531 0 139.003906 62.359375 139.003906 139.003906 0 76.648438-62.359375 139-139.003906 139h-501.996094v177.488281h501.996094c174.511718 0 316.488281-141.972656 316.488281-316.488281s-141.976563-316.492188-316.488281-316.492188zm0 0"/></svg>
+                        처음으로 돌아가기
+                      </button>
                     </td>
                   </table>
                 </div>
@@ -442,11 +406,13 @@ class Meeting extends React.Component {
                         {this.state.meeting.name}
                     </div>
                 </div>
-
+                <div class="share-box">
+                    <button id="kakaoShareBtn" class="btn btn-share">친구들에게 공유</button>
+                </div>
                 {
                   this.state.meeting.result ?
                   (<div id="resultroom">
-                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} vote={this.vote} voteArea={this.state.voteArea} selectVoteArea={this.selectVoteArea} sortingResult={this.sortingResult} />
+                      <ResultRoom resultAreas={this.state.resultAreas} meetingUsers={this.state.meetingUsers} selectedResult={this.state.selectedResult} selectResult={this.selectResult} vote={this.vote} voteArea={this.state.voteArea} selectVoteArea={this.selectVoteArea} />
                   </div>)
                   : (<div id="privateroom">
                     <PrivateRoom meeting={this.state.meeting} meetingUsers={this.state.meetingUsers} myMarker={this.state.myMarker} submit={this.submit} findLoc={this.findLoc} deleteUser={this.deleteUser} handleChange={this.handleChange} showResult={this.showResult} deleteUser={this.deleteUser}/>
