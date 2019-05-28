@@ -156,7 +156,7 @@ class Map extends React.PureComponent {
       visibleMarkers.push(
         <Marker position={{ lat: this.props.meetingUsers[i].location.coordinates[1], lng: this.props.meetingUsers[i].location.coordinates[0] }} draggable={false} icon={otherMarkerIcon}>
           <InfoWindow>
-            <div>
+            <div style={{marginBottom:`6px`, textAlign: `center`}}>
               {this.props.meetingUsers[i].name}
             </div>
           </InfoWindow>
@@ -168,7 +168,7 @@ class Map extends React.PureComponent {
       visibleMarkers.push(
         <Marker position={{ lat: this.props.resultAreas[i].location.coordinates[1], lng: this.props.resultAreas[i].location.coordinates[0] }} draggable={false} icon={resultMarkerIcon} onClick={() => {this.props.selectResultMarker(i)}} >
           <InfoWindow>
-            <div>
+            <div style={{marginBottom:`6px`, textAlign: `center`}}>
               {this.props.resultAreas[i].name}
             </div>
           </InfoWindow>
