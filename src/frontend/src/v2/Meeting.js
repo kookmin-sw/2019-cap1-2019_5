@@ -441,10 +441,6 @@ class Meeting extends React.Component {
                     <td>
                     {this.state.meeting.name}
                     </td>
-                    <td ></td>
-                    <td>
-
-                    </td>
                   </table>
                 </div>
                 <div style={{textAlign: "center"}}>
