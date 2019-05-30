@@ -122,7 +122,9 @@ body {
   height: 47px;
   width: 100%;
   text-align: center;
-  margin-top: 25px;
+  margin-Left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
 }
 .btn2 {
   background: #2196f3af;

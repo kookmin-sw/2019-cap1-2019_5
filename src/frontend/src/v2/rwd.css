@@ -210,6 +210,10 @@
 		padding: 1rem 1.5rem !important;
 	}
 
+	.search-point-table {
+		margin-top: 52px;
+	}
+
 }
 
 /*태블릿 가로화면*/
