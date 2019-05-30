@@ -124,6 +124,32 @@ body {
   text-align: center;
   margin-top: 25px;
 }
+.btn2 {
+  background: #2196f3af;
+  color: #d3eafd;
+  border: 1px solid #dfe1e5;
+  padding: 10px 15px;
+  border-radius: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-family: 'Noto Sans KR', sans-serif;
+  box-shadow: 0 7px 14px rgba(255, 255, 255, 0.18);
+}
+.btn2.btn-share {
+    width:100%;
+    height: 100%;
+  background: #ffffffaf;
+  color: #d344ffc5;
+}
+.btn2.btn-share:hover {
+  background: #d344ffc5;
+  color: #deeffd;
+}
+
 
 .btn {
   background: #2196f3;
@@ -389,5 +415,3 @@ body {
   padding: 0px;
   padding-left: 0.4em;
 }
-
-

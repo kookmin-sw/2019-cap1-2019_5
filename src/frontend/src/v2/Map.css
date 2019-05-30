@@ -3,7 +3,7 @@
 }
 
 .search-point-table > td:nth-child(2) {
-  background: white;
+  background: #ffffffaf;
   height: 22px;
   border-radius: 0.4em;
   padding-left: 0.3em;
@@ -20,7 +20,7 @@
   position: relative;
   top: 0.6em;
 }
-  
+
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 13em;
