@@ -53,6 +53,12 @@
 	position:relative;
 }
 
+/*공유버튼*/
+#side_area_share_btn{
+	color:#fff;
+	float:right;
+	margin-right:4px;
+}
 #m_side_area_menu_btn, #m_side_area_share_btn{display:none;}
 
 #side_area{
@@ -99,6 +105,21 @@
 }
 
 #search_input{padding-left:43px !important;}
+
+/*카카오 공유 버튼*/
+#kakaoShareBtn1, #kakaoShareBtn2{
+	width:34px;
+	height:34px;
+	padding: 0px;
+	border-radius:50%;
+	position:absolute;
+	top:6px;
+	right:14px;
+	cursor:pointer;
+	overflow:hidden;
+}
+
+#kakaoShareBtn2{display:none;}
 
 /*모바일 화면(iPhoneXS : 375, iPhoneXS Max : 414, Galaxy S10 : 480)
   태블릿 세로화면(Nexus7 : 600px, iPad : 768, Galaxy Tab 10 : 800)*/
@@ -151,6 +172,8 @@
 		background-color:#f79ff3;
 	}
 
+	#kakaoShareBtn1{display:none;}
+	#kakaoShareBtn2{display:block;}
 
 	#search_input{
 		width:60% !important;
@@ -210,10 +233,14 @@
 		padding: 1rem 1.5rem !important;
 	}
 
+
 	.search-point-table {
 		margin-top: 9px;
 	}
 
+	#kakaoShareBtn2 {
+		top: -3px;
+	}
 }
 
 /*태블릿 가로화면*/
