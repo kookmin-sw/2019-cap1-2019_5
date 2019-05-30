@@ -23,11 +23,11 @@
 
 .app-bar > td:nth-child(1) {
   padding-left: 5px;
-  width: 50%;
 }
 
 .app-bar > td:nth-child(2) {
-    padding-right: 4px;
+    text-align: center;
+    padding-right: 50px;
     color: white;
     font-size: 1.4em;
     font-weight: 800;
@@ -44,7 +44,6 @@
   fiLL: #616161;
   border: none;
   padding: 2px 6px;
-  margin-right: 3%;
   border-radius: 0.6rem;
   letter-spacing: 0.01em;
   text-transform: uppercase;
