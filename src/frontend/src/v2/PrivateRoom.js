@@ -130,9 +130,9 @@ class PrivateRoom extends React.Component {
                     <tr>
                         {this.selectingTransportation()}
                     </tr>
-                </table>
+                    <tr>
                 <div class="search-table">
-                        <button  class="btn btn-submit" onClick={() => {
+                    <button  class="btn btn-submit" onClick={() => {
                           if((this.props.meetingUsers.length) < (this.props.meeting.number)) {
                           {this.props.submit()}
                           }
@@ -142,6 +142,10 @@ class PrivateRoom extends React.Component {
                         }
                         }>이름과 출발위치 제출</button>
                 </div>
+
+                    </tr>
+                </table>
+                        
                 <div id="submit-list">
                     <table class="location-input-table">
                       <tr>
