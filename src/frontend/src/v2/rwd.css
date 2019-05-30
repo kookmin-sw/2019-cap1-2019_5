@@ -124,7 +124,7 @@
 
 /*모바일 화면(iPhoneXS : 375, iPhoneXS Max : 414, Galaxy S10 : 480)
   태블릿 세로화면(Nexus7 : 600px, iPad : 768, Galaxy Tab 10 : 800)*/
-@media screen and (max-width: 899px) {
+@media screen and (max-width: 800px) {
 	/*로고*/
 	#loading_logo{
 		background-size:100px 100px;
@@ -220,7 +220,7 @@
 	}
 
 	#empty_Space{
-		padding-bottom: 30%;
+		padding-bottom: 50%;
 	}
 
 	::-webkit-scrollbar {
@@ -247,7 +247,7 @@
 }
 
 /*태블릿 가로화면*/
-@media screen and (min-width: 900px) and (max-width: 1024px) {
+@media screen and (min-width: 801px) and (max-width: 1024px) {
 	#loading_logo{
 		background-size:200px 200px;
 	}
