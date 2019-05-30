@@ -141,13 +141,13 @@ class Map extends React.PureComponent {
     let visibleMarkers = [];
 
     visibleMarkers.push(
-      <Marker position={{ lat: this.props.myMarker.location.lat, lng: this.props.myMarker.location.lng }} draggable={true} onClick={() => alert(this.props.MyMarker)} icon={myMarkerIcon}>
+      <Marker position={{ lat: this.props.myMarker.location.lat, lng: this.props.myMarker.location.lng }} draggable={true} icon={myMarkerIcon}>
       </Marker>
     )
 
     if (this.props.searchPoint.active) {
       visibleMarkers.push(
-        <Marker position={{ lat: this.props.searchPoint.location.lat, lng: this.props.searchPoint.location.lng }} onClick={() => console.log(this.props.searchPoint)} animation={1} icon={searchMarkerIcon}>
+        <Marker position={{ lat: this.props.searchPoint.location.lat, lng: this.props.searchPoint.location.lng }} animation={1} icon={searchMarkerIcon}>
         </Marker>
       )
     }
