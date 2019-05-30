@@ -8,7 +8,7 @@ class PrivateRoom extends React.Component {
         this.state = {
           tBool: false,
           transportation: "public",
-          scrollHeight: window.innerHeight - 210
+          scrollHeight: window.innerHeight - 67
         }
     }
 
@@ -103,7 +103,7 @@ class PrivateRoom extends React.Component {
         const { classes } = this.props;
 
         window.onresize = () => {
-          this.setState({ scrollHeight: window.innerHeight -210 });
+          this.setState({ scrollHeight: window.innerHeight -67 });
         }
 
         return (
