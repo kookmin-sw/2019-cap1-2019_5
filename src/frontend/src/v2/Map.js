@@ -201,9 +201,14 @@ class Map extends React.PureComponent {
           onPlacesChanged={this.state.onPlacesChanged}
         >
         <div id="m_side_area_top">
-          <IconButton id="m_side_area_menu_btn" color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
+          <div style={{marginTop: "7px", marginLeft: "5px"}}>
+        <button class="btn-goback" style = {{paddingTop: "0px", paddingBottom: "0px"}} onClick={() => {window.location = '/'}}>
+                      <tr>
+                      <svg style={{position: "relative", top: "0.2em"}} viewBox="-33 -141 1065.0001 1065" height="1.2em" xmlns="http://www.w3.org/2000/svg"><path d="m679.929688 141.726562h-440.1875v-150.5l-241.761719 241.773438 241.761719 241.761719v-155.546875h440.1875c76.644531 0 139.003906 62.359375 139.003906 139.003906 0 76.648438-62.359375 139-139.003906 139h-501.996094v177.488281h501.996094c174.511718 0 316.488281-141.972656 316.488281-316.488281s-141.976563-316.492188-316.488281-316.492188zm0 0"/></svg>
+                      </tr>
+                      <tr style = {{fontSize: "0.9em"}}><div style={{position: "relative", top:"-0.2em"}}>HOME</div></tr>
+                      </button>
+                      </div>
           <IconButton id="gps_Button" aria-label="GPS">
             <GpsFixedIcon />
           </IconButton>

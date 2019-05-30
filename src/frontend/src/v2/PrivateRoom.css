@@ -116,6 +116,7 @@ body {
   padding: 0.8rem 1.6rem;
   font-family: inherit;
   border-radius: 0.4rem;
+  color: #686868;
 }
 
 .search-table {
@@ -194,6 +195,7 @@ body {
   height: 100%;
   background: #ffff;
   color: #d344ffc5;
+  font-size: 1em;
 }
 .btn.btn-submit:hover {
   background: #d344ffc5;
@@ -209,6 +211,7 @@ body {
   height: 100%;
   background: #ffff;
   color: #d344ffc5;
+  font-size: 1em;
 }
 .btn.btn-result:hover {
   background: #d344ffc5;
@@ -346,7 +349,7 @@ body {
 }
 
 .public-transport-svg {
-  height: 1.2em;
+  height: 1.3em;
   margin-left: 3%;
   position: relative;
   top: 40%;

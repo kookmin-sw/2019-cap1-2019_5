@@ -27,7 +27,7 @@ class Meeting extends React.Component {
         location: {
           lat: 0,
           lng: 0,
-          name: "위치를 선택해주세요!"
+          name: "지도에서 위치를 검색 혹은 클릭!"
         },
         transportation: "public",
         name: ""
