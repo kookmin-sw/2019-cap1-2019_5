@@ -96,3 +96,10 @@
   color: white;
   background: #F79FF3;
 }
+
+.forKakao {
+  position: absolute;
+  left: 330px;
+  top: 7px;
+  z-index: 1;
+}

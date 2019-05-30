@@ -43,6 +43,7 @@
 	z-index:800;
 	border-radius:0 0 10px 0;
 	box-shadow:0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+	z-index: 0;
 }
 
 /*메뉴버튼*/
@@ -172,9 +173,6 @@
 		background-color:#f79ff3;
 	}
 
-	#kakaoShareBtn1{display:none;}
-	#kakaoShareBtn2{display:block;}
-
 	#search_input{
 		width:60% !important;
 		position:fixed;
@@ -240,6 +238,11 @@
 
 	#kakaoShareBtn2 {
 		top: -3px;
+	}
+
+	.forKakao {
+		position: absolute;
+		left: 87% !important; 
 	}
 }
 
