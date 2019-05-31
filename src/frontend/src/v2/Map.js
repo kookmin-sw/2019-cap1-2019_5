@@ -131,17 +131,49 @@ class Map extends React.PureComponent {
   };
 
   onMarkerChange = (event) => {
-    this.props.setMyMarker({
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng()
+    if (this.props.resultAreas.length != 0) {
+      return ;
+    };
+
+    let geocoder = new window.google.maps.Geocoder();
+
+    if (this.props.searchPoint.control) {
+      geocoder.geocode({'location': {lat: event.latLng.lat(), lng: event.latLng.lng()}}, (results, status) => {
+        if (status == 'OK') {
+          this.props.setSearchPoint({
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+            where: results[0].formatted_address
+          });
+        } else {
+          console.log('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+
+      console.log(this.props.searchPoint);
+
+      return ;
+    }
+
+    geocoder.geocode({'location': {lat: event.latLng.lat(), lng: event.latLng.lng()}}, (results, status) => {
+      if (status == 'OK') {
+        this.props.setMyMarker({
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+          where: results[0].formatted_address
+        });
+      } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
+      }
     });
+
   };
 
   showMarkers() {
     let visibleMarkers = [];
 
     visibleMarkers.push(
-      <Marker position={{ lat: this.props.myMarker.location.lat, lng: this.props.myMarker.location.lng }} draggable={true} icon={myMarkerIcon}>
+      <Marker position={{ lat: this.props.myMarker.location.lat, lng: this.props.myMarker.location.lng }} draggable={true} icon={myMarkerIcon} onDragEnd={this.onMarkerChange}>
       </Marker>
     )
 
@@ -275,7 +307,7 @@ class Map extends React.PureComponent {
             <span class="tooltiptext">검색기준 위치지정은 사용자가 검색할 중심을 직접 정할 수 있는 기능입니다.</span>
           </div></td>
           </table>
- 
+
           </div>
         </div>
       </SearchBox>
