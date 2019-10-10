@@ -229,7 +229,7 @@ class Map extends React.PureComponent {
       content: {
         title: 'ㅁㄷㅁㅇ', //카카오톡 공유 제목영역
         description: '모임 : ',//+ this.props.meeting.name, //카카오톡 공유 내용영역
-        imageUrl: 'http://meet-mid.s3-website.ap-northeast-2.amazonaws.com/static/media/logo.94db3323.png', //공유 이미지
+        imageUrl: 'http://mdmy.s3-website.ap-northeast-2.amazonaws.com/static/media/logo.94db3323.png', //공유 이미지
         link: {
           mobileWebUrl: document.location.href,
           webUrl: document.location.href
@@ -322,7 +322,7 @@ class Map extends React.PureComponent {
       <div>
         <CustomMap
           isMarkerShown={this.state.isMarkerShown}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-wh2GZ92W7jsNjtHD1JUDoMl1nNLRJgo&v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyANrSEnR-_BgDyvGyS_0Awh5QHFUuQ_snI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
