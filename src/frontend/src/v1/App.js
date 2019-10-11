@@ -55,13 +55,13 @@ class MainTable extends React.Component {
 
 
   findLoc = () => {
-    let transportAPI = 'http://13.209.137.246/api/v1/findRoute/findLoc/';
+    let transportAPI = 'http://54.180.46.133/api/v1/findRoute/findLoc/';
     this.setState({
       showLoadingWindow : true
     });
     axios({
       method: 'post',
-      url: 'http://13.209.137.246/api/v1/findRoute/findLoc/',
+      url: 'http://54.180.46.133/api/v1/findRoute/findLoc/',
       data: {
         startLocs: this.state.markers,
       }

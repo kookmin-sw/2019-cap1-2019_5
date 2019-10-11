@@ -1,0 +1,983 @@
+[
+    {
+        "location": {
+            "coordinates": [
+                127.0302926,
+                37.531684
+            ],
+            "type": "Point"
+        },
+        "name": "압구정",
+        "ratingByCrawling": 0.38,
+        "ratingByVoting": 1.75
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.022883,
+                37.524124
+            ],
+            "type": "Point"
+        },
+        "name": "신사",
+        "ratingByCrawling": 2.0,
+        "ratingByVoting": 1.91
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0315341,
+                37.5135304
+            ],
+            "type": "Point"
+        },
+        "name": "논현",
+        "ratingByCrawling": 0.79,
+        "ratingByVoting": 1.6
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.1007366,
+                37.5179042
+            ],
+            "type": "Point"
+        },
+        "name": "잠실",
+        "ratingByCrawling": 0.18,
+        "ratingByVoting": 0.47
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.1256452,
+                37.5439937
+            ],
+            "type": "Point"
+        },
+        "name": "천호",
+        "ratingByCrawling": 0.17,
+        "ratingByVoting": 1.17
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0373932,
+                37.4999072
+            ],
+            "type": "Point"
+        },
+        "name": "역삼",
+        "ratingByCrawling": 1.4,
+        "ratingByVoting": 0.35
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9383251,
+                37.4626176
+            ],
+            "type": "Point"
+        },
+        "name": "신림",
+        "ratingByCrawling": 0.22,
+        "ratingByVoting": 1.71
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9921017,
+                37.5400456
+            ],
+            "type": "Point"
+        },
+        "name": "이태원",
+        "ratingByCrawling": 0.88,
+        "ratingByVoting": 1.25
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9858296,
+                37.55998
+            ],
+            "type": "Point"
+        },
+        "name": "명동",
+        "ratingByCrawling": 0.26,
+        "ratingByVoting": 1.62
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9435838,
+                37.5594793
+            ],
+            "type": "Point"
+        },
+        "name": "신촌",
+        "ratingByCrawling": 0.38,
+        "ratingByVoting": 0.31
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9101219,
+                37.5463089
+            ],
+            "type": "Point"
+        },
+        "name": "합정",
+        "ratingByCrawling": 0.36,
+        "ratingByVoting": 0.93
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9012821,
+                37.5559772
+            ],
+            "type": "Point"
+        },
+        "name": "망원",
+        "ratingByCrawling": 0.55,
+        "ratingByVoting": 0.7
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.989835,
+                37.5742793
+            ],
+            "type": "Point"
+        },
+        "name": "익선",
+        "ratingByCrawling": 0.49,
+        "ratingByVoting": 0.65
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9177304,
+                37.5534897
+            ],
+            "type": "Point"
+        },
+        "name": "서교",
+        "ratingByCrawling": 1.3
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9220027,
+                37.5644783
+            ],
+            "type": "Point"
+        },
+        "name": "연남",
+        "ratingByCrawling": 0.96
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0062454,
+                37.5311789
+            ],
+            "type": "Point"
+        },
+        "name": "한남",
+        "ratingByCrawling": 0.83
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0486655,
+                37.5231998
+            ],
+            "type": "Point"
+        },
+        "name": "청담",
+        "ratingByCrawling": 0.74
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9345308,
+                37.5175402
+            ],
+            "type": "Point"
+        },
+        "name": "여의",
+        "ratingByCrawling": 0.72
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9244174,
+                37.5454728
+            ],
+            "type": "Point"
+        },
+        "name": "상수",
+        "ratingByCrawling": 0.62
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0079167,
+                37.5031833
+            ],
+            "type": "Point"
+        },
+        "name": "반포",
+        "ratingByCrawling": 0.57
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0174271,
+                37.4876872
+            ],
+            "type": "Point"
+        },
+        "name": "서초",
+        "ratingByCrawling": 0.54
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0565207,
+                37.5139848
+            ],
+            "type": "Point"
+        },
+        "name": "삼성",
+        "ratingByCrawling": 0.5
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9535822,
+                37.4794085
+            ],
+            "type": "Point"
+        },
+        "name": "봉천",
+        "ratingByCrawling": 0.47
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.073456,
+                37.5435547
+            ],
+            "type": "Point"
+        },
+        "name": "화양",
+        "ratingByCrawling": 0.36
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0842945,
+                37.5061273
+            ],
+            "type": "Point"
+        },
+        "name": "잠실본동",
+        "ratingByCrawling": 0.32
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0715809,
+                37.5324005
+            ],
+            "type": "Point"
+        },
+        "name": "자양",
+        "ratingByCrawling": 0.3
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9971121,
+                37.5705927
+            ],
+            "type": "Point"
+        },
+        "name": "종로4가",
+        "ratingByCrawling": 0.29
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0610527,
+                37.4994914
+            ],
+            "type": "Point"
+        },
+        "name": "대치",
+        "ratingByCrawling": 0.28
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0437247,
+                37.5435182
+            ],
+            "type": "Point"
+        },
+        "name": "성수동1가",
+        "ratingByCrawling": 0.27
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9934602,
+                37.4799348
+            ],
+            "type": "Point"
+        },
+        "name": "방배",
+        "ratingByCrawling": 0.25
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.1215351,
+                37.5164031
+            ],
+            "type": "Point"
+        },
+        "name": "방이",
+        "ratingByCrawling": 0.25
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.1119305,
+                37.50460899999999
+            ],
+            "type": "Point"
+        },
+        "name": "송파",
+        "ratingByCrawling": 0.19
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0736292,
+                37.5530066
+            ],
+            "type": "Point"
+        },
+        "name": "군자",
+        "ratingByCrawling": 0.18
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0194523,
+                37.5615738
+            ],
+            "type": "Point"
+        },
+        "name": "신당",
+        "ratingByCrawling": 0.18
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.894616,
+                37.5781711
+            ],
+            "type": "Point"
+        },
+        "name": "상암",
+        "ratingByCrawling": 0.17
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9916862,
+                37.5661262
+            ],
+            "type": "Point"
+        },
+        "name": "을지로3가",
+        "ratingByCrawling": 0.17
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9325254,
+                37.5717975
+            ],
+            "type": "Point"
+        },
+        "name": "연희",
+        "ratingByCrawling": 0.17
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0549622,
+                37.5483166
+            ],
+            "type": "Point"
+        },
+        "name": "성수2가",
+        "ratingByCrawling": 0.16
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0213534,
+                37.5858384
+            ],
+            "type": "Point"
+        },
+        "name": "안암",
+        "ratingByCrawling": 0.15
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9814212,
+                37.5498915
+            ],
+            "type": "Point"
+        },
+        "name": "후암",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9345627,
+                37.5584944
+            ],
+            "type": "Point"
+        },
+        "name": "창천",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.023636,
+                37.6005277
+            ],
+            "type": "Point"
+        },
+        "name": "돈암",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0995,
+                37.5200705
+            ],
+            "type": "Point"
+        },
+        "name": "신천",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.1238462,
+                37.4851331
+            ],
+            "type": "Point"
+        },
+        "name": "문정",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.899438,
+                37.4955091
+            ],
+            "type": "Point"
+        },
+        "name": "대림",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0914159,
+                37.5466951
+            ],
+            "type": "Point"
+        },
+        "name": "구의",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9802978,
+                37.5701623
+            ],
+            "type": "Point"
+        },
+        "name": "종로1가",
+        "ratingByCrawling": 0.14
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9606764,
+                37.52909229999999
+            ],
+            "type": "Point"
+        },
+        "name": "한강로3가",
+        "ratingByCrawling": 0.13
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.8735297,
+                37.5370192
+            ],
+            "type": "Point"
+        },
+        "name": "목동",
+        "ratingByCrawling": 0.13
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9495112,
+                37.53980079999999
+            ],
+            "type": "Point"
+        },
+        "name": "도화",
+        "ratingByCrawling": 0.13
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0143281,
+                37.514847
+            ],
+            "type": "Point"
+        },
+        "name": "잠원",
+        "ratingByCrawling": 0.12
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.069234,
+                37.54039
+            ],
+            "type": "Point"
+        },
+        "name": "건대",
+        "ratingByVoting": 0.45
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.922972,
+                37.556033
+            ],
+            "type": "Point"
+        },
+        "name": "홍대",
+        "ratingByVoting": 0.83
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.02768,
+                37.497889
+            ],
+            "type": "Point"
+        },
+        "name": "강남",
+        "ratingByVoting": 1.26
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0383724,
+                37.5276406
+            ],
+            "type": "Point"
+        },
+        "name": "압구정로데오",
+        "ratingByVoting": 0.49
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0566709,
+                37.5123694
+            ],
+            "type": "Point"
+        },
+        "name": "코엑스",
+        "ratingByVoting": 0.65
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0467523,
+                37.504479
+            ],
+            "type": "Point"
+        },
+        "name": "선릉",
+        "ratingByVoting": 0.77
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9512263,
+                37.496226
+            ],
+            "type": "Point"
+        },
+        "name": "숭실대",
+        "ratingByVoting": 1.6
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9394813,
+                37.514072
+            ],
+            "type": "Point"
+        },
+        "name": "노량진",
+        "ratingByVoting": 1.72
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.99134,
+                37.5609739
+            ],
+            "type": "Point"
+        },
+        "name": "충무로",
+        "ratingByVoting": 0.18
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0363373,
+                37.5615
+            ],
+            "type": "Point"
+        },
+        "name": "왕십리",
+        "ratingByVoting": 0.7
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0414945,
+                37.5556003
+            ],
+            "type": "Point"
+        },
+        "name": "한양대",
+        "ratingByVoting": 2.0
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0645023,
+                37.531537
+            ],
+            "type": "Point"
+        },
+        "name": "뚝섬유원지",
+        "ratingByVoting": 1.29
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0547243,
+                37.543997
+            ],
+            "type": "Point"
+        },
+        "name": "성수",
+        "ratingByVoting": 0.56
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0724043,
+                37.547905
+            ],
+            "type": "Point"
+        },
+        "name": "어린이대공원",
+        "ratingByVoting": 0.35
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0931684,
+                37.535144
+            ],
+            "type": "Point"
+        },
+        "name": "강변",
+        "ratingByVoting": 1.79
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.1289013,
+                37.516628
+            ],
+            "type": "Point"
+        },
+        "name": "올림픽공원",
+        "ratingByVoting": 0.6
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0446699,
+                37.5800274
+            ],
+            "type": "Point"
+        },
+        "name": "청량리",
+        "ratingByVoting": 0.39
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0557883,
+                37.589756
+            ],
+            "type": "Point"
+        },
+        "name": "회기",
+        "ratingByVoting": 1.13
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0065777,
+                37.5709391
+            ],
+            "type": "Point"
+        },
+        "name": "동대문",
+        "ratingByVoting": 0.58
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0145489,
+                37.5732999
+            ],
+            "type": "Point"
+        },
+        "name": "동묘",
+        "ratingByVoting": 0.32
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9927397,
+                37.6101204
+            ],
+            "type": "Point"
+        },
+        "name": "국민대지하세계",
+        "ratingByVoting": 0.52
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0143553,
+                37.59272
+            ],
+            "type": "Point"
+        },
+        "name": "성신여대입구",
+        "ratingByVoting": 0.58
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.8807173,
+                37.502176
+            ],
+            "type": "Point"
+        },
+        "name": "구로",
+        "ratingByVoting": 1.4
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.010745,
+                37.493748
+            ],
+            "type": "Point"
+        },
+        "name": "교대",
+        "ratingByVoting": 0.17
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.982981,
+                37.5384606
+            ],
+            "type": "Point"
+        },
+        "name": "경리단길",
+        "ratingByVoting": 0.84
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0207386,
+                37.5205636
+            ],
+            "type": "Point"
+        },
+        "name": "가로수길",
+        "ratingByVoting": 1.27
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.918304,
+                37.5631928
+            ],
+            "type": "Point"
+        },
+        "name": "연남동",
+        "ratingByVoting": 1.95
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9793722,
+                37.5824673
+            ],
+            "type": "Point"
+        },
+        "name": "북촌한옥마을",
+        "ratingByVoting": 1.93
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9049401,
+                37.5154133
+            ],
+            "type": "Point"
+        },
+        "name": "영등포",
+        "ratingByVoting": 1.42
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9997033,
+                37.58208
+            ],
+            "type": "Point"
+        },
+        "name": "혜화",
+        "ratingByVoting": 0.77
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9207713,
+                37.547736
+            ],
+            "type": "Point"
+        },
+        "name": "상수동",
+        "ratingByVoting": 0.4
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0278953,
+                37.613251
+            ],
+            "type": "Point"
+        },
+        "name": "미아사거리",
+        "ratingByVoting": 0.76
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9713913,
+                37.575838
+            ],
+            "type": "Point"
+        },
+        "name": "경복궁",
+        "ratingByVoting": 1.08
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9809103,
+                37.570169
+            ],
+            "type": "Point"
+        },
+        "name": "종각",
+        "ratingByVoting": 0.69
+    },
+    {
+        "location": {
+            "coordinates": [
+                127.0218194,
+                37.5716583
+            ],
+            "type": "Point"
+        },
+        "name": "청계천",
+        "ratingByVoting": 1.41
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9722148,
+                37.5537577
+            ],
+            "type": "Point"
+        },
+        "name": "서울역",
+        "ratingByVoting": 0.88
+    },
+    {
+        "location": {
+            "coordinates": [
+                126.9221228,
+                37.5215695
+            ],
+            "type": "Point"
+        },
+        "name": "여의도",
+        "ratingByVoting": 1.29
+    }
+]

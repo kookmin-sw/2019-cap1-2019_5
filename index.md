@@ -50,7 +50,7 @@ We’d like to implement an easily accessible service that doesn’t need to ins
 
 
 ## 4. 사용법
-#### (1) http://meet-mid.s3-website.ap-northeast-2.amazonaws.com/ 접속
+#### (1) http://mdmy.s3-website.ap-northeast-2.amazonaws.com/ 접속
 #### (2) '모임만들기' 버튼을 클릭하여 모임생성
 #### (3) '모임'페이지를 다른 사용자들에게 공유
 #### (4) 모임 구성원들이 '모임'페이지에 출발 위치를 입력

@@ -79,7 +79,7 @@ class Meeting extends React.Component {
           content: {
             title: 'ㅁㄷㅁㅇ', //카카오톡 공유 제목영역
             description: '모임 : ' + this.state.meeting.name, //카카오톡 공유 내용영역
-            imageUrl: 'http://meet-mid.s3-website.ap-northeast-2.amazonaws.com/static/media/logo.94db3323.png', //공유 이미지
+            imageUrl: 'http://mdmy.s3-website.ap-northeast-2.amazonaws.com/static/media/logo.94db3323.png', //공유 이미지
             link: {
               mobileWebUrl: document.location.href,
               webUrl: document.location.href

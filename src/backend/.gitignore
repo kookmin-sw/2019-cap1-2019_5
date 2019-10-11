@@ -89,7 +89,7 @@ typings/
 /config/API_KEY.json
 
 # Location candidates file
-location_candidates.json
+# location_candidates.json
 
 # Database
 /database/chromedriver.exe
